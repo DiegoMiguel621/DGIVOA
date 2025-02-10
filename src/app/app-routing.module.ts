@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'footer',component:FooterComponent},
   {path:'perfil',component:PerfilComponent},
   {path:'visitas',component:VisitasComponent},
-  {path:'inicioObra',component:IniciosObraComponent}
+  {path:'inicios-obra',component:IniciosObraComponent}
 
 ];
 

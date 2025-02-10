@@ -1,0 +1,45 @@
+.footer {
+    height: 12vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #691B32;
+    color: white;
+    margin: 0;            /* Para asegurar que no haya scroll extra */
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;         /* Ocupará el 100% del footer */
+    box-sizing: border-box;
+  }
+  
+  .footer-logo {
+    max-height: 90px;     /* Ajusta si quieres que la imagen sea más pequeña */
+  }
+  
+  .footer-separator {
+    width: 2px;
+    height: 80%;          /* 90% de la altura del padre, que es 12vh */
+    background-color: #BC955B;
+    margin: 0 20px;       /* Espacio a los costados */
+  }
+  
+  .footer-text {
+    text-align: center;
+  }
+  
+  .footer-title {
+    font-size: 22px;
+    margin: 0 0 1px 0;
+  }
+  
+  .footer-line {
+    margin: 0;
+    font-size: 14px;
+  }
+  

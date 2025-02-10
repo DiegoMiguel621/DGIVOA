@@ -1,0 +1,47 @@
+#aside{
+    background-color: #5C5C5C;
+    float: left;
+    width: 12%;
+    height: 76vh;
+  }
+  #menuAside{
+    background-color: #4B4A4A;
+    width: 100%;
+    height: 35px;
+  }
+  #menuPalabra{
+    width: fit-content;
+    height: auto;
+    margin-left: 15px;
+    padding-top: 10px;
+    position: relative;
+  }
+  
+  .divEnlaces {    
+    width: 100%;
+    height: 45px;
+    display: flex;             
+    align-items: center;       
+    box-sizing: border-box;    
+    padding: 0 15px;               
+  }
+    
+  .iconoEnlace {
+    display: flex; 
+    align-items: center;
+    margin-right: 16px;    
+    width: 16px;
+    }
+    
+  .textoEnlace p {
+    margin: 0;       
+    font-size: 16px; 
+    color: white;   
+  }
+  
+  a.casa,a.iniciosObra,a.visitas, a.perfil, a.logout {
+    text-decoration: none;     
+  }
+  
+
+  
