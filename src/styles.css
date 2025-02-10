@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  /* Permite que body pueda medir 100% del viewport */
+  height: 100%;
+  /* Opcional: si quieres forzar que NO aparezca scroll, aun si hay overflow */
+  overflow: hidden;
+  box-sizing: border-box;
+}

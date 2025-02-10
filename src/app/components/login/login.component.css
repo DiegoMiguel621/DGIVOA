@@ -1,0 +1,140 @@
+#body {
+    /* Asegúrate de ocupar todo el alto del viewport */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* HEADER = 12% */
+  .header {
+    height: 12vh; /* 12% del viewport height */
+    background-color: #691B32;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  
+  .header .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header .logo {
+    max-height: 100%;
+    max-width: 80px;
+    object-fit: contain;
+    margin-right: 15px;
+  }
+  
+  .header-text {
+    line-height: 1.2;
+    font-size: clamp(18px, 2vw, 22px);
+  }
+  
+  .header-line {
+    margin: 0;
+    font-family: 'Afacad', sans-serif;
+    white-space: nowrap;
+  }
+  
+  /* MAIN = 76% */
+  .main-content {
+    height: 76vh; /* 76% del viewport height */
+    display: flex; /* Para centrar el contenedor de login */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Contenedor del login */
+  .login-container {
+    text-align: center;
+    max-width: 430px;
+  }
+  
+  /* Estilos del formulario */
+  .login-container h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 40px;
+  }
+  
+  .login-form {
+    background-color: #E9E9E9;
+    padding: 40px 40px 50px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 170px;
+  }
+  
+  .login-form input {
+    width: 90%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid white;
+    color: #7E7E7E;
+    border-radius: 5px;
+    font-style: italic;
+    font-size: 16px;
+  }
+  
+  /* Botón de login */
+  #loginButton {
+    width: 25%;
+    float: right;
+  }
+  
+  .login-form button {
+    background-color: #BC955B;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .login-form button:hover {
+    background-color: #A67D4E;
+  }
+  
+  /* FOOTER = 12% */
+  .footer {
+    height: 12vh; /* 12% del viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #691B32;
+  }
+  
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-logo {
+    max-height: 90px;
+    margin-right: 100px;
+  }
+  
+  .footer-text {
+    text-align: center;
+  }
+  
+  .footer-title {
+    font-size: 22px;
+    margin: 0;
+    margin-bottom: 1px;
+  }
+  
+  .footer-line {
+    margin: 0;
+    font-size: 14px;
+  }

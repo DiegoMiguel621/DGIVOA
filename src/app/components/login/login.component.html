@@ -1,0 +1,51 @@
+<!-- HEADER (12%) -->
+<header class="header">
+    <div class="logo-container">
+      <img src="assets/images/logo_sin.png" alt="Logo" class="logo" />
+      <div class="header-text">
+        <p class="header-line">Dirección General de Inspección y</p>
+        <p class="header-line">Vigilancia de Obras y Acciones</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN (76%) -->
+  <main class="main-content">
+    <!-- Contenedor del login -->
+    <div class="login-container">
+      <h2>Iniciar sesión</h2>
+      <form class="login-form" (ngSubmit)="login()">
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="correo electrónico"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="contraseña"
+          required
+        />
+        <button id="loginButton" type="submit">Entrar</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER (12%) -->
+  <footer class="footer">
+    <div class="footer-content">
+      <img
+        src="assets/images/logo_hidalgo.png"
+        alt="Logo Hidalgo"
+        class="footer-logo"
+      />
+      <div class="footer-text">
+        <p class="footer-title">Contraloría</p>
+        <p class="footer-line">42162 San Agustín</p>
+        <p class="footer-line">Tlaxiaca, Hgo.</p>
+      </div>
+    </div>
+  </footer>
