@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
 import { IniciosObraComponent } from './components/inicios-obra/inicios-obra.component';
+import { EmpleadosComponent } from './components/empleados/empleados.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { IniciosObraComponent } from './components/inicios-obra/inicios-obra.com
     FooterComponent,
     PerfilComponent,
     VisitasComponent,
-    IniciosObraComponent
+    IniciosObraComponent,
+    EmpleadosComponent
   ],
   imports: [
     BrowserModule,

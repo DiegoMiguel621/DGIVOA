@@ -2,7 +2,7 @@
     background-color: #5C5C5C;
     float: left;
     width: 12%;
-    height: 76vh;
+    height: 82vh;
     transition: width 0.3s;    /* animación suave */
     overflow: hidden;   
   }
@@ -53,7 +53,7 @@
     color: white;   
   }
   
-  a.casa,a.iniciosObra,a.visitas, a.perfil, a.logout {
+  a.casa,a.iniciosObra,a.visitas,a.empleados, a.perfil, a.logout {
     text-decoration: none;     
   }
   

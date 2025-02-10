@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
 import { IniciosObraComponent } from './components/inicios-obra/inicios-obra.component';
+import { EmpleadosComponent } from './components/empleados/empleados.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -19,7 +20,9 @@ const routes: Routes = [
   {path:'footer',component:FooterComponent},
   {path:'perfil',component:PerfilComponent},
   {path:'visitas',component:VisitasComponent},
-  {path:'inicios-obra',component:IniciosObraComponent}
+  {path:'inicios-obra',component:IniciosObraComponent},
+  {path:'empleados',component:EmpleadosComponent}
+
 
 ];
 

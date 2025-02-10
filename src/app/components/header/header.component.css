@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between; 
-    height: 12vh;                  
+    height: 8vh;                  
     padding: 0 1rem;             
     box-sizing: border-box;
   }
@@ -16,14 +16,14 @@
   }
   
   .logo {
-    max-width: 70px; /* Ajusta según tu imagen */
+    max-width: 50px; /* Ajusta según tu imagen */
     margin-right: 1rem;
     object-fit: contain;
   }
   
   .header-text {
     line-height: 1.2;
-    font-size: clamp(18px, 2vw, 22px);
+    font-size: clamp(16px, 2vw, 18px);
   }
   
   .header-line {
@@ -44,14 +44,14 @@
   /* Nombre */
   #nombre h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-left: 1rem; 
   }
   
   /* Foto de perfil */
   #perfil {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
     object-fit: cover;   
   }
   

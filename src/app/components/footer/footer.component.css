@@ -1,5 +1,5 @@
 .footer {
-    height: 12vh; 
+    height: 10vh; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +19,7 @@
   }
   
   .footer-logo {
-    max-height: 90px;     /* Ajusta si quieres que la imagen sea más pequeña */
+    height: 100%;     /* Ajusta si quieres que la imagen sea más pequeña */
   }
   
   .footer-separator {
@@ -34,7 +34,7 @@
   }
   
   .footer-title {
-    font-size: 22px;
+    font-size: 16px;
     margin: 0 0 1px 0;
   }
   
