@@ -1,0 +1,11 @@
+#secPrincipal {
+    float: right;
+    width: 88%;
+    height: 76vh;
+    background-color: #E9E9E9;
+    transition: width 0.3s;
+  }
+  
+  #secPrincipal.expanded {
+    width: calc(100% - 50px);
+  }

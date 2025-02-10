@@ -3,19 +3,33 @@
     float: left;
     width: 12%;
     height: 76vh;
+    transition: width 0.3s;    /* animación suave */
+    overflow: hidden;   
   }
-  #menuAside{
+  #aside.collapsed {
+    width: 50px;
+  }
+  #aside.collapsed .textoEnlace p {
+    display: none; /* Oculta el texto de cada enlace */
+  }
+  #aside.collapsed #menuPalabra {
+    display: none;
+  }  
+  #menuAside {
     background-color: #4B4A4A;
     width: 100%;
-    height: 35px;
+    height: 35px;    
+    display: flex;
+    align-items: center;        
+    justify-content: space-between; 
+    box-sizing: border-box;
+    padding: 0 15px;           
   }
-  #menuPalabra{
-    width: fit-content;
-    height: auto;
-    margin-left: 15px;
-    padding-top: 10px;
-    position: relative;
-  }
+    
+  #menuPalabra {    
+    margin: 0;  
+    color: white;
+  }    
   
   .divEnlaces {    
     width: 100%;

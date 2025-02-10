@@ -1,8 +1,10 @@
-<aside id="aside">
+<aside id="aside" [class.collapsed]="isCollapsed">
+
     <div id="menuAside">
-      <div id="menuPalabra">
-        <FONT COLOR=white size=2>MENÚ</FONT>
-      </div>
+      <div id="menuPalabra" *ngIf="!isCollapsed">MENÚ</div>
+      <div id="menuIcon" (click)="toggleAside()">
+        <i class="fa-solid fa-bars fa-lg" style="color: #ffffff;"></i>
+      </div>    
     </div>
     
     <a href="../inicio/"class="casa">
