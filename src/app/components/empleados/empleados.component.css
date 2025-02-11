@@ -4,8 +4,146 @@
     height: 82vh;
     background-color: #E9E9E9;
     transition: width 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
-  #secPrincipal.expanded {
+#secPrincipal.expanded {
     width: calc(100% - 50px);
   }
+
+  #sec-Empleados{
+    
+    width: 95%;
+    height: 90%;
+    
+  }
+  #header-empleados{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  #header-titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+  }
+  h1{
+    font-size: 34px;
+  }
+  #header-nav, #header-titulo, #header-botones{
+    
+    width: 30%;
+    height: 80%;
+  }
+  /* Contenedor de los botones */
+#header-botones {  
+  display: flex;
+  justify-content: flex-end; /* Alinear todo a la derecha */
+  align-items: center; /* Centrar verticalmente */
+  gap: 10px; /* Espaciado entre los botones */
+  padding-right: 20px; /* Espaciado del lado derecho */
+}
+
+/* Botón de Historial */
+#historial-btn {
+  background-color: #F3F3F3;
+  color: black;
+  border: 1px solid #818181;
+  padding: 10px 15px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 50%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Icono dentro del botón de historial */
+#historial-btn i {
+  margin-right: 8px;
+}
+
+/* Botón de Alta de Empleado */
+#alta-btn {
+  background-color: #BC955B;
+  color: white;
+  border: 1px solid black;
+  padding: 10px 15px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 70%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+  #sec-tabla{
+    height: 85%;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: start;    
+  }
+
+/* Estilos de la tabla */
+.tabla-empleados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1%;
+  border: 1px solid #691B32;
+}
+
+/* Estilos del encabezado */
+.tabla-empleados thead {
+  background-color: #9A566A;
+  color: white;
+}
+
+.tabla-empleados th {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Estilos del cuerpo de la tabla */
+.tabla-empleados td {
+  padding: 10px;
+  
+  text-align: center;
+  color: black;
+  white-space: nowrap;
+}
+
+/* Filas pares e impares */
+.tabla-empleados tr.par {
+  background-color: #E9E9E9;
+}
+
+.tabla-empleados tr.impar {
+  background-color: white;
+}
+
+/* Efecto hover */
+.tabla-empleados tbody tr:hover {
+  background-color: #EEEEEE;
+}
+
+
+/* Estilos para la columna de opciones */
+.opciones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.opciones i {
+  cursor: pointer;
+}
