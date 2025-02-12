@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
-
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,9 +14,6 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
 import { IniciosObraComponent } from './components/inicios-obra/inicios-obra.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
-import { AgregarEmpleadosModalComponent } from './modals/agregar-empleados-modal/agregar-empleados-modal.component';
-import { EditarEmpleadosModalComponent } from './modals/editar-empleados-modal/editar-empleados-modal.component';
-import { EliminarEmpleadoModalComponent } from './modals/eliminar-empleado-modal/eliminar-empleado-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,20 +26,16 @@ import { EliminarEmpleadoModalComponent } from './modals/eliminar-empleado-modal
     PerfilComponent,
     VisitasComponent,
     IniciosObraComponent,
-    EmpleadosComponent,
-    AgregarEmpleadosModalComponent,
-    EditarEmpleadosModalComponent,
-    EliminarEmpleadoModalComponent
+    EmpleadosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatDialogModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
-    provideHttpClient(withFetch()),// Configuración recomendada en Angular 17
-    provideHttpClient(withFetch())
+    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })
