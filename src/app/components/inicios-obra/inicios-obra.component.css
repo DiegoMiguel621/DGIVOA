@@ -2,10 +2,251 @@
     float: right;
     width: 88%;
     height: 82vh;
-    background-color: #E9E9E9;
+    background-color: white;
     transition: width 0.3s;
   }
   
   #secPrincipal.expanded {
     width: calc(100% - 50px);
   }
+
+/* Contenedor principal del header */
+#header-inicios {
+  width: 100%;
+  height: 15%;
+  
+  display: flex;
+  justify-content: space-between; /* Mantiene el título centrado y el botón pegado a la derecha */
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Título centrado */
+#titulo-inicios {
+  flex-grow: 1; /* Permite que el título ocupe el espacio central */
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+/* Contenedor del botón alineado a la derecha */
+#boton-inicios {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 120px;
+  height: 50%;  
+  margin-right: 5%;
+}
+
+/* Estilos del botón */
+#btn-agregar-inicio {
+  width: 100%;
+  height: 100%;
+  background-color: #BC955B;
+  border: 1px solid black;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Efecto hover */
+#btn-agregar-inicio:hover {
+  background-color: #A67D4E;
+}
+
+
+/* Contenedor del aside */
+#aside-inicios {  
+  width: 200px;
+  height: 85%;
+  float: left;
+  padding-left: 10px;
+  font-family: Arial, sans-serif;
+  overflow-y: auto; /* Scroll si es necesario */
+}
+
+/* Estilo del título */
+#aside-inicios h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Línea separadora */
+.separator {
+  width: 80%;
+  height: 2px;
+  background-color: black;
+  margin-bottom: 10px;
+}
+
+/* Estilos de las cajas de búsqueda */
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.search-box i {
+  margin-right: 5px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+/* Estilos de los selects */
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none; /* Eliminamos el borde */
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Scroll */
+#aside-inicios::-webkit-scrollbar {
+  width: 6px;
+}
+
+#aside-inicios::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+#municipio, #localidad, #aviso, #fondo{
+  width: 125px;
+}
+#año, #monto{
+  width: 90px;
+}
+#recurso{
+  width: 135px;
+}
+/* Contenedor de la tabla */
+#cont-tabla {
+  
+  width: 84%;
+  height: 85%;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+
+}
+
+/* Contenedor principal de la tabla */
+#table-container {
+  width: 100%;
+  overflow-x: auto; /* Permite el scroll horizontal */
+  border: 1px solid #ddd;
+  background: white;
+  padding: 10px 0px 10px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+/* Configuración de la tabla */
+.tabla-inicios {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  min-width: 1200px;
+}
+
+/* Estilos del encabezado */
+thead {
+  background-color: #9A566A;
+  color: white;
+}
+
+th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  max-width: 200px; /* Ancho máximo de cada columna */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estilos de las celdas */
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Alternancia de colores en filas */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Columna fija de "Opciones" */
+td.fixed-column, th.fixed-column {
+  position: sticky;
+  right: 0;
+  background-color: #9A566A;
+  color: white;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Ajuste del color de la columna fija según la fila */
+tbody tr:nth-child(even) td.fixed-column {
+  background-color: #F2F2F2;
+}
+
+tbody tr:nth-child(odd) td.fixed-column {
+  background-color: white;
+}
+
+/* Iconos dentro de la columna fija */
+.fixed-column i {
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Separación entre columnas */
+th:not(:last-child), td:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+/* Scrollbar personalizado */
+#table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+#table-container::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 10px;
+}
+
+#table-container::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
+}
+
+

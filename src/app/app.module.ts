@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -16,9 +18,11 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { VisitasComponent } from './components/visitas/visitas.component';
 import { IniciosObraComponent } from './components/inicios-obra/inicios-obra.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
+
 import { AgregarEmpleadosModalComponent } from './modals/agregar-empleados-modal/agregar-empleados-modal.component';
 import { EditarEmpleadosModalComponent } from './modals/editar-empleados-modal/editar-empleados-modal.component';
 import { EliminarEmpleadoModalComponent } from './modals/eliminar-empleado-modal/eliminar-empleado-modal.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -38,13 +42,15 @@ import { EliminarEmpleadoModalComponent } from './modals/eliminar-empleado-modal
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule, 
     AppRoutingModule,
     MatDialogModule,
     FormsModule
   ],
   providers: [
     provideHttpClient(withFetch()),// Configuración recomendada en Angular 17
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()), provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

@@ -6,11 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmpleadosService {
-  private apiUrl = 'http://localhost:3000/empleados';
+  private apiUrl = 'http://localhost:3000/api/empleados'; 
+
 
   constructor(private http: HttpClient) {}
 
   getEmpleados(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  agregarEmpleado(empleado: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, empleado);
+  }
+
+  darDeBajaEmpleado(id_empleado: number) {
+    return this.http.put(`${this.apiUrl}/${id_empleado}/baja`, {});
+}
+
+
+  
 }

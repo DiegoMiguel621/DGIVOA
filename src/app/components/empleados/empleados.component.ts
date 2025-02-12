@@ -22,25 +22,16 @@ export class EmpleadosComponent implements OnInit {
     private matDialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
-    // Verificar si estamos en el navegador antes de usar localStorage
+  ngOnInit(): void {    
     if (isPlatformBrowser(this.platformId)) {
       const collapsedFromStorage = localStorage.getItem('asideCollapsed');
       if (collapsedFromStorage !== null) {
         this.isAsideCollapsed = (collapsedFromStorage === 'true');
       }
-    }
-
-    // Cargar empleados al iniciar
+    }    
     this.cargarEmpleados();
   }
 
-
-
-
-  /**
-   * Método que se ejecuta cuando el aside cambia de estado
-   */
   onAsideToggled(collapsed: boolean): void {
     this.isAsideCollapsed = collapsed;
 
@@ -50,9 +41,6 @@ export class EmpleadosComponent implements OnInit {
     }
   }
 
-  /**
-   * Método para cargar los empleados desde la API
-   */
   cargarEmpleados(): void {
     this.empleadosService.getEmpleados().subscribe(
       (data) => {
@@ -64,15 +52,15 @@ export class EmpleadosComponent implements OnInit {
     );
   }
 
-
-
-
     //modales
   agregarEmpleado(): void {
     console.log("Intentando abrir el modal...");
     if (isPlatformBrowser(this.platformId)) {
       const dialogRef = this.matDialog.open(AgregarEmpleadosModalComponent);
-      dialogRef.afterClosed().subscribe(() => {
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) { 
+          this.cargarEmpleados();
+        } 
         console.log("El modal se cerró");
       });
     }
@@ -88,15 +76,27 @@ export class EmpleadosComponent implements OnInit {
     }
   }
 
-  eliminarEmpleado(): void {
-    console.log("Intentando abrir el modal...");
-    if (isPlatformBrowser(this.platformId)) {
-      const dialogRef = this.matDialog.open(EliminarEmpleadoModalComponent);
-      dialogRef.afterClosed().subscribe(() => {
-        console.log("El modal se cerró");
-      });
+  eliminarEmpleado(id_empleado: number): void {
+    console.log(`Intentando abrir el modal para el empleado con ID: ${id_empleado}`);
+  
+    if (!id_empleado) {
+      console.error("Error: ID del empleado no definido.");
+      return;
     }
+  
+    const dialogRef = this.matDialog.open(EliminarEmpleadoModalComponent, {
+      data: { id_empleado }
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.cargarEmpleados(); // Recargar la tabla si se realizó la baja
+      }
+    });
   }
+  
+  
+  
 
 
 
