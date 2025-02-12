@@ -1,6 +1,11 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { EmpleadosService } from '../../services/empleados.service';
+import { MatDialog } from '@angular/material/dialog';
+
+import { AgregarEmpleadosModalComponent } from '../../modals/agregar-empleados-modal/agregar-empleados-modal.component';
+import { EditarEmpleadosModalComponent } from '../../modals/editar-empleados-modal/editar-empleados-modal.component';
+import { EliminarEmpleadoModalComponent } from '../../modals/eliminar-empleado-modal/eliminar-empleado-modal.component';
 
 @Component({
   selector: 'app-empleados',
@@ -13,7 +18,8 @@ export class EmpleadosComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private empleadosService: EmpleadosService
+    private empleadosService: EmpleadosService,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +34,9 @@ export class EmpleadosComponent implements OnInit {
     // Cargar empleados al iniciar
     this.cargarEmpleados();
   }
+
+
+
 
   /**
    * Método que se ejecuta cuando el aside cambia de estado
@@ -54,4 +63,41 @@ export class EmpleadosComponent implements OnInit {
       }
     );
   }
+
+
+
+
+    //modales
+  agregarEmpleado(): void {
+    console.log("Intentando abrir el modal...");
+    if (isPlatformBrowser(this.platformId)) {
+      const dialogRef = this.matDialog.open(AgregarEmpleadosModalComponent);
+      dialogRef.afterClosed().subscribe(() => {
+        console.log("El modal se cerró");
+      });
+    }
+  }
+
+  editarEmpleado(): void {
+    console.log("Intentando abrir el modal...");
+    if (isPlatformBrowser(this.platformId)) {
+      const dialogRef = this.matDialog.open(EditarEmpleadosModalComponent);
+      dialogRef.afterClosed().subscribe(() => {
+        console.log("El modal se cerró");
+      });
+    }
+  }
+
+  eliminarEmpleado(): void {
+    console.log("Intentando abrir el modal...");
+    if (isPlatformBrowser(this.platformId)) {
+      const dialogRef = this.matDialog.open(EliminarEmpleadoModalComponent);
+      dialogRef.afterClosed().subscribe(() => {
+        console.log("El modal se cerró");
+      });
+    }
+  }
+
+
+
 }

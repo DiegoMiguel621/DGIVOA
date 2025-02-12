@@ -13,14 +13,15 @@
             </div>
             <div id="header-botones">
                 <button id="historial-btn">
-                    <i class="fa-solid fa-clock-rotate-left"></i> 
+                    <i class="fa-solid fa-clock-rotate-left"></i>
                     Historial
                 </button>
-                <button id="alta-btn">
+
+                <button id="alta-btn" (click)="agregarEmpleado()">
                     Alta de empleado
                 </button>
             </div>
-            
+
         </div>
         <div id="sec-tabla">
             <table class="tabla-empleados">
@@ -40,14 +41,14 @@
                   <td>{{ empleado.correo }}</td>
                   <td>{{ empleado.direccion }}</td>
                   <td class="opciones">
-                    <i class="fa-solid fa-pen" style="color: #000000;"></i>
+                    <i class="fa-solid fa-pen" style="color: #000000;" (click)="editarEmpleado()"></i>
                     <i class="fa-solid fa-key" style="color: #000000;"></i>
-                    <i class="fa-solid fa-trash" style="color: #000000;"></i>
+                    <i class="fa-solid fa-trash" style="color: #000000;" (click)="eliminarEmpleado()"></i>
                   </td>
                 </tr>
               </tbody>
             </table>
-          </div>          
+          </div>
     </div>
 </section>
 
