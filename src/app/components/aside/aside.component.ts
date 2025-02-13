@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aside',
@@ -8,6 +10,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class AsideComponent implements OnInit {
   isCollapsed: boolean = false;
   @Output() asideToggled = new EventEmitter<boolean>();
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     if (typeof localStorage !== 'undefined') {
@@ -24,5 +28,11 @@ export class AsideComponent implements OnInit {
       localStorage.setItem('asideCollapsed', this.isCollapsed.toString());
     }
     this.asideToggled.emit(this.isCollapsed);
+  }
+
+  cerrarSesion(): void {
+    this.authService.cerrarSesion();
+    console.log("Sesión cerrada correctamente.");
+    this.router.navigate(['/login']); // 🔥 Redirige a login
   }
 }

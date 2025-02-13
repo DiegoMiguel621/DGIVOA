@@ -62,16 +62,18 @@
     </div>
     </a>
     
-    <a href="../login/"class="logout">
-    <div class="divEnlaces">
-      <div class="iconoEnlace">
-        <i class="fa-solid fa-right-from-bracket fa-lg" style="color: #C92929;"></i>
+    <a (click)="cerrarSesion()" class="logout">
+      <div class="divEnlaces">
+        <div class="iconoEnlace">
+          <i class="fa-solid fa-right-from-bracket fa-lg" style="color: #C92929;"></i>
+        </div>
+        <div class="textoEnlace">
+          <p>Cerrar sesión</p>
+        </div>
       </div>
-      <div class="textoEnlace">
-        <p>Cerrar sesión</p>
-      </div>
-    </div>
     </a>
+    
+    
   
   </aside>
   <router-outlet></router-outlet>
