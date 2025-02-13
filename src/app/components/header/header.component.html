@@ -13,8 +13,11 @@
       <i class="fa-solid fa-bell fa-xl" style="color: #ffffff;"></i>
         
       <div id="nombre">
-        <h2>Diego Miguel Escamilla Hernández - DICO</h2>
+        <h2 *ngIf="usuario">{{ usuario.nombres }} {{ usuario.apellidos }} - {{ usuario.direccion }}</h2>
       </div>
+      
+
+      
       <a href="../perfil/"class="perfil">
         <img src="assets/images/perfil_sin.png" class="rounded-circle" id="perfil" alt="Foto de perfil" />
       </a>
