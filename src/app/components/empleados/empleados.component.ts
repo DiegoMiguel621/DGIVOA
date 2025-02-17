@@ -22,7 +22,9 @@ export class EmpleadosComponent implements OnInit {
     private matDialog: MatDialog
   ) {}
 
-  ngOnInit(): void {    
+  ngOnInit(): void {  
+    this.obtenerEmpleados(); 
+
     if (isPlatformBrowser(this.platformId)) {
       const collapsedFromStorage = localStorage.getItem('asideCollapsed');
       if (collapsedFromStorage !== null) {
@@ -52,6 +54,12 @@ export class EmpleadosComponent implements OnInit {
     );
   }
 
+  obtenerEmpleados(): void {
+    this.empleadosService.obtenerEmpleados().subscribe(data => {
+      this.empleados = data;
+    });
+  }
+
     //modales
   agregarEmpleado(): void {
     console.log("Intentando abrir el modal...");
@@ -66,15 +74,21 @@ export class EmpleadosComponent implements OnInit {
     }
   }
 
-  editarEmpleado(): void {
-    console.log("Intentando abrir el modal...");
-    if (isPlatformBrowser(this.platformId)) {
-      const dialogRef = this.matDialog.open(EditarEmpleadosModalComponent);
-      dialogRef.afterClosed().subscribe(() => {
-        console.log("El modal se cerró");
+  editarEmpleado(id_empleado: number): void {
+    this.empleadosService.obtenerEmpleadoPorId(id_empleado).subscribe(empleado => {
+      const dialogRef = this.matDialog.open(EditarEmpleadosModalComponent, {
+        width: '400px',
+        data: empleado // Se envía el empleado al modal
       });
-    }
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) { 
+          this.obtenerEmpleados(); // ✅ Recargar lista de empleados después de actualizar
+        }
+      });
+    });
   }
+  
 
   eliminarEmpleado(id_empleado: number): void {
     console.log(`Intentando abrir el modal para el empleado con ID: ${id_empleado}`);

@@ -19,9 +19,22 @@ export class EmpleadosService {
     return this.http.post(`${this.apiUrl}`, empleado);
   }
 
+  obtenerEmpleados(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  obtenerEmpleadoPorId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
+  actualizarEmpleado(id: number, empleado: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, empleado);
+  }
+
   darDeBajaEmpleado(id_empleado: number) {
     return this.http.put(`${this.apiUrl}/${id_empleado}/baja`, {});
-}
+  }
+
 
 
   
