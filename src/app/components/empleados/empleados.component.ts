@@ -110,7 +110,7 @@ export class EmpleadosComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.cargarEmpleados();
+        this.obtenerEmpleados();
       }
     });
   }
@@ -140,7 +140,7 @@ export class EmpleadosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.cargarEmpleados();
+        this.obtenerEmpleados();
       }
     });
   }
