@@ -16,12 +16,10 @@ export class EmpleadosService {
     return this.http.get<any[]>(url);
   }
   
-  
   restaurarEmpleado(id: number): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${id}/restaurar`, {});
   }
   
-
   agregarEmpleado(empleado: any): Observable<any> {
     return this.http.post(`${this.apiUrl}`, empleado);
   }
@@ -41,8 +39,5 @@ export class EmpleadosService {
   darDeBajaEmpleado(id_empleado: number) {
     return this.http.put(`${this.apiUrl}/${id_empleado}/baja`, {});
   }
-
-
-
   
 }
