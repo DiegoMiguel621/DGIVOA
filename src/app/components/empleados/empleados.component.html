@@ -5,51 +5,52 @@
 <section id="secPrincipal" [class.expanded]="isAsideCollapsed">
     <div id="sec-Empleados">
         <div id="header-empleados">
-            <div id="header-nav">
+          <div id="header-nav">
 
-            </div>
-            <div id="header-titulo">
-                <h1>Empleados de DGIVOA</h1>
-            </div>
-            <div id="header-botones">
-                <button id="historial-btn">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    Historial
-                </button>
-
-                <button id="alta-btn" (click)="agregarEmpleado()">
-                    Alta de empleado
-                </button>
-            </div>
+          </div>
+          <div id="header-titulo">
+              <h1>Empleados de DGIVOA</h1>
+          </div>
+          <div id="header-botones">
+            <button id="historial-btn" (click)="alternarEmpleados()">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              {{ mostrandoInactivos ? 'Activos' : 'Historial' }}
+            </button>
+            <button id="alta-btn" (click)="agregarEmpleado()">
+              Alta de empleado
+            </button>
+          </div>
 
         </div>
-        <div id="sec-tabla">
-            <table class="tabla-empleados">
-              <thead>
-                <tr>
-                  <th>Nombre(s)</th>
-                  <th>Apellidos</th>
-                  <th>Correo Electrónico</th>
-                  <th>Dirección</th>
-                  <th>Opciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let empleado of empleados; let i = index" [class.par]="i % 2 === 1" [class.impar]="i % 2 === 0">
-                  <td>{{ empleado.nombres }}</td>
-                  <td>{{ empleado.apellidos }}</td>
-                  <td>{{ empleado.correo }}</td>
-                  <td>{{ empleado.direccion }}</td>
-                  <td class="opciones">
-                    <i class="fa-solid fa-pen" style="color: #000000;" (click)="editarEmpleado(empleado.id_empleado)"></i>
-                    <i class="fa-solid fa-key" style="color: #000000;"></i>
-                    <i class="fa-solid fa-trash" style="color: #000000;" (click)="eliminarEmpleado(empleado.id_empleado)"></i>
-
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <div id="sec-tabla">
+        <table class="tabla-empleados">
+          <thead>
+            <tr>
+              <th>Nombre(s)</th>
+              <th>Apellidos</th>
+              <th>Correo Electrónico</th>
+              <th>Dirección</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let empleado of empleados; let i = index" [class.par]="i % 2 === 1" [class.impar]="i % 2 === 0">
+              <td>{{ empleado.nombres }}</td>
+              <td>{{ empleado.apellidos }}</td>
+              <td>{{ empleado.correo }}</td>
+              <td>{{ empleado.direccion }}</td>
+              <td class="opciones">
+                <i class="fa-solid fa-pen" style="color: #000000;" (click)="editarEmpleado(empleado.id_empleado)"></i>
+                <i *ngIf="mostrandoInactivos; else eliminarIcon" class="fa-solid fa-trash-can-arrow-up" style="color: #000000;" (click)="restaurarEmpleado(empleado.id_empleado)"></i>
+                <i class="fa-solid fa-key" style="color: #000000;"></i>
+                <ng-template #eliminarIcon>
+                  <i class="fa-solid fa-trash" style="color: #000000;" (click)="eliminarEmpleado(empleado.id_empleado)"></i>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 </section>
 

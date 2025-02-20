@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AgregarEmpleadosModalComponent } from '../../modals/agregar-empleados-modal/agregar-empleados-modal.component';
 import { EditarEmpleadosModalComponent } from '../../modals/editar-empleados-modal/editar-empleados-modal.component';
 import { EliminarEmpleadoModalComponent } from '../../modals/eliminar-empleado-modal/eliminar-empleado-modal.component';
+import { RestaurarEmpleadoModalComponent } from '../../modals/restaurar-empleado-modal/restaurar-empleado-modal.component';
 
 @Component({
   selector: 'app-empleados',
@@ -15,6 +16,7 @@ import { EliminarEmpleadoModalComponent } from '../../modals/eliminar-empleado-m
 export class EmpleadosComponent implements OnInit {
   isAsideCollapsed = false;
   empleados: any[] = [];
+  mostrandoInactivos = false; // 🔄 Controla qué lista se muestra
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -36,15 +38,13 @@ export class EmpleadosComponent implements OnInit {
 
   onAsideToggled(collapsed: boolean): void {
     this.isAsideCollapsed = collapsed;
-
-    // Guardamos el estado en localStorage
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('asideCollapsed', collapsed.toString());
     }
   }
 
   cargarEmpleados(): void {
-    this.empleadosService.getEmpleados().subscribe(
+    this.empleadosService.getEmpleados(this.mostrandoInactivos).subscribe(
       (data) => {
         this.empleados = data;
       },
@@ -55,12 +55,24 @@ export class EmpleadosComponent implements OnInit {
   }
 
   obtenerEmpleados(): void {
-    this.empleadosService.obtenerEmpleados().subscribe(data => {
-      this.empleados = data;
-    });
+    this.empleadosService.getEmpleados(this.mostrandoInactivos).subscribe(
+      (data) => {
+        this.empleados = data;
+      },
+      (error) => {
+        console.error('Error al obtener empleados:', error);
+      }
+    );
   }
+  
 
-    //modales
+  // 🔄 Alternar entre empleados activos e inactivos
+  alternarEmpleados(): void {
+    this.mostrandoInactivos = !this.mostrandoInactivos;
+    this.obtenerEmpleados(); // 🔄 Actualiza la tabla según el estado
+  }
+  
+
   agregarEmpleado(): void {
     console.log("Intentando abrir el modal...");
     if (isPlatformBrowser(this.platformId)) {
@@ -78,40 +90,39 @@ export class EmpleadosComponent implements OnInit {
     this.empleadosService.obtenerEmpleadoPorId(id_empleado).subscribe(empleado => {
       const dialogRef = this.matDialog.open(EditarEmpleadosModalComponent, {
         width: '400px',
-        data: empleado // Se envía el empleado al modal
+        data: empleado
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
-        if (result) { 
-          this.obtenerEmpleados(); // ✅ Recargar lista de empleados después de actualizar
+        if (result) {
+          this.obtenerEmpleados();
         }
       });
     });
   }
-  
 
   eliminarEmpleado(id_empleado: number): void {
-    console.log(`Intentando abrir el modal para el empleado con ID: ${id_empleado}`);
-  
-    if (!id_empleado) {
-      console.error("Error: ID del empleado no definido.");
-      return;
-    }
-  
     const dialogRef = this.matDialog.open(EliminarEmpleadoModalComponent, {
       data: { id_empleado }
     });
-  
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.cargarEmpleados(); // Recargar la tabla si se realizó la baja
+        this.cargarEmpleados();
       }
     });
   }
-  
-  
-  
 
+  // 🆕 Nueva función para restaurar empleados
+  restaurarEmpleado(id_empleado: number): void {
+    const dialogRef = this.matDialog.open(RestaurarEmpleadoModalComponent, {
+      data: { id_empleado }
+    });
 
-
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.cargarEmpleados();
+      }
+    });
+  }
 }
