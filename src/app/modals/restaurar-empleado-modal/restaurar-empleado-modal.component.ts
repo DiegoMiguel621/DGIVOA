@@ -30,7 +30,6 @@ export class RestaurarEmpleadoModalComponent {
     );
   }
   
-
   cerrarModal(): void {
     this.dialogRef.close();
   }

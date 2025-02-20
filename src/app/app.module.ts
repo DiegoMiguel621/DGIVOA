@@ -24,6 +24,7 @@ import { EditarEmpleadosModalComponent } from './modals/editar-empleados-modal/e
 import { EliminarEmpleadoModalComponent } from './modals/eliminar-empleado-modal/eliminar-empleado-modal.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { RestaurarEmpleadoModalComponent } from './modals/restaurar-empleado-modal/restaurar-empleado-modal.component';
+import { CerrarSesionModalComponent } from './modals/cerrar-sesion-modal/cerrar-sesion-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RestaurarEmpleadoModalComponent } from './modals/restaurar-empleado-mod
     AgregarEmpleadosModalComponent,
     EditarEmpleadosModalComponent,
     EliminarEmpleadoModalComponent,
-    RestaurarEmpleadoModalComponent
+    RestaurarEmpleadoModalComponent,
+    CerrarSesionModalComponent
   ],
   imports: [
     BrowserModule,

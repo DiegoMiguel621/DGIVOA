@@ -16,7 +16,11 @@ import { RestaurarEmpleadoModalComponent } from '../../modals/restaurar-empleado
 export class EmpleadosComponent implements OnInit {
   isAsideCollapsed = false;
   empleados: any[] = [];
-  mostrandoInactivos = false; // 🔄 Controla qué lista se muestra
+  empleadosPaginados: any[] = [];
+  mostrandoInactivos = false;
+  paginaActual = 1;
+  empleadosPorPagina = 9;
+  totalPaginas = 1;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -26,7 +30,7 @@ export class EmpleadosComponent implements OnInit {
 
   ngOnInit(): void {  
     this.obtenerEmpleados(); 
-
+    
     if (isPlatformBrowser(this.platformId)) {
       const collapsedFromStorage = localStorage.getItem('asideCollapsed');
       if (collapsedFromStorage !== null) {
@@ -58,6 +62,9 @@ export class EmpleadosComponent implements OnInit {
     this.empleadosService.getEmpleados(this.mostrandoInactivos).subscribe(
       (data) => {
         this.empleados = data;
+        this.paginaActual = 1;
+        this.calcularTotalPaginas();
+        this.actualizarPaginacion();
       },
       (error) => {
         console.error('Error al obtener empleados:', error);
@@ -65,21 +72,18 @@ export class EmpleadosComponent implements OnInit {
     );
   }
   
-
-  // 🔄 Alternar entre empleados activos e inactivos
   alternarEmpleados(): void {
     this.mostrandoInactivos = !this.mostrandoInactivos;
-    this.obtenerEmpleados(); // 🔄 Actualiza la tabla según el estado
+    this.obtenerEmpleados();
   }
   
-
   agregarEmpleado(): void {
     console.log("Intentando abrir el modal...");
     if (isPlatformBrowser(this.platformId)) {
       const dialogRef = this.matDialog.open(AgregarEmpleadosModalComponent);
       dialogRef.afterClosed().subscribe((result) => {
         if (result) { 
-          this.cargarEmpleados();
+          this.obtenerEmpleados();
         } 
         console.log("El modal se cerró");
       });
@@ -92,7 +96,6 @@ export class EmpleadosComponent implements OnInit {
         width: '400px',
         data: empleado
       });
-
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.obtenerEmpleados();
@@ -105,7 +108,6 @@ export class EmpleadosComponent implements OnInit {
     const dialogRef = this.matDialog.open(EliminarEmpleadoModalComponent, {
       data: { id_empleado }
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.cargarEmpleados();
@@ -113,7 +115,24 @@ export class EmpleadosComponent implements OnInit {
     });
   }
 
-  // 🆕 Nueva función para restaurar empleados
+  calcularTotalPaginas(): void {
+    this.totalPaginas = Math.ceil(this.empleados.length / this.empleadosPorPagina);
+  }
+
+  actualizarPaginacion(): void {
+    const inicio = (this.paginaActual - 1) * this.empleadosPorPagina;
+    const fin = inicio + this.empleadosPorPagina;
+    this.empleadosPaginados = this.empleados.slice(inicio, fin);
+  }
+
+  cambiarPagina(delta: number): void {
+    const nuevaPagina = this.paginaActual + delta;
+    if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginas) {
+      this.paginaActual = nuevaPagina;
+      this.actualizarPaginacion();
+    }
+  }
+  
   restaurarEmpleado(id_empleado: number): void {
     const dialogRef = this.matDialog.open(RestaurarEmpleadoModalComponent, {
       data: { id_empleado }

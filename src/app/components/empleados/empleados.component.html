@@ -34,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let empleado of empleados; let i = index" [class.par]="i % 2 === 1" [class.impar]="i % 2 === 0">
+            <tr *ngFor="let empleado of empleadosPaginados; let i = index" [class.par]="i % 2 === 1" [class.impar]="i % 2 === 0">
               <td>{{ empleado.nombres }}</td>
               <td>{{ empleado.apellidos }}</td>
               <td>{{ empleado.correo }}</td>
@@ -50,6 +50,12 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="paginacion">
+        <button (click)="cambiarPagina(-1)" [disabled]="paginaActual === 1">Anterior</button>
+        <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+        <button (click)="cambiarPagina(1)" [disabled]="paginaActual === totalPaginas || totalPaginas === 0">Siguiente</button>
+
       </div>
     </div>
 </section>

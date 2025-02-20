@@ -1,0 +1,60 @@
+/* Fondo oscuro del modal */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* Caja del modal con mayor ancho */
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 400px; /* Aumentamos el ancho */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Contenedor de botones para alinearlos en línea */
+  .modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25%; /* Espaciado entre botones */
+  }
+  
+  /* Botón de Cerrar */
+  button {
+    padding: 10px;
+    border: none;
+    background: #C72326;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 25%;
+  
+  }
+    
+  .eliminar-btn {
+    background: #3EC25B;
+  }
+  
+  .eliminar-btn:hover {
+    background: #30AB4B;
+  }
+  
+  button:hover {
+    background: #AD0E10;
+  }
+  #txtEmpleado{
+    font-size: 18px;
+  }
+  

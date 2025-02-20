@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CerrarSesionModalComponent } from '../../modals/cerrar-sesion-modal/cerrar-sesion-modal.component';
 
 @Component({
   selector: 'app-aside',
@@ -11,7 +13,11 @@ export class AsideComponent implements OnInit {
   isCollapsed: boolean = false;
   @Output() asideToggled = new EventEmitter<boolean>();
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     if (typeof localStorage !== 'undefined') {
@@ -30,9 +36,21 @@ export class AsideComponent implements OnInit {
     this.asideToggled.emit(this.isCollapsed);
   }
 
+  abrirModalCerrarSesion(): void {
+    const dialogRef = this.matDialog.open(CerrarSesionModalComponent, {
+      width: '350px' // Ajusta el tamaño si es necesario
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.cerrarSesion();
+      }
+    });
+  }
+
   cerrarSesion(): void {
     this.authService.cerrarSesion();
     console.log("Sesión cerrada correctamente.");
-    this.router.navigate(['/login']); // 🔥 Redirige a login
+    this.router.navigate(['/login']); // Redirige a login
   }
 }
