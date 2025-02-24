@@ -35,16 +35,57 @@
     font-size: 34px;
   }
 
-  #header-nav{
-    background-color: #691B32;
+  #header-nav{      
     width: 30%;
     height: 90%;
+    display: flex;
+    flex-direction: column;   
+    align-items: center;       
   }
+ 
+  /* Contenedor de búsqueda */
+#search-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 75%;    
+}
 
+#search-container i {
+  font-size: 18px;
+  margin-right: 8px;
+  color: black;
+}
 
+#search-input {
+  border: none;
+  outline: none;  
+  font-size: 16px;
+}
 
+/* Contenedor de filtros */
+#filter-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;  
+}
 
+.filter-option {
+  font-size: 16px;  
+  margin: 0 10px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s, font-weight 0.3s;
+}
 
+.filter-option.active {
+  color: grey;
+  text-decoration: underline;
+}
   
   #header-titulo, #header-botones{    
     width: 30%;
