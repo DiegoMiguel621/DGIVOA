@@ -62,6 +62,7 @@ export class EmpleadosComponent implements OnInit {
       }
     );
   }
+  
 
   alternarEmpleados(): void {
     this.mostrandoInactivos = !this.mostrandoInactivos;
@@ -177,4 +178,5 @@ export class EmpleadosComponent implements OnInit {
     this.paginaActual = 1;
     this.filtrarEmpleados();
   }
+  
 }

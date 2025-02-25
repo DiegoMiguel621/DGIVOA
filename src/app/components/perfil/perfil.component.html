@@ -1,32 +1,37 @@
 <app-header></app-header>
 <app-aside (asideToggled)="onAsideToggled($event)"></app-aside>
 
-
 <section id="secPrincipal" [class.expanded]="isAsideCollapsed">
     <div id="tituloPerfil">
-        <h2>Perfil del Empleado</h2>
+        <h1>Perfil del Empleado</h1>
     </div>
     <section id="contenedor-perfil">
-        <div id="contenido-perfil">
+        <div *ngIf="usuario" id="contenido-perfil">
             <div id="datos-empleado">
                 <h2>Datos del empleado:</h2>
-            
-                <p><strong>Nombre completo:</strong> {{ usuario.nombres }} {{ usuario.apellidos }}</p>                
-                <p><strong>Correo electrónico:</strong> {{ usuario.correo }}</p>                
-                <p>
-                    <strong>Contraseña del perfil:</strong> 
+                <p><strong>Nombre completo:</strong> {{ usuario.nombres }} {{ usuario.apellidos }}</p>
+                <p><strong>Correo electrónico:</strong> {{ usuario.correo }}</p>
+                <p><strong>Contraseña del perfil:</strong> 
                     {{ mostrarContrasena ? usuario["contraseña"] : '*******' }}
                     <i class="fa-solid fa-eye" (click)="toggleMostrarContrasena()" *ngIf="!mostrarContrasena"></i>
                     <i class="fa-solid fa-eye-slash" (click)="toggleMostrarContrasena()" *ngIf="mostrarContrasena"></i>
                 </p>
-
                 <p><strong>Dirección a la que pertenece:</strong> {{ usuario.direccion }}</p>
-            
-                <button id="cambiar-datos-btn">Cambiar correo o contraseña</button>
-            </div>
-            
-            <div id="foto-empleado">
+                <button id="cambiar-datos-btn" (click)="abrirModalCambio()">Cambiar correo o contraseña</button>
 
+            </div>            
+            <div id="foto-empleado">
+                <div id="header-foto">
+                    <h3>
+                        Imagen del empleado
+                    </h3>
+                </div>
+                <div id="cont-foto">
+                    <div id="foto">
+                        <img src="assets/images/user-default.png" alt="Foto de perfil" id="imagen-perfil">
+                        <i class="fa-solid fa-pen-to-square" id="icono-editar"></i>
+                    </div>                    
+                </div>
             </div>
         </div>
     </section>

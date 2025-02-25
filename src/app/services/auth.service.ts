@@ -48,4 +48,8 @@ export class AuthService {
     this.usuarioSubject.next(null);
     console.log("Sesión cerrada correctamente.");
   }
+  actualizarUsuario(usuario: any): void {
+    localStorage.setItem('usuario', JSON.stringify(usuario)); // Guardar en localStorage
+  }
+  
 }

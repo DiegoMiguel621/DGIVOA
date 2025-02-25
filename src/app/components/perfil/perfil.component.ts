@@ -1,18 +1,24 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CambiarContrasenaModalComponent } from '../../modals/cambiar-contrasena-modal/cambiar-contrasena-modal.component';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
-export class PerfilComponent implements OnInit{
+export class PerfilComponent implements OnInit {
   isAsideCollapsed = false;
-  usuario: any;
+  usuario: any = null;
   mostrarContrasena: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private authService: AuthService) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private authService: AuthService,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.usuario = this.authService.obtenerUsuario();
@@ -33,4 +39,14 @@ export class PerfilComponent implements OnInit{
     this.mostrarContrasena = !this.mostrarContrasena;
   }
 
+  abrirModalCambio(): void {
+    const dialogRef = this.matDialog.open(CambiarContrasenaModalComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // 🔹 ACTUALIZAMOS LOS DATOS EN EL PERFIL
+        this.usuario.correo = result.correo;
+        this.usuario.contraseña = result.contraseña;
+      }
+    });
+  }
 }
