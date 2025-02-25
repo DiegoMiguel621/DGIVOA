@@ -18,8 +18,8 @@
       
 
       
-      <a href="../perfil/"class="perfil">
-        <img src="assets/images/user-default.png" class="rounded-circle" id="perfil" alt="Foto de perfil" />
+      <a href="../perfil/"class="perfil">        
+        <img [src]="fotoPerfil" class="rounded-circle" id="perfil" alt="Foto de perfil" (error)="fotoPerfil='assets/images/user-default.png'">
       </a>
     </div>
   </header>

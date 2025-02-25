@@ -8,13 +8,19 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   usuario: any;
+  fotoPerfil: string = 'assets/images/user-default.png';
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.usuario$.subscribe(user => {
-      this.usuario = user;
-      console.log('Usuario en Header:', this.usuario);
+    this.authService.usuario$.subscribe(usuario => {
+      if (usuario) {
+        this.usuario = usuario;
+        this.fotoPerfil = usuario.foto?.startsWith('http') 
+          ? usuario.foto 
+          : `http://localhost:3000/uploads/${usuario.foto}`;
+      }
     });
   }
+
 }

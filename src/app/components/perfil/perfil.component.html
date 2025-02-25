@@ -28,9 +28,21 @@
                 </div>
                 <div id="cont-foto">
                     <div id="foto">
-                        <img src="assets/images/user-default.png" alt="Foto de perfil" id="imagen-perfil">
-                        <i class="fa-solid fa-pen-to-square" id="icono-editar"></i>
-                    </div>                    
+                        <!-- Imagen del usuario -->
+                        <img [src]="fotoPerfil" alt="Foto de perfil" (error)="fotoPerfil='assets/images/user-default.png'">
+
+                
+                        <!-- Input oculto para subir la imagen -->
+                        <input #fileInput type="file" (change)="cambiarFoto($event)" hidden>
+
+
+                        
+                        <!-- Íconos de edición y eliminación -->
+                        <i class="fa-solid fa-pen-to-square" style="color: #000000;" (click)="abrirSelectorDeArchivo()"></i>
+
+                        <i class="fa-solid fa-trash" style="color: #000000;" (click)="restaurarFoto()"></i>
+                    </div>
+                                      
                 </div>
             </div>
         </div>

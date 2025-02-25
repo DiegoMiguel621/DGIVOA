@@ -132,3 +132,23 @@ h3 {
   border-radius: 50%;
   
 }
+#foto img {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+}
+
+#foto i {
+  position: absolute;
+  bottom: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#foto .fa-pen-to-square {
+  right: 10px;
+}
+
+#foto .fa-trash {
+  left: 10px;
+}

@@ -39,5 +39,22 @@ export class EmpleadosService {
   darDeBajaEmpleado(id_empleado: number) {
     return this.http.put(`${this.apiUrl}/${id_empleado}/baja`, {});
   }
+
+  actualizarFoto(id: number, foto: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('foto', foto);
+  
+    return this.http.put<any>(`${this.apiUrl}/${id}/foto`, formData);
+  }
+  
+  restaurarFoto(id: number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}/restaurar-foto`, {});
+  }
+  subirFoto(id_empleado: number, foto: FormData): Observable<any> {
+    return this.http.put<any>(`http://localhost:3000/api/empleados/${id_empleado}/foto`, foto);
+}
+
+
+    
   
 }
