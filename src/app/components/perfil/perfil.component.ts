@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-perfil',
@@ -8,10 +9,14 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class PerfilComponent implements OnInit{
   isAsideCollapsed = false;
+  usuario: any;
+  mostrarContrasena: boolean = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.usuario = this.authService.obtenerUsuario();
+    console.log("Datos del usuario en perfil:", this.usuario);
     if (isPlatformBrowser(this.platformId)) {
       const collapsedFromStorage = localStorage.getItem('asideCollapsed');
       if (collapsedFromStorage !== null) {
@@ -22,6 +27,10 @@ export class PerfilComponent implements OnInit{
 
   onAsideToggled(collapsed: boolean): void {
     this.isAsideCollapsed = collapsed;
+  }
+
+  toggleMostrarContrasena(): void {
+    this.mostrarContrasena = !this.mostrarContrasena;
   }
 
 }

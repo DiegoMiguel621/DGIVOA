@@ -3,7 +3,33 @@
 
 
 <section id="secPrincipal" [class.expanded]="isAsideCollapsed">
-    <h2>este es el contenido de perfil</h2>
+    <div id="tituloPerfil">
+        <h2>Perfil del Empleado</h2>
+    </div>
+    <section id="contenedor-perfil">
+        <div id="contenido-perfil">
+            <div id="datos-empleado">
+                <h2>Datos del empleado:</h2>
+            
+                <p><strong>Nombre completo:</strong> {{ usuario.nombres }} {{ usuario.apellidos }}</p>                
+                <p><strong>Correo electrónico:</strong> {{ usuario.correo }}</p>                
+                <p>
+                    <strong>Contraseña del perfil:</strong> 
+                    {{ mostrarContrasena ? usuario["contraseña"] : '*******' }}
+                    <i class="fa-solid fa-eye" (click)="toggleMostrarContrasena()" *ngIf="!mostrarContrasena"></i>
+                    <i class="fa-solid fa-eye-slash" (click)="toggleMostrarContrasena()" *ngIf="mostrarContrasena"></i>
+                </p>
+
+                <p><strong>Dirección a la que pertenece:</strong> {{ usuario.direccion }}</p>
+            
+                <button id="cambiar-datos-btn">Cambiar correo o contraseña</button>
+            </div>
+            
+            <div id="foto-empleado">
+
+            </div>
+        </div>
+    </section>
 
 </section>
 

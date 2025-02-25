@@ -13,7 +13,7 @@
 /* Contenedor principal del header */
 #header-inicios {
   width: 100%;
-  height: 12%;
+  height: 10%;
   display: flex;
   justify-content: space-between; /* Mantiene el título centrado y el botón pegado a la derecha */
   align-items: center;
@@ -37,7 +37,7 @@ h1 {
   justify-content: flex-end;
   align-items: center;
   width: 120px;
-  height: 70%;  
+  height: 80%;  
   margin-right: 5%;
 }
 
@@ -63,12 +63,11 @@ h1 {
 
 /* Contenedor del aside */
 #aside-inicios {  
-  width: 168px;
-  height: 88%;
-  float: left;
-  padding-left: 10px;
+  width: 13%;
+  height: 90%;
+  float: left;  
   font-family: Arial, sans-serif;
-  overflow-y: auto; /* Scroll si es necesario */  
+  overflow-y: auto; /* Scroll si es necesario */     
 }
 
 /* Estilo del título */
@@ -76,10 +75,12 @@ h1 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
+  margin-left: 5%;
 }
 
 /* Línea separadora */
 .separator {
+  margin-left: 5%;
   width: 80%;
   height: 2px;
   background-color: black;
@@ -88,12 +89,14 @@ h1 {
 
 /* Estilos de las cajas de búsqueda */
 .search-box {
+  margin-left: 5%;
   display: flex;
   align-items: center;
   border: 1px solid black;
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 5px;
+  width: 85%;
 }
 
 .search-box i {
@@ -116,6 +119,7 @@ select {
   background-color: white;
   cursor: pointer;
   font-size: 14px;
+  margin-left: 5%;
 }
 
 /* Scroll */
@@ -139,19 +143,20 @@ select {
 
 /* estilos de la tabla */
 #cont-tabla {  
-  width: 86%;
-  height: 88%;
+  width: 87%;
+  height: 90%;
   display: flex;
   justify-content: center;
-  align-items: start;    
+  align-items: start;   
+  float: right; 
 }
 
 #table-container {
   width: 100%;
   overflow-x: auto;  
-  background: white;
-  padding: 10px 0px 10px 10px;
+  padding: 5px 0px 10px 5px;
   border-radius: 5px;
+  margin-right: 5px;
 }
 
 .tabla-inicios {
