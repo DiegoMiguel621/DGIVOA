@@ -17,13 +17,38 @@
   display: flex;
   justify-content: space-between; /* Mantiene el título centrado y el botón pegado a la derecha */
   align-items: center;
-  padding: 0 20px;
+  padding: 0 20px;  
+}
+/* Estilos para el nav de opciones */
+#nav-avisos {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 18px;
+  
+  margin-left: 12%;
+  margin-top: 1%;
+}
+
+/* Estilo de las opciones de navegación */
+.nav-option {
+  cursor: pointer;
+  padding: 5px 15px;
+  color: black;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Cuando está activa la opción seleccionada */
+.nav-option.active {
+  color: gray;
+  text-decoration: underline;
 }
 
 /* Título centrado */
 #titulo-inicios {
   flex-grow: 1; /* Permite que el título ocupe el espacio central */
   text-align: center;
+  margin-right: 12%;
 }
 
 h1 {

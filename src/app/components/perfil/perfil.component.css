@@ -72,7 +72,7 @@ button:hover {
   background-color: #a8835b;
 }
 
-.fa-eye {
+.fa-eye, .fa-eye-slash {
   cursor: pointer;
   margin-left: 5px;
 }
