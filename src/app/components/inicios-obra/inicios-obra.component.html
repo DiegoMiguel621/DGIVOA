@@ -4,8 +4,8 @@
 <section id="secPrincipal" [class.expanded]="isAsideCollapsed">
     <div id="header-inicios">
         <div id="nav-avisos">
-            <span class="nav-option active">Municipios</span> |
-            <span class="nav-option">Dependencias</span>
+            <span class="nav-option" [class.active]="tipoSeleccionado === 'municipios'" (click)="cambiarTipo('municipios')">Municipios</span> |
+    <span class="nav-option" [class.active]="tipoSeleccionado === 'dependencias'" (click)="cambiarTipo('dependencias')">Dependencias</span>
         </div>        
         <div id="titulo-inicios">
             <h1>Avisos de Inicio de Obra</h1>
@@ -181,7 +181,7 @@
                         <th>FECHA QUE RECIBE DICO</th>
                         <th>OBSERVACIONES</th>
                         <th>CUMPLE AVISO DE INICIO DE OBRA</th>
-                        <th>DEPENDENCIA QUE EJECUTA LA OBRA</th> <!-- este campo solo se mostrará cuando se seleccione "dependencia" en el nav" -->
+                        <th *ngIf="tipoSeleccionado === 'dependencias'">DEPENDENCIA QUE EJECUTA LA OBRA</th>
                         <th>NOMBRE DE LA OBRA</th>
                         <th>MUNICIPIO</th>
                         <th>LOCALIDAD</th>
@@ -204,34 +204,35 @@
                     </tr>
                 </thead>
                 <tbody>            
-                    <tr>
-                        <td>SC-015840</td>
-                        <td>M.A.C. FELIX ADRIAN BRAMBILA MENDOZA</td>
-                        <td>DIRECTOR GENERAL DEL INSTITUTO HIDALGUENSE DE LA INFRAESTRUCTURA FISICIA EDUCATIVA</td>
-                        <td>28-05-2024</td>
-                        <td>29-05-2024</td>
-                        <td>SIN ANEXOS</td>
-                        <td>SI</td>
-                        <td>INHIFE</td>
-                        <td>IMPERMEABILIZACION DE MODULO ATIPICO Y OBRA EXTERIOR ENLA PRIMARIA GENERAL BENITO JUAREZ CON C.C.T. 13DPR2447E UBICADA EN LA LOCALIDAD DE ATITIALAQUIA MPIO ATITALAQUIA</td>
-                        <td>ATITALAQUIA</td>
-                        <td>ATITALAQUIA</td>
-                        <td>2024/FAMAB-00100</td>
-                        <td>ESTATAL</td>
-                        <td>FAMEB</td>
-                        <td>$769,594.24</td>
-                        <td>13-INHIFE-FAMEB-24-009-2024 A-D-</td>
-                        <td>15-05-2024</td>
-                        <td>12-08-2024</td>
-                        <td>CONSTRUCCIONES GODHEXA, S.A. DE CV.</td>
-                        <td>SC-015077</td>
-                        <td>EDSAHEL GODINEZ RODRIGUEZ</td>
-                        <td>REPRESENTANTE LEGAL</td>
-                        <td>21-05-2024</td>
-                        <td>22-05-2024</td>
-                        <td>SIN ANEXOS</td>
-                        <td>SI</td>
-                        <td class="fixed-column">
+                    <tr *ngFor="let aviso of avisos">
+                        <!-- aqui van todos los registros que se hayan hecho, llamandolos desde la bd, ya que por ahora es un registro simulado-->                        
+                        <td>{{ aviso.noFolio }}</td>
+                        <td>{{ aviso.nomDirigido }}</td>
+                        <td>{{ aviso.cargo }}</td>
+                        <td>{{ aviso.fechaIngreso }}</td>
+                        <td>{{ aviso.fechaRecibo }}</td>
+                        <td>{{ aviso.observaciones }}</td>
+                        <td>{{ aviso.cumpleAviso }}</td>
+                        <td *ngIf="tipoSeleccionado === 'dependencias'">{{ aviso.dependencia }}</td>
+                        <td>{{ aviso.nombreObra }}</td>
+                        <td>{{ aviso.municipio }}</td>
+                        <td>{{ aviso.localidad }}</td>
+                        <td>{{ aviso.claveObra }}</td>
+                        <td>{{ aviso.tipoRecurso }}</td>
+                        <td>{{ aviso.fondo }}</td>
+                        <td>{{ aviso.montoContratado }}</td>
+                        <td>{{ aviso.numContrato }}</td>
+                        <td>{{ aviso.fechaInicio }}</td>
+                        <td>{{ aviso.fechaTermino }}</td>
+                        <td>{{ aviso.contratista }}</td>
+                        <td>{{ aviso.folioContratista }}</td>
+                        <td>{{ aviso.nomDirigidoContratista }}</td>
+                        <td>{{ aviso.cargoContratista }}</td>
+                        <td>{{ aviso.fechaIngresoContratista }}</td>
+                        <td>{{ aviso.fechaReciboContratista }}</td>
+                        <td>{{ aviso.observacionesContratista }}</td>
+                        <td>{{ aviso.cumpleContratista }}</td>
+                        <td class="fixed-column"> <!-- columna fija para opciones-->
                             <i class="fa-solid fa-file-pdf" style="color: #000000;"></i>
                             <i class="fa-solid fa-pen" style="color: #000000;"></i>
                         </td>
