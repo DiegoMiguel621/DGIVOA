@@ -252,31 +252,33 @@ tbody tr:nth-child(odd) td.fixed-column {
   background-color: #e0e0e0;
 }
 
-/* 🔹 Estilos individuales para columnas específicas */
-th:nth-child(1), td:nth-child(1) { width: 100px; } /* No. */
-th:nth-child(2), td:nth-child(2) { width: 250px; } /* NOMBRE DE QUIEN DIRIGE EL OFICIO */
-th:nth-child(3), td:nth-child(3) { width: 230px; } /* CARGO */
-th:nth-child(4), td:nth-child(4) { width: 100px; } /* FECHA DE INGRESO SC */
-th:nth-child(5), td:nth-child(5) { width: 100px; } /* FECHA QUE RECIBE DICO */
-th:nth-child(6), td:nth-child(6) { width: 220px; } /* OBSERVACIONES */
-th:nth-child(7), td:nth-child(7) { width: 130px; } /* CUMPLE AVISO DE INICIO */
-th:nth-child(8), td:nth-child(8) { width: 140px; } /* DEPENDENCIA */
-th:nth-child(9), td:nth-child(9) { width: 350px; } /* NOMBRE DE LA OBRA */
-th:nth-child(10), td:nth-child(10) { width: 150px; } /* MUNICIPIO */
-th:nth-child(11), td:nth-child(11) { width: 150px; } /* LOCALIDAD */
-th:nth-child(12), td:nth-child(12) { width: 150px; } /* CLAVE DE OBRA */
-th:nth-child(13), td:nth-child(13) { width: 130px; } /* TIPO DE RECURSO */
-th:nth-child(14), td:nth-child(14) { width: 70px; } /* FONDO */
-th:nth-child(15), td:nth-child(15) { width: 160px; } /* MONTO CONTRATADO */
-th:nth-child(16), td:nth-child(16) { width: 240px; } /* NÚMERO DE CONTRATO */
-th:nth-child(17), td:nth-child(17) { width: 140px; } /* FECHA INICIO OBRA */
-th:nth-child(18), td:nth-child(18) { width: 150px; } /* FECHA TÉRMINO OBRA */
-th:nth-child(19), td:nth-child(19) { width: 200px; } /* CONTRATISTA */
-th:nth-child(20), td:nth-child(20) { width: 100px; } /* FOLIO */
-th:nth-child(21), td:nth-child(21) { width: 200px; } /* NOMBRE DE QUIEN DIRIGE EL OFICIO */
-th:nth-child(22), td:nth-child(22) { width: 150px; } /* CARGO */
-th:nth-child(23), td:nth-child(23) { width: 100px; } /* FECHA DE INGRESO SC */
-th:nth-child(24), td:nth-child(24) { width: 100px; } /* FECHA QUE RECIBE DICO */
-th:nth-child(25), td:nth-child(25) { width: 200px; } /* OBSERVACIONES */
-th:nth-child(26), td:nth-child(26) { width: 110px; } /* CUMPLEN CONTRATISTAS */
-th:nth-child(27), td:nth-child(27) { width: 65px; } /* OPCIONES */
+/* Ancho fijo para cada columna */
+.col-num { width: 100px; }
+.col-dirigido { width: 250px; }
+.col-cargo { width: 230px; }
+.col-ingreso, .col-recibo, .col-ingreso-contra, .col-recibo-contra { width: 100px; }
+.col-observaciones, .col-observaciones-contra { width: 220px; }
+.col-cumple, .col-cumple-contra { width: 130px; }
+.col-dependencia { width: 140px; } /* Se oculta si es municipios */
+.col-nombre-obra { width: 350px; }
+.col-municipio, .col-localidad, .col-clave-obra { width: 150px; }
+.col-tipo-recurso { width: 130px; }
+.col-fondo { width: 70px; }
+.col-monto { width: 160px; }
+.col-contrato { width: 240px; }
+.col-fecha-inicio, .col-fecha-termino { width: 140px; }
+.col-contratista { width: 200px; }
+.col-folio { width: 100px; }
+.col-dirigido-contra { width: 200px; }
+.col-cargo-contra { width: 150px; }
+.col-opciones { width: 65px; }
+
+/* Si es municipios, ocultamos la columna "Dependencia" sin afectar el ancho de otras */
+/* Si es municipios, ocultamos la columna "Dependencia" sin afectar el ancho de otras */
+.municipios .col-dependencia {
+  display: none;
+}
+
+
+
+

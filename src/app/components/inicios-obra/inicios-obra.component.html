@@ -5,7 +5,7 @@
     <div id="header-inicios">
         <div id="nav-avisos">
             <span class="nav-option" [class.active]="tipoSeleccionado === 'municipios'" (click)="cambiarTipo('municipios')">Municipios</span> |
-    <span class="nav-option" [class.active]="tipoSeleccionado === 'dependencias'" (click)="cambiarTipo('dependencias')">Dependencias</span>
+            <span class="nav-option" [class.active]="tipoSeleccionado === 'dependencias'" (click)="cambiarTipo('dependencias')">Dependencias</span>
         </div>        
         <div id="titulo-inicios">
             <h1>Avisos de Inicio de Obra</h1>
@@ -171,36 +171,36 @@
     </div>
     <div id="cont-tabla">
         <div id="table-container">
-            <table class="tabla-inicios">
+            <table class="tabla-inicios" [ngClass]="{ 'municipios': tipoSeleccionado === 'municipios', 'dependencias': tipoSeleccionado === 'dependencias' }">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>NOMBRE DE QUIEN DIRIGE EL OFICIO A LA CONTRALORÍA</th>
-                        <th>CARGO</th>
-                        <th>FECHA DE INGRESO SC</th>
-                        <th>FECHA QUE RECIBE DICO</th>
-                        <th>OBSERVACIONES</th>
-                        <th>CUMPLE AVISO DE INICIO DE OBRA</th>
-                        <th *ngIf="tipoSeleccionado === 'dependencias'">DEPENDENCIA QUE EJECUTA LA OBRA</th>
-                        <th>NOMBRE DE LA OBRA</th>
-                        <th>MUNICIPIO</th>
-                        <th>LOCALIDAD</th>
-                        <th>CLAVE DE OBRA</th>
-                        <th>TIPO DE RECURSO</th>
-                        <th>FONDO</th>
-                        <th>MONTO CONTRATADO</th>
-                        <th>NÚMERO DE CONTRATO</th>
-                        <th>FECHA DE INICIO DE OBRA (CONTRATO)</th>
-                        <th>FECHA DE TÉRMINO DE OBRA (CONTRATO)</th>
-                        <th>CONTRATISTA</th>
-                        <th>FOLIO</th>
-                        <th>NOMBRE DE QUIEN DIRIGE EL OFICIO A LA CONTRALORÍA</th>
-                        <th>CARGO</th>
-                        <th>FECHA DE INGRESO SC</th>
-                        <th>FECHA QUE RECIBE DICO</th>
-                        <th>OBSERVACIONES</th>
-                        <th>CUMPLEN CONTRATISTAS</th>
-                        <th class="fixed-column">Opciones</th>
+                        <th class="col-num">No.</th>
+                        <th class="col-dirigido">NOMBRE DE QUIEN DIRIGE EL OFICIO A LA CONTRALORÍA</th>
+                        <th class="col-cargo">CARGO</th>
+                        <th class="col-ingreso">FECHA DE INGRESO SC</th>
+                        <th class="col-recibo">FECHA QUE RECIBE DICO</th>
+                        <th class="col-observaciones">OBSERVACIONES</th>
+                        <th class="col-cumple">CUMPLE AVISO DE INICIO</th>
+                        <th class="col-dependencia dependencia">DEPENDENCIA QUE EJECUTA LA OBRA</th>
+                        <th class="col-nombre-obra">NOMBRE DE LA OBRA</th>
+                        <th class="col-municipio">MUNICIPIO</th>
+                        <th class="col-localidad">LOCALIDAD</th>
+                        <th class="col-clave-obra">CLAVE DE OBRA</th>
+                        <th class="col-tipo-recurso">TIPO DE RECURSO</th>
+                        <th class="col-fondo">FONDO</th>
+                        <th class="col-monto">MONTO CONTRATADO</th>
+                        <th class="col-contrato">NÚMERO DE CONTRATO</th>
+                        <th class="col-fecha-inicio">FECHA DE INICIO DE OBRA</th>
+                        <th class="col-fecha-termino">FECHA DE TÉRMINO DE OBRA</th>
+                        <th class="col-contratista">CONTRATISTA</th>
+                        <th class="col-folio">FOLIO</th>
+                        <th class="col-dirigido-contra">NOMBRE DE QUIEN DIRIGE EL OFICIO</th>
+                        <th class="col-cargo-contra">CARGO</th>
+                        <th class="col-ingreso-contra">FECHA DE INGRESO SC</th>
+                        <th class="col-recibo-contra">FECHA QUE RECIBE DICO</th>
+                        <th class="col-observaciones-contra">OBSERVACIONES</th>
+                        <th class="col-cumple-contra">CUMPLEN CONTRATISTAS</th>
+                        <th class="col-opciones fixed-column">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>            
@@ -213,7 +213,7 @@
                         <td>{{ aviso.fechaRecibo }}</td>
                         <td>{{ aviso.observaciones }}</td>
                         <td>{{ aviso.cumpleAviso }}</td>
-                        <td *ngIf="tipoSeleccionado === 'dependencias'">{{ aviso.dependencia }}</td>
+                        <td class="dependencia" *ngIf="tipoSeleccionado === 'dependencias'">{{ aviso.dependencia }}</td>
                         <td>{{ aviso.nombreObra }}</td>
                         <td>{{ aviso.municipio }}</td>
                         <td>{{ aviso.localidad }}</td>

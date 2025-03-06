@@ -35,15 +35,18 @@ export class IniciosObraComponent implements OnInit {
 
   obtenerAvisos(): void {
     if (this.tipoSeleccionado === 'municipios') {
-      this.iniciosObraService.obtenerAvisosMunicipios().subscribe(data => {
-        this.avisos = data;
-      });
+      this.iniciosObraService.obtenerAvisosMunicipios().subscribe(
+        data => this.avisos = data,
+        error => console.error('Error al obtener avisos de municipios:', error)
+      );
     } else {
-      this.iniciosObraService.obtenerAvisosDependencias().subscribe(data => {
-        this.avisos = data;
-      });
+      this.iniciosObraService.obtenerAvisosDependencias().subscribe(
+        data => this.avisos = data,
+        error => console.error('Error al obtener avisos de dependencias:', error)
+      );
     }
-  }
+}
+
 
   cambiarTipo(tipo: string): void {
     this.tipoSeleccionado = tipo;
