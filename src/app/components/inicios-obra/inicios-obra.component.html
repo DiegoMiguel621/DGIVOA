@@ -11,7 +11,7 @@
             <h1>Avisos de Inicio de Obra</h1>
         </div>
         <div id="boton-inicios">
-            <button id="btn-agregar-inicio">Agregar Inicio de Obra</button>
+            <button id="btn-agregar-inicio" (click)="abrirModalAgregarInicios()">Agregar Inicio de Obra</button>
         </div>
     </div>
     
@@ -209,8 +209,8 @@
                         <td>{{ aviso.noFolio }}</td>
                         <td>{{ aviso.nomDirigido }}</td>
                         <td>{{ aviso.cargo }}</td>
-                        <td>{{ aviso.fechaIngreso }}</td>
-                        <td>{{ aviso.fechaRecibo }}</td>
+                        <td>{{ aviso.fechaIngreso | date:'dd-MM-yyyy'}}</td>
+                        <td>{{ aviso.fechaRecibo | date:'dd-MM-yyyy'}}</td>
                         <td>{{ aviso.observaciones }}</td>
                         <td>{{ aviso.cumpleAviso }}</td>
                         <td class="dependencia" *ngIf="tipoSeleccionado === 'dependencias'">{{ aviso.dependencia }}</td>
@@ -222,14 +222,14 @@
                         <td>{{ aviso.fondo }}</td>
                         <td>{{ aviso.montoContratado }}</td>
                         <td>{{ aviso.numContrato }}</td>
-                        <td>{{ aviso.fechaInicio }}</td>
-                        <td>{{ aviso.fechaTermino }}</td>
+                        <td>{{ aviso.fechaInicio | date:'dd-MM-yyyy'}}</td>
+                        <td>{{ aviso.fechaTermino | date:'dd-MM-yyyy'}}</td>
                         <td>{{ aviso.contratista }}</td>
                         <td>{{ aviso.folioContratista }}</td>
                         <td>{{ aviso.nomDirigidoContratista }}</td>
                         <td>{{ aviso.cargoContratista }}</td>
-                        <td>{{ aviso.fechaIngresoContratista }}</td>
-                        <td>{{ aviso.fechaReciboContratista }}</td>
+                        <td>{{ aviso.fechaIngresoContratista | date:'dd-MM-yyyy'}}</td>
+                        <td>{{ aviso.fechaReciboContratista | date:'dd-MM-yyyy'}}</td>
                         <td>{{ aviso.observacionesContratista }}</td>
                         <td>{{ aviso.cumpleContratista }}</td>
                         <td class="fixed-column"> <!-- columna fija para opciones-->

@@ -31,6 +31,13 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
     this.usuario = this.authService.obtenerUsuario();
 
+    if (isPlatformBrowser(this.platformId)) {
+      const collapsedFromStorage = localStorage.getItem('asideCollapsed');
+      if (collapsedFromStorage !== null) {
+        this.isAsideCollapsed = (collapsedFromStorage === 'true');
+      }
+    }
+
     if (this.usuario && this.usuario.foto) {
         this.fotoPerfil = this.usuario.foto.startsWith('http') ? this.usuario.foto : `http://localhost:3000/uploads/${this.usuario.foto}`;
     } else {

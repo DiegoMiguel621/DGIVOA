@@ -1,0 +1,114 @@
+<div class="modal-container">
+    <div class="modal-content">
+        <!-- Header del Modal -->
+        <div id="header-modal">
+            <h1>Agregar Inicio de Obra - Municipios</h1>
+        </div>
+
+        <!-- Formulario -->
+        <form id="form-modal">
+            <div class="form-section">
+                <label for="noFolio">No. de Folio</label>
+                <input type="text" id="noFolio" name="noFolio" required>
+            </div>
+
+            <div class="form-section">
+                <label for="nomDirigido">Nombre Dirigido a la Contraloría</label>
+                <input type="text" id="nomDirigido" name="nomDirigido" required>
+            </div>
+
+            <div class="form-section">
+                <label for="cargo">Cargo</label>
+                <input type="text" id="cargo" name="cargo" required>
+            </div>
+
+            <div class="form-section">
+                <label for="fechaIngreso">Fecha de Ingreso SC</label>
+                <input type="date" id="fechaIngreso" name="fechaIngreso" required>
+            </div>
+
+            <div class="form-section">
+                <label for="fechaRecibo">Fecha que Recibe DICO</label>
+                <input type="date" id="fechaRecibo" name="fechaRecibo" required>
+            </div>
+
+            <div class="form-section">
+                <label for="observaciones">Observaciones</label>
+                <textarea id="observaciones" name="observaciones"></textarea>
+            </div>
+
+            <div class="form-section">
+                <label for="cumpleAviso">Cumple Aviso de Inicio</label>
+                <select id="cumpleAviso" name="cumpleAviso">
+                    <option value="SI">SI</option>
+                    <option value="NO">NO</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label for="nombreObra">Nombre de la Obra</label>
+                <input type="text" id="nombreObra" name="nombreObra" required>
+            </div>
+
+            <div class="form-section">
+                <label for="municipio">Municipio</label>
+                <input type="text" id="municipio" name="municipio" required>
+            </div>
+
+            <div class="form-section">
+                <label for="localidad">Localidad</label>
+                <input type="text" id="localidad" name="localidad" required>
+            </div>
+
+            <div class="form-section">
+                <label for="claveObra">Clave de Obra</label>
+                <input type="text" id="claveObra" name="claveObra" required>
+            </div>
+
+            <div class="form-section">
+                <label for="tipoRecurso">Tipo de Recurso</label>
+                <select id="tipoRecurso" name="tipoRecurso">
+                    <option value="ESTATAL">ESTATAL</option>
+                    <option value="FEDERAL">FEDERAL</option>
+                    <option value="MUNICIPAL">MUNICIPAL</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label for="fondo">Fondo</label>
+                <input type="text" id="fondo" name="fondo">
+            </div>
+
+            <div class="form-section">
+                <label for="montoContratado">Monto Contratado</label>
+                <input type="number" id="montoContratado" name="montoContratado" step="0.01">
+            </div>
+
+            <div class="form-section">
+                <label for="numContrato">Número de Contrato</label>
+                <input type="text" id="numContrato" name="numContrato">
+            </div>
+
+            <div class="form-section">
+                <label for="fechaInicio">Fecha de Inicio de Obra</label>
+                <input type="date" id="fechaInicio" name="fechaInicio">
+            </div>
+
+            <div class="form-section">
+                <label for="fechaTermino">Fecha de Término de Obra</label>
+                <input type="date" id="fechaTermino" name="fechaTermino">
+            </div>
+
+            <div class="form-section">
+                <label for="contratista">Contratista</label>
+                <input type="text" id="contratista" name="contratista">
+            </div>
+        </form>
+
+        <!-- Footer del Modal -->
+        <div id="footer-modal">
+            <button type="button" (click)="cerrarModal()" id="cancelar">Cancelar</button>
+            <button type="submit" id="guardar">Guardar</button>
+        </div>
+    </div>
+</div>

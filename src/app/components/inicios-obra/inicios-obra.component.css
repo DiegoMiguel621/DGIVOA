@@ -84,14 +84,13 @@ h1 {
   background-color: #A67D4E;
 }
 
-
 /* Contenedor del aside */
 #aside-inicios {  
   width: 13%;
   height: 90%;
   float: left;  
   font-family: Arial, sans-serif;
-  overflow-y: auto; /* Scroll si es necesario */     
+  overflow-y: auto;   
 }
 
 /* Estilo del título */
@@ -102,7 +101,6 @@ h1 {
   margin-left: 5%;
 }
 
-/* Línea separadora */
 .separator {
   margin-left: 5%;
   width: 80%;
@@ -138,7 +136,7 @@ select {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
-  border: none; /* Eliminamos el borde */
+  border: none;
   border-radius: 5px;
   background-color: white;
   cursor: pointer;
@@ -165,7 +163,7 @@ select {
   width: 135px;
 }
 
-/* estilos de la tabla */
+/* ---------------------estilos de la tabla---------------------*/
 #cont-tabla {  
   width: 87%;
   height: 90%;
@@ -258,7 +256,7 @@ tbody tr:nth-child(odd) td.fixed-column {
 .col-cargo { width: 230px; }
 .col-ingreso, .col-recibo, .col-ingreso-contra, .col-recibo-contra { width: 100px; }
 .col-observaciones, .col-observaciones-contra { width: 220px; }
-.col-cumple, .col-cumple-contra { width: 130px; }
+.col-cumple, .col-cumple-contra { width: 110px; }
 .col-dependencia { width: 140px; } /* Se oculta si es municipios */
 .col-nombre-obra { width: 350px; }
 .col-municipio, .col-localidad, .col-clave-obra { width: 150px; }
@@ -268,9 +266,10 @@ tbody tr:nth-child(odd) td.fixed-column {
 .col-contrato { width: 240px; }
 .col-fecha-inicio, .col-fecha-termino { width: 140px; }
 .col-contratista { width: 200px; }
-.col-folio { width: 100px; }
+.col-folio { width: 100px;}
 .col-dirigido-contra { width: 200px; }
-.col-cargo-contra { width: 150px; }
+.col-cargo-contra { width: 150px;}
+.col-folio, .col-dirigido-contra, .col-cargo-contra, .col-ingreso-contra, .col-recibo-contra, .col-observaciones-contra, .col-cumple-contra { background-color: #BC955B; }
 .col-opciones { width: 65px; }
 
 /* Si es municipios, ocultamos la columna "Dependencia" sin afectar el ancho de otras */

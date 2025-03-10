@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 import { IniciosObraService } from '../../services/inicios-obra.service';
+import { AgregarInicioMunicipioModalComponent } from '../../modals/agregar-inicio-municipio-modal/agregar-inicio-municipio-modal.component';
+import { AgregarInicioDependenciaModalComponent } from '../../modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
 
 @Component({
   selector: 'app-inicios-obra',
@@ -16,7 +19,8 @@ export class IniciosObraComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object, 
-    private iniciosObraService: IniciosObraService
+    private iniciosObraService: IniciosObraService,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +55,14 @@ export class IniciosObraComponent implements OnInit {
   cambiarTipo(tipo: string): void {
     this.tipoSeleccionado = tipo;
     this.obtenerAvisos();
+  }
+
+  abrirModalAgregarInicios() {
+    if (this.tipoSeleccionado === 'municipios') {
+      const dialogRef = this.matDialog.open(AgregarInicioMunicipioModalComponent);
+    } else {
+      const dialogRef = this.matDialog.open(AgregarInicioDependenciaModalComponent);
+    }
   }
 
 }

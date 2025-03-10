@@ -26,6 +26,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { RestaurarEmpleadoModalComponent } from './modals/restaurar-empleado-modal/restaurar-empleado-modal.component';
 import { CerrarSesionModalComponent } from './modals/cerrar-sesion-modal/cerrar-sesion-modal.component';
 import { CambiarContrasenaModalComponent } from './modals/cambiar-contrasena-modal/cambiar-contrasena-modal.component';
+import { AgregarInicioMunicipioModalComponent } from './modals/agregar-inicio-municipio-modal/agregar-inicio-municipio-modal.component';
+import { AgregarInicioDependenciaModalComponent } from './modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { CambiarContrasenaModalComponent } from './modals/cambiar-contrasena-mod
     EliminarEmpleadoModalComponent,
     RestaurarEmpleadoModalComponent,
     CerrarSesionModalComponent,
-    CambiarContrasenaModalComponent
+    CambiarContrasenaModalComponent,
+    AgregarInicioMunicipioModalComponent,
+    AgregarInicioDependenciaModalComponent
   ],
   imports: [
     BrowserModule,
