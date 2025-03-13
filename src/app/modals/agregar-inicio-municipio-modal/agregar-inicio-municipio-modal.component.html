@@ -118,51 +118,61 @@
                 <label for="contratista">19. Contratista</label>
                 <input type="text" id="contratista" formControlName="contratista">
             </div>
+            
         </form>
 
               <!--FORMULARIO CONTRATISTAS-->
-      <form id="form-modal" *ngIf="formularioActivo === 'contratista'">
-
-        <div class="form-section">
-            <label for="claveContratista" class="label-claveContratista">1. Clave de obra</label>
-            <input type="text" id="claveContratista" name="claveContratista" required>
-        </div>
-
-        <div class="form-section">
-            <label for="folioContratista" class="label-num">2. No. de Folio</label>
-            <input type="text" id="folioContratista" name="folioContratista" required>
-        </div>
-    
-        <div class="form-section">
-            <label for="nomDirigidoContratista" class="label-nom">3. Nombre de Quien Dirige el Oficio</label>
-            <input type="text" id="nomDirigidoContratista" name="nomDirigidoContratista" required>
-        </div>
-    
-        <div class="form-section">
-            <label for="cargoContratista" class="label-cargo">4. Cargo</label>
-            <input type="text" id="cargoContratista" name="cargoContratista" required>
-        </div>
-    
-        <div class="form-section">
-            <label for="fechaIngresoContratista" class="label-fecha">5. Fecha de Ingreso SC</label>
-            <input type="date" id="fechaIngresoContratista" name="fechaIngresoContratista" required>
-        </div>
-    
-        <div class="form-section">
-            <label for="fechaReciboContratista" class="label-fecha">6. Fecha que Recibe DICO</label>
-            <input type="date" id="fechaReciboContratista" name="fechaReciboContratista" required>
-        </div>
-    
-        <div class="form-section">
-            <label for="observacionesContratista" class="label-obs">7. Observaciones</label>
-            <textarea id="observacionesContratista" name="observacionesContratista"></textarea>
-        </div>
-    </form>
+              <form id="form-modal" *ngIf="formularioActivo === 'contratista'" [formGroup]="contratistaForm">
+                <div class="form-section">
+                    <label for="claveObra">1. Clave de obra</label>
+                    <input type="text" id="claveObra" formControlName="claveObra" required>
+                </div>
+              
+                <div class="form-section">
+                    <label for="noFolio">2. No. de Folio</label>
+                    <input type="text" id="noFolio" formControlName="noFolio" required>
+                </div>
+              
+                <div class="form-section">
+                    <label for="nomDirigido">3. Nombre de Quien Dirige el Oficio</label>
+                    <input type="text" id="nomDirigido" formControlName="nomDirigido" required>
+                </div>
+              
+                <div class="form-section">
+                    <label for="cargo">4. Cargo</label>
+                    <input type="text" id="cargo" formControlName="cargo" required>
+                </div>
+              
+                <div class="form-section">
+                    <label for="fechaIngreso">5. Fecha de Ingreso SC</label>
+                    <input type="date" id="fechaIngreso" formControlName="fechaIngreso" required>
+                </div>
+              
+                <div class="form-section">
+                    <label for="fechaRecibo">6. Fecha que Recibe DICO</label>
+                    <input type="date" id="fechaRecibo" formControlName="fechaRecibo" required>
+                </div>
+              
+                <div class="form-section">
+                    <label for="observaciones">7. Observaciones</label>
+                    <textarea id="observaciones" formControlName="observaciones"></textarea>
+                </div>
+              
+                <div class="form-section">
+                    <label for="cumpleAviso">8. Cumple Aviso de Inicio</label>
+                    <select id="cumpleAviso" formControlName="cumpleAviso">
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                    </select>
+                </div>
+              </form>
+              
 
         <!-- Footer del Modal -->
         <div id="footer-modal">
             <button type="button" (click)="cerrarModal()" id="cancelar">Cancelar</button>
-            <button type="submit" (click)="guardarAviso()" id="guardar">Guardar</button>
+            <button type="submit" (click)="guardar()" id="guardar">Guardar</button>
+
         </div>
     </div>
 </div>
