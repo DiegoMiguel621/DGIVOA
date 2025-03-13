@@ -8,117 +8,161 @@
 
         <!-- Selector Municipio | Contratista -->
         <div id="selector-tipo">
-            <span class="nav-option active" id="municipio">Municipio</span> |
-            <span class="nav-option" id="contratista">Contratista</span>
+            <span class="nav-option" [class.active]="formularioActivo === 'municipio'" (click)="cambiarFormulario('municipio')">Municipio</span> |
+            <span class="nav-option" [class.active]="formularioActivo === 'contratista'" (click)="cambiarFormulario('contratista')">Contratista</span>
         </div>
 
         <!-- Mensaje informativo -->
         <p id="info-text">Llene los campos debidamente, revise la información con cuidado y detenimiento**</p>
 
-        <!-- Formulario -->
-        <form id="form-modal">
+        <!-- Formulario Municipios -->
+        <form id="form-modal" [formGroup]="avisoForm" *ngIf="formularioActivo === 'municipio'">
             <div class="form-section">
-                <label for="noFolio" class="label-num">1. No. de Folio</label>
-                <input type="text" id="noFolio" name="noFolio" required>
+                <label for="noFolio">1. No. de Folio</label>
+                <input type="text" id="noFolio" formControlName="noFolio">
             </div>
-
+        
             <div class="form-section">
-                <label for="nomDirigido" class="label-nom">2. Nombre de Quien Dirige el Oficio a la Contraloría</label>
-                <input type="text" id="nomDirigido" name="nomDirigido" required>
+                <label for="nomDirigido">2. Nombre de Quien Dirige el Oficio a la Contraloría</label>
+                <input type="text" id="nomDirigido" formControlName="nomDirigido">
             </div>
-
+        
             <div class="form-section">
-                <label for="cargo" class="label-cargo">3. Cargo</label>
-                <input type="text" id="cargo" name="cargo" required>
+                <label for="cargo">3. Cargo</label>
+                <input type="text" id="cargo" formControlName="cargo">
             </div>
-
+        
             <div class="form-section">
-                <label for="fechaIngreso" class="label-fecha">4. Fecha de Ingreso SC</label>
-                <input type="date" id="fechaIngreso" name="fechaIngreso" required>
+                <label for="fechaIngreso">4. Fecha de Ingreso SC</label>
+                <input type="date" id="fechaIngreso" formControlName="fechaIngreso">
             </div>
-
+        
             <div class="form-section">
-                <label for="fechaRecibo" class="label-fecha">5. Fecha que Recibe DICO</label>
-                <input type="date" id="fechaRecibo" name="fechaRecibo" required>
+                <label for="fechaRecibo">5. Fecha que Recibe DICO</label>
+                <input type="date" id="fechaRecibo" formControlName="fechaRecibo">
             </div>
-
+        
             <div class="form-section">
-                <label for="observaciones" class="label-obs">6. Observaciones</label>
-                <textarea id="observaciones" name="observaciones"></textarea>
+                <label for="observaciones">6. Observaciones</label>
+                <textarea id="observaciones" formControlName="observaciones"></textarea>
             </div>
-
+        
             <div class="form-section">
-                <label for="cumpleAviso" class="label-cumple">7. Cumple Aviso de Inicio</label>
-                <select id="cumpleAviso" name="cumpleAviso">
+                <label for="cumpleAviso">7. Cumple Aviso de Inicio</label>
+                <select id="cumpleAviso" formControlName="cumpleAviso">
                     <option value="SI">SI</option>
                     <option value="NO">NO</option>
                 </select>
             </div>
-
+        
             <div class="form-section">
-                <label for="nombreObra" class="label-obra">8. Nombre de la Obra</label>
-                <textarea type="text" id="nombreObra" name="nombreObra" required></textarea>
+                <label for="nombreObra">8. Nombre de la Obra</label>
+                <textarea id="nombreObra" formControlName="nombreObra"></textarea>
             </div>
-
+        
             <div class="form-section">
-                <label for="municipio" class="label-municipio">9. Municipio</label>
-                <input type="text" id="municipio" name="municipio" required>
+                <label for="municipio">9. Municipio</label>
+                <input type="text" id="municipio" formControlName="municipio">
             </div>
-
+        
             <div class="form-section">
-                <label for="localidad" class="label-localidad">10. Localidad</label>
-                <input type="text" id="localidad" name="localidad" required>
+                <label for="localidad">10. Localidad</label>
+                <input type="text" id="localidad" formControlName="localidad">
             </div>
-
+        
             <div class="form-section">
-                <label for="claveObra" class="label-clave">11. Clave de Obra</label>
-                <input type="text" id="claveObra" name="claveObra" required>
+                <label for="claveObra">11. Clave de Obra</label>
+                <input type="text" id="claveObra" formControlName="claveObra">
             </div>
-
+        
             <div class="form-section">
-                <label for="tipoRecurso" class="label-recurso">12. Tipo de Recurso</label>
-                <select id="tipoRecurso" name="tipoRecurso">
+                <label for="tipoRecurso">12. Tipo de Recurso</label>
+                <select id="tipoRecurso" formControlName="tipoRecurso">
                     <option value="ESTATAL">ESTATAL</option>
                     <option value="FEDERAL">FEDERAL</option>
                     <option value="MUNICIPAL">MUNICIPAL</option>
                 </select>
             </div>
-
+        
             <div class="form-section">
-                <label for="fondo" class="label-fondo">13. Fondo</label>
-                <input type="text" id="fondo" name="fondo">
+                <label for="fondo">13. Fondo</label>
+                <input type="text" id="fondo" formControlName="fondo">
+            </div>
+        
+            <div class="form-section">
+                <label for="montoContratado">14. Monto Contratado</label>
+                <input type="text" id="montoContratado" formControlName="montoContratado">
             </div>
 
             <div class="form-section">
-                <label for="montoContratado" class="label-monto">14. Monto Contratado</label>
-                <input type="text" id="montoContratado" name="montoContratado">
+                <label for="montoAutorizado">15. Monto Autorizado</label>
+                <input type="text" id="montoAutorizado" formControlName="montoAutorizado">
             </div>
-
+        
             <div class="form-section">
-                <label for="numContrato" class="label-contrato">15. Número de Contrato</label>
-                <input type="text" id="numContrato" name="numContrato">
+                <label for="numContrato">16. Número de Contrato</label>
+                <input type="text" id="numContrato" formControlName="numContrato">
             </div>
-
+        
             <div class="form-section">
-                <label for="fechaInicio" class="label-fecha">16. Fecha de Inicio de Obra</label>
-                <input type="date" id="fechaInicio" name="fechaInicio">
+                <label for="fechaInicio">17. Fecha de Inicio de Obra</label>
+                <input type="date" id="fechaInicio" formControlName="fechaInicio">
             </div>
-
+        
             <div class="form-section">
-                <label for="fechaTermino" class="label-fecha">17. Fecha de Término de Obra</label>
-                <input type="date" id="fechaTermino" name="fechaTermino">
+                <label for="fechaTermino">18. Fecha de Término de Obra</label>
+                <input type="date" id="fechaTermino" formControlName="fechaTermino">
             </div>
-
+        
             <div class="form-section">
-                <label for="contratista" class="label-contratista">18. Contratista</label>
-                <input type="text" id="contratista" name="contratista">
+                <label for="contratista">19. Contratista</label>
+                <input type="text" id="contratista" formControlName="contratista">
             </div>
         </form>
+
+              <!--FORMULARIO CONTRATISTAS-->
+      <form id="form-modal" *ngIf="formularioActivo === 'contratista'">
+
+        <div class="form-section">
+            <label for="claveContratista" class="label-claveContratista">1. Clave de obra</label>
+            <input type="text" id="claveContratista" name="claveContratista" required>
+        </div>
+
+        <div class="form-section">
+            <label for="folioContratista" class="label-num">2. No. de Folio</label>
+            <input type="text" id="folioContratista" name="folioContratista" required>
+        </div>
+    
+        <div class="form-section">
+            <label for="nomDirigidoContratista" class="label-nom">3. Nombre de Quien Dirige el Oficio</label>
+            <input type="text" id="nomDirigidoContratista" name="nomDirigidoContratista" required>
+        </div>
+    
+        <div class="form-section">
+            <label for="cargoContratista" class="label-cargo">4. Cargo</label>
+            <input type="text" id="cargoContratista" name="cargoContratista" required>
+        </div>
+    
+        <div class="form-section">
+            <label for="fechaIngresoContratista" class="label-fecha">5. Fecha de Ingreso SC</label>
+            <input type="date" id="fechaIngresoContratista" name="fechaIngresoContratista" required>
+        </div>
+    
+        <div class="form-section">
+            <label for="fechaReciboContratista" class="label-fecha">6. Fecha que Recibe DICO</label>
+            <input type="date" id="fechaReciboContratista" name="fechaReciboContratista" required>
+        </div>
+    
+        <div class="form-section">
+            <label for="observacionesContratista" class="label-obs">7. Observaciones</label>
+            <textarea id="observacionesContratista" name="observacionesContratista"></textarea>
+        </div>
+    </form>
 
         <!-- Footer del Modal -->
         <div id="footer-modal">
             <button type="button" (click)="cerrarModal()" id="cancelar">Cancelar</button>
-            <button type="submit" id="guardar">Guardar</button>
+            <button type="submit" (click)="guardarAviso()" id="guardar">Guardar</button>
         </div>
     </div>
 </div>

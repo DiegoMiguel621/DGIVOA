@@ -58,11 +58,20 @@ export class IniciosObraComponent implements OnInit {
   }
 
   abrirModalAgregarInicios() {
+    let dialogRef;
+  
     if (this.tipoSeleccionado === 'municipios') {
-      const dialogRef = this.matDialog.open(AgregarInicioMunicipioModalComponent);
+      dialogRef = this.matDialog.open(AgregarInicioMunicipioModalComponent);
     } else {
-      const dialogRef = this.matDialog.open(AgregarInicioDependenciaModalComponent);
+      dialogRef = this.matDialog.open(AgregarInicioDependenciaModalComponent);
     }
+  
+    // Suscribirse a afterClosed() para actualizar la tabla cuando el modal se cierre
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {  // Solo actualiza si el modal cerró con éxito (result = true)
+        this.obtenerAvisos();
+      }
+    });
   }
 
 }

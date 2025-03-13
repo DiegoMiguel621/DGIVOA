@@ -171,6 +171,7 @@ select {
   justify-content: center;
   align-items: start;   
   float: right; 
+  overflow-x: auto;
 }
 
 #table-container {
@@ -224,6 +225,7 @@ td.fixed-column, th.fixed-column {
   border: 1px solid black;
 }
 
+
 tbody tr:nth-child(even) td.fixed-column {
   background-color: #F2F2F2;
 }
@@ -274,9 +276,11 @@ tbody tr:nth-child(odd) td.fixed-column {
 .col-opciones { width: 65px; }
 
 /* Si es municipios, ocultamos la columna "Dependencia" sin afectar el ancho de otras */
-/* Si es municipios, ocultamos la columna "Dependencia" sin afectar el ancho de otras */
 .municipios .col-dependencia {
   display: none;
+}
+.col-clave-obra{
+  background-color: #87495B;
 }
 
 

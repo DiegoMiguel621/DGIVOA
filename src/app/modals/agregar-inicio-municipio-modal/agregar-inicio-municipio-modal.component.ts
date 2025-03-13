@@ -9,10 +9,57 @@ import { IniciosObraService } from '../../services/inicios-obra.service';
   styleUrl: './agregar-inicio-municipio-modal.component.css'
 })
 export class AgregarInicioMunicipioModalComponent {
-  constructor(      
-    private dialogRef: MatDialogRef<AgregarInicioMunicipioModalComponent>
-  ) {}
+  formularioActivo: string = 'municipio';
+  avisoForm: FormGroup;
 
+  constructor(      
+    private fb: FormBuilder,
+    private iniciosObraService: IniciosObraService,
+    private dialogRef: MatDialogRef<AgregarInicioMunicipioModalComponent>
+  ) {
+    this.avisoForm = this.fb.group({
+      noFolio: ['', Validators.required],
+      nomDirigido: ['', Validators.required],
+      cargo: ['', Validators.required],
+      fechaIngreso: ['', Validators.required],
+      fechaRecibo: ['', Validators.required],
+      observaciones: [''],
+      cumpleAviso: ['', Validators.required],
+      nombreObra: ['', Validators.required],
+      municipio: ['', Validators.required],
+      localidad: ['', Validators.required],
+      claveObra: ['', Validators.required],
+      tipoRecurso: ['', Validators.required],
+      fondo: [''],
+      montoAutorizado: [''],
+      montoContratado: [''],
+      numContrato: [''],
+      fechaInicio: [''],
+      fechaTermino: [''],
+      contratista: ['']
+    });
+  }
+
+  guardarAviso(): void {
+    if (this.avisoForm.valid) {
+      this.iniciosObraService.agregarAvisoMunicipio(this.avisoForm.value).subscribe(
+        response => {
+          console.log('Aviso de inicio registrado:', response);
+          this.dialogRef.close(true); // Cerrar modal y actualizar tabla
+        },
+        error => {
+          console.error('Error al registrar el aviso:', error);
+        }
+      );
+    } else {
+      console.log('Formulario no válido, revisa los campos.');
+    }
+  }
+  
+  cambiarFormulario(tipo: string) {
+    this.formularioActivo = tipo;
+  }
+  
   cerrarModal(): void {
     this.dialogRef.close();
   }

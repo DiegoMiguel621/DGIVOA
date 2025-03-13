@@ -99,20 +99,21 @@ input, select, textarea {
     border-radius: 5px;
     font-size: 14px;
 }
-#noFolio { width: 50%; }
-#nomDirigido { width: 80%; }
-#cargo { width: 90%; }
-#fechaIngreso { width: 30%; }
-#fechaRecibo { width: 30%; }
-#observaciones { width: 90%; }
+#noFolio, #folioContratista { width: 50%; }
+#nomDirigido, #nomDirigidoContratista { width: 80%; }
+#cargo, #cargoContratista { width: 90%; }
+#fechaIngreso, #fechaIngresoContratista { width: 30%; }
+#fechaRecibo, #fechaReciboContratista { width: 30%; }
+#observaciones, #observacionesContratista { width: 90%; }
 #cumpleAviso { width: 20%; }
+#dependencia { width: 80%;}
 #nombreObra { width: 90%; }
 #municipio { width: 70%; }
 #localidad { width: 70%; }
-#claveObra { width: 40%; }
+#claveObra, #claveContratista { width: 40%; }
 #tipoRecurso { width: 35%; }
 #fondo { width: 30%; }
-#montoContratado { width: 50%; }
+#montoContratado, #montoAutorizado { width: 50%; }
 #numContrato { width: 50%; }
 #fechaInicio { width: 30%; }
 #fechaTermino { width: 30%; }
