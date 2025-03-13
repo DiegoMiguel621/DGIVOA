@@ -221,6 +221,7 @@ td.fixed-column, th.fixed-column {
   color: white;
   z-index: 2;
   text-align: center;
+  border: 1px solid black;
 }
 
 tbody tr:nth-child(even) td.fixed-column {

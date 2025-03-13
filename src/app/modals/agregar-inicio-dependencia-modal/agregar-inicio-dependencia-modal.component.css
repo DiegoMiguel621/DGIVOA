@@ -23,6 +23,27 @@
   flex-direction: column;
 }
 
+/* Selector Municipio | Contratista */
+#selector-tipo {
+  text-align: start;
+  font-size: 18px;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.nav-option {
+  cursor: pointer;
+  padding: 5px 15px;
+  color: black;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-option.active {
+  color: gray;
+  text-decoration: underline;
+}
+
 /* Header */
 #header-modal {
   background-color: #691B32;
@@ -34,33 +55,78 @@
   height: 5%;
 }
 
+/* Mensaje de información */
+#info-text {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 20px;
+  color: #691B32;
+}
+
 /* Formulario */
 #form-modal {
   flex: 1;
   padding: 20px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 15px;
-  height: 82%;
+  height: 80%;
+  overflow-y: auto;    
+  margin-bottom: 30px;
 }
 
-/* Estilos de los campos */
-.form-group {
+/* Estructura de dos columnas */
+.form-section {
   display: flex;
-  flex-direction: column;
-  text-align: left;
+  flex-direction: column; /* Hace que el input se coloque debajo del label si es necesario */
+  width: 48%; /* Dos columnas fijas */
+  align-items: start;
 }
 
-.form-group label {
+/* Labels con ancho automático */
+.form-section label {
   font-weight: bold;
+  font-size: 14px;
   margin-bottom: 5px;
+  white-space: nowrap;
 }
 
-.form-group input,
-.form-group select {
+/* Inputs con ancho flexible (50% dentro de su columna) */
+input, select, textarea {    
   padding: 8px;
-  border: 1px solid #691B32;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 14px;
+}
+#noFolio { width: 50%; }
+#nomDirigido { width: 80%; }
+#cargo { width: 90%; }
+#fechaIngreso { width: 30%; }
+#fechaRecibo { width: 30%; }
+#observaciones { width: 90%; }
+#cumpleAviso { width: 20%; }
+#dependencia { width: 80%;}
+#nombreObra { width: 90%; }
+#municipio { width: 70%; }
+#localidad { width: 70%; }
+#claveObra { width: 40%; }
+#tipoRecurso { width: 35%; }
+#fondo { width: 30%; }
+#montoContratado { width: 50%; }
+#numContrato { width: 50%; }
+#fechaInicio { width: 30%; }
+#fechaTermino { width: 30%; }
+#contratista { width: 80%; }
+
+/* Ajuste para inputs más grandes si es necesario */
+input.full-width {
+  width: 100%;
+}
+
+textarea {
+  height: 50px;
+  resize: vertical;
 }
 
 /* Footer */
@@ -72,6 +138,7 @@
   height: 7%;
 }
 
+/* Botones */
 button {
   padding: 10px 25px;
   border: none;
@@ -85,10 +152,11 @@ button {
 button:hover {
   background: #A67D4E;
 }
-#cancelar{
-  margin-left: 20%;
 
+#cancelar {
+  margin-left: 20%;
 }
-#guardar{
+
+#guardar {
   margin-right: 20%;
 }
