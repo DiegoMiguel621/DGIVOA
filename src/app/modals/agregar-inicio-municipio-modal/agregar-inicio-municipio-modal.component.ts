@@ -25,12 +25,12 @@ export class AgregarInicioMunicipioModalComponent {
       fechaIngreso: ['', Validators.required],
       fechaRecibo: ['', Validators.required],
       observaciones: [''],
-      cumpleAviso: ['', Validators.required],
+      cumpleAviso: ['SI', Validators.required],
       nombreObra: ['', Validators.required],
       municipio: ['', Validators.required],
       localidad: ['', Validators.required],
       claveObra: ['', Validators.required],
-      tipoRecurso: ['', Validators.required],
+      tipoRecurso: ['FEDERAL', Validators.required],
       fondo: [''],
       montoAutorizado: [''],
       montoContratado: [''],
@@ -47,7 +47,7 @@ export class AgregarInicioMunicipioModalComponent {
       fechaIngreso: ['', Validators.required],
       fechaRecibo: ['', Validators.required],
       observaciones: [''],
-      cumpleAviso: ['', Validators.required]
+      cumpleAviso: ['SI', Validators.required]
     });
   
   }

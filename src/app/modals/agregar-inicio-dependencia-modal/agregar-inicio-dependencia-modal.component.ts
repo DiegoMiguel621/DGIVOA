@@ -26,14 +26,14 @@ export class AgregarInicioDependenciaModalComponent {
         fechaIngreso: ['', Validators.required],
         fechaRecibo: ['', Validators.required],
         observaciones: [''],
-        cumpleAviso: ['', Validators.required],
+        cumpleAviso: ['SI', Validators.required],
         dependencia: ['', Validators.required],
         numContrato: [''],
         contratista: [''],
         nombreObra: ['', Validators.required],
         municipio: ['', Validators.required],
         localidad: ['', Validators.required],
-        tipoRecurso: ['', Validators.required],
+        tipoRecurso: ['FEDERAL', Validators.required],
         fondo: [''],
         montoContratado: [''],
         fechaInicio: [''],
@@ -47,7 +47,7 @@ export class AgregarInicioDependenciaModalComponent {
         fechaIngreso: ['', Validators.required],
         fechaRecibo: ['', Validators.required],
         observaciones: [''],
-        cumpleAviso: ['', Validators.required]
+        cumpleAviso: ['SI', Validators.required]
       });
     }
     cambiarFormulario(tipo: string): void {
