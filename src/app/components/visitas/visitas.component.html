@@ -3,9 +3,62 @@
 
 
 <section id="secPrincipal" [class.expanded]="isAsideCollapsed">
-    <h2>este es el contenido de visitas</h2>
+  <div class="contenedor-visitas">
+    <h2 class="titulo">Visitas</h2>
 
+    <div class="barra-superior">
+      <select class="select-filtro">
+        <option>Visitas Generales</option>
+      </select>
+
+      <div class="botones-superiores">
+        <button class="btn-registrar">
+          <i class="fa-solid fa-plus"></i> Registrar visita
+        </button>
+        <button class="btn-archivo">
+          <i class="fa-solid fa-rotate-left"></i> Archivo
+        </button>
+      </div>
+    </div>
+
+    <div class="fecha-titulo">30/10/24</div>
+
+    <div class="tabla-container">
+      <table class="tabla-visitas">
+        <thead>
+          <tr>
+            <th>Dependencia</th>
+            <th>Nombre (Persona física/moral)</th>
+            <th>Asunto</th>
+            <th>Observaciones</th>
+            <th>Teléfono</th>
+            <th>Hora ingreso</th>
+            <th>Hora salida</th>
+            <th>Atendió</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Municipio Pachuca</td>
+            <td>Dulce Suárez</td>
+            <td>Asesoría</td>
+            <td>Obra Tenango 2023</td>
+            <td>77 1127 4407</td>
+            <td>12:09 pm</td>
+            <td>04:30 pm</td>
+            <td>Ing. Gricey</td>
+            <td>
+              <i class="fa-solid fa-pen-to-square icono-editar"></i>
+              <i class="fa-solid fa-trash icono-eliminar"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
+
 
 <app-footer></app-footer>
 <router-outlet></router-outlet>
