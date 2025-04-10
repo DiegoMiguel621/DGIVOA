@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="fecha-titulo">30/10/24</div>
+    <div class="fecha-titulo">{{ visitas[0]?.fecha | date:'dd/MM/yy' }}</div>
 
     <div class="tabla-container">
       <table class="tabla-visitas">
@@ -39,21 +39,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Municipio Pachuca</td>
-            <td>Dulce Suárez</td>
-            <td>Asesoría</td>
-            <td>Obra Tenango 2023</td>
-            <td>77 1127 4407</td>
-            <td>12:09 pm</td>
-            <td>04:30 pm</td>
-            <td>Ing. Gricey</td>
+          <tr *ngFor="let visita of visitas">
+            <td>
+              {{ visita.tipo_dependencia === 'Municipio' ? ('Municipio ' + visita.municipio_nombre) : visita.tipo_dependencia }}
+            </td>
+            <td>{{ visita.nombre }}</td>
+            <td>{{ visita.asunto }}</td>
+            <td>{{ visita.observaciones }}</td>
+            <td>{{ visita.telefono }}</td>
+            <td>{{ visita.hora_ingreso }}</td>
+            <td>{{ visita.hora_salida }}</td>
+            <td>{{ visita.atendio }}</td>
             <td>
               <i class="fa-solid fa-pen-to-square icono-editar"></i>
               <i class="fa-solid fa-trash icono-eliminar"></i>
             </td>
           </tr>
         </tbody>
+
       </table>
     </div>
   </div>
