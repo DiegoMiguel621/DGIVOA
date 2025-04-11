@@ -1,0 +1,73 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2>Registrar visita</h2>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="visitaForm" (ngSubmit)="guardarVisita()">
+
+      <!-- DEPENDENCIA -->
+      <div class="campo-flex">
+        <div class="campo">
+          <label for="tipo_dependencia">Dependencia:</label>
+          <select formControlName="tipo_dependencia" (change)="onTipoDependenciaChange($event)" required>
+            <option value="" disabled selected>Seleccione</option>
+            <option value="PF">PF</option>
+            <option value="PM">PM</option>
+            <option value="Municipio">Municipio</option>
+          </select>
+        </div>
+
+        <!-- MUNICIPIO (sólo si se elige 'Municipio') -->
+        <div class="campo" *ngIf="mostrarCampoMunicipio">
+          <label for="municipio_nombre">Municipio:</label>
+          <input type="text" formControlName="municipio_nombre" (input)="filtrarMunicipios()" [attr.list]="'lista-municipios'" placeholder="Buscar municipio..." />
+          <datalist id="lista-municipios">
+            <option *ngFor="let m of municipiosFiltrados" [value]="m.nombre"></option>
+          </datalist>
+        </div>
+      </div>
+
+      <!-- NOMBRE -->
+      <div class="campo">
+        <label>Nombre (Persona física/moral):</label>
+        <input type="text" formControlName="nombre" required />
+      </div>
+
+      <!-- ASUNTO -->
+      <div class="campo">
+        <label>Asunto:</label>
+        <input type="text" formControlName="asunto" required />
+      </div>
+
+      <!-- OBSERVACIONES -->
+      <div class="campo">
+        <label>Observaciones:</label>
+        <textarea rows="3" formControlName="observaciones"></textarea>
+      </div>
+
+      <!-- TELÉFONO -->
+      <div class="campo">
+        <label>Teléfono:</label>
+        <input type="tel" formControlName="telefono" />
+      </div>
+
+      <!-- ATENDIÓ -->
+      <div class="campo">
+        <label>Atendió:</label>
+        <select formControlName="atendio" required>
+          <option value="" disabled selected>Seleccione quien atendió</option>
+          <option *ngFor="let emp of empleados" [value]="emp.nombres + ' ' + emp.apellidos">
+            {{ emp.nombres }} {{ emp.apellidos }}
+          </option>
+        </select>
+      </div>
+
+      <!-- BOTÓN GUARDAR -->
+      <div class="boton-footer">
+        <button type="submit" class="btn-guardar">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+

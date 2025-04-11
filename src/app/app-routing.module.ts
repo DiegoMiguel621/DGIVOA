@@ -13,6 +13,8 @@ import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { AgregarEmpleadosModalComponent } from './modals/agregar-empleados-modal/agregar-empleados-modal.component';
 import { EditarEmpleadosModalComponent } from './modals/editar-empleados-modal/editar-empleados-modal.component';
 import { EliminarEmpleadoModalComponent } from './modals/eliminar-empleado-modal/eliminar-empleado-modal.component';
+import { AgregarVisitasModalComponent } from './modals/agregar-visitas-modal/agregar-visitas-modal.component';
+
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -30,7 +32,8 @@ const routes: Routes = [
   //modales
   {path:'modal1',component:AgregarEmpleadosModalComponent},
   {path:'modal2',component:EditarEmpleadosModalComponent},
-  {path:'modal3',component:EliminarEmpleadoModalComponent}
+  {path:'modal3',component:EliminarEmpleadoModalComponent},
+  {path:'modal4',component:AgregarVisitasModalComponent},
 
 
 ];

@@ -28,6 +28,7 @@ import { CerrarSesionModalComponent } from './modals/cerrar-sesion-modal/cerrar-
 import { CambiarContrasenaModalComponent } from './modals/cambiar-contrasena-modal/cambiar-contrasena-modal.component';
 import { AgregarInicioMunicipioModalComponent } from './modals/agregar-inicio-municipio-modal/agregar-inicio-municipio-modal.component';
 import { AgregarInicioDependenciaModalComponent } from './modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
+import { AgregarVisitasModalComponent } from './modals/agregar-visitas-modal/agregar-visitas-modal.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AgregarInicioDependenciaModalComponent } from './modals/agregar-inicio-
     CerrarSesionModalComponent,
     CambiarContrasenaModalComponent,
     AgregarInicioMunicipioModalComponent,
-    AgregarInicioDependenciaModalComponent
+    AgregarInicioDependenciaModalComponent,
+    AgregarVisitasModalComponent
   ],
   imports: [
     BrowserModule,

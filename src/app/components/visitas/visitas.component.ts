@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { VisitasService, Visita } from '../../services/visitas.service';
+import { AgregarVisitasModalComponent } from '../../modals/agregar-visitas-modal/agregar-visitas-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-visitas',
@@ -13,6 +16,7 @@ export class VisitasComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
+    private matDialog: MatDialog,
     private visitasService: VisitasService
   ) {}
 
@@ -37,4 +41,16 @@ export class VisitasComponent implements OnInit {
       error: (err) => console.error('Error al obtener visitas:', err)
     });
   }
+
+
+  agregarVisita(): void {
+    console.log("Intentando abrir el modal...");
+    if (isPlatformBrowser(this.platformId)) {
+      const dialogRef = this.matDialog.open(AgregarVisitasModalComponent);
+      dialogRef.afterClosed().subscribe(() => {
+        console.log("El modal se cerró");
+      });
+    }
+
+}
 }

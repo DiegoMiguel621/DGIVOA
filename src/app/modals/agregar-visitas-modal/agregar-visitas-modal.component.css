@@ -1,0 +1,57 @@
+.modal-container {
+  width: 550px;
+  max-width: 95vw;
+  margin: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+}
+
+
+
+.modal-header {
+  background-color: #691B32;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.campo {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-flex {
+  display: flex;
+  gap: 1rem;
+}
+
+input, select, textarea {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.boton-footer {
+  text-align: right;
+}
+
+.btn-guardar {
+  background-color: #BC955B;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+:host ::ng-deep .mat-dialog-container {
+  padding: 0 !important;
+}
+
