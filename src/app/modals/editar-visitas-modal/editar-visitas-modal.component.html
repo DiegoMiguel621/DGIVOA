@@ -1,0 +1,79 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2>Editar visita</h2>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="visitaForm" (ngSubmit)="actualizarVisita()">
+
+      <!-- DEPENDENCIA -->
+      <div class="campo-flex">
+        <div class="campo">
+          <label for="tipo_dependencia">Dependencia:</label>
+          <select formControlName="tipo_dependencia" (change)="onTipoDependenciaChange($event)">
+            <option value="" disabled>Seleccione</option>
+            <option value="PF">PF</option>
+            <option value="PM">PM</option>
+            <option value="Municipio">Municipio</option>
+          </select>
+        </div>
+
+        <!-- MUNICIPIO -->
+        <div class="campo" *ngIf="mostrarCampoMunicipio">
+          <label for="municipio_nombre">Municipio:</label>
+          <input type="text" formControlName="municipio_nombre" (input)="filtrarMunicipios()" list="lista-municipios" placeholder="Buscar municipio" />
+          <datalist id="lista-municipios">
+            <option *ngFor="let m of municipiosFiltrados" [value]="m.nombre"></option>
+          </datalist>
+        </div>
+      </div>
+
+      <!-- NOMBRE -->
+      <div class="campo">
+        <label>Nombre (Persona física/moral):</label>
+        <input type="text" formControlName="nombre" />
+      </div>
+
+      <!-- ASUNTO -->
+      <div class="campo">
+        <label>Asunto:</label>
+        <input type="text" formControlName="asunto" />
+      </div>
+
+      <!-- OBSERVACIONES -->
+      <div class="campo">
+        <label>Observaciones:</label>
+        <textarea rows="3" formControlName="observaciones"></textarea>
+      </div>
+
+      <!-- TELÉFONO -->
+      <div class="campo">
+        <label>Teléfono:</label>
+        <input type="tel" formControlName="telefono" />
+      </div>
+
+      <!-- ATENDIÓ -->
+      <div class="campo">
+        <label>Atendió:</label>
+        <input
+          type="text"
+          formControlName="atendio"
+          list="lista-empleados"
+          (input)="filtrarEmpleados()"
+          placeholder="Escriba quien atendió"
+        />
+        <datalist id="lista-empleados">
+          <option *ngFor="let emp of empleadosFiltrados" [value]="emp.nombres + ' ' + emp.apellidos">
+            {{ emp.nombres }} {{ emp.apellidos }}
+          </option>
+        </datalist>
+      </div>
+
+      <!-- BOTÓN ACTUALIZAR -->
+      <div class="boton-footer">
+        <button type="submit" class="btn-actualizar">Actualizar</button>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { VisitasService, Visita } from '../../services/visitas.service';
 import { AgregarVisitasModalComponent } from '../../modals/agregar-visitas-modal/agregar-visitas-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EditarVisitasModalComponent } from '../../modals/editar-visitas-modal/editar-visitas-modal.component';
 
 
 @Component({
@@ -52,5 +53,27 @@ export class VisitasComponent implements OnInit {
       }
     });
   }
+
+  registrarHoraSalida(id: number): void {
+    const horaActual = new Date().toTimeString().split(' ')[0]; // HH:MM:SS
+
+    this.visitasService.registrarHoraSalida(id, horaActual).subscribe({
+      next: () => this.cargarVisitas(), // 🔄 recargar lista
+      error: (err) => console.error('Error al registrar hora de salida', err)
+    });
+  }
+
+
+  editarVisita(): void {
+    console.log("Intentando abrir el modal...");
+    if (isPlatformBrowser(this.platformId)) {
+      const dialogRef = this.matDialog.open(EditarVisitasModalComponent);
+      dialogRef.afterClosed().subscribe(() => {
+        console.log("El modal se cerró");
+      });
+    }
+  }
+
+
 
 }

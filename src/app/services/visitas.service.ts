@@ -28,5 +28,11 @@ export class VisitasService {
   obtenerVisitas(): Observable<Visita[]> {
     return this.http.get<Visita[]>(this.apiUrl);
   }
+
+
+  registrarHoraSalida(id: number, hora_salida: string) {
+    return this.http.put(`http://localhost:3000/api/visitas/${id}/salida`, { hora_salida });
+  }
+
 }
 

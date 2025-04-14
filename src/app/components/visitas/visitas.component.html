@@ -48,10 +48,19 @@
             <td>{{ visita.observaciones }}</td>
             <td>{{ visita.telefono }}</td>
             <td>{{ visita.hora_ingreso }}</td>
-            <td>{{ visita.hora_salida }}</td>
+            <td>
+              {{ visita.hora_salida || '' }}
+              <i
+                class="fa-solid fa-circle-check icono-palomita"
+                *ngIf="!visita.hora_salida"
+                (click)="registrarHoraSalida(visita.id)"
+                title="Registrar hora de salida"
+              ></i>
+            </td>
+
             <td>{{ visita.atendio }}</td>
             <td>
-              <i class="fa-solid fa-pen-to-square icono-editar"></i>
+              <i class="fa-solid fa-pen-to-square icono-editar" (click)="editarVisita()"></i>
               <i class="fa-solid fa-trash icono-eliminar"></i>
             </td>
           </tr>
