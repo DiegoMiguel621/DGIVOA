@@ -44,13 +44,13 @@ export class VisitasComponent implements OnInit {
 
 
   agregarVisita(): void {
-    console.log("Intentando abrir el modal...");
-    if (isPlatformBrowser(this.platformId)) {
-      const dialogRef = this.matDialog.open(AgregarVisitasModalComponent);
-      dialogRef.afterClosed().subscribe(() => {
-        console.log("El modal se cerró");
-      });
-    }
+    const dialogRef = this.matDialog.open(AgregarVisitasModalComponent);
 
-}
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado === true) {
+        this.cargarVisitas(); // 🔄 actualiza la tabla solo si hubo cambios
+      }
+    });
+  }
+
 }

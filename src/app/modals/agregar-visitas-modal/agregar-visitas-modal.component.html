@@ -54,14 +54,23 @@
 
       <!-- ATENDIÓ -->
       <div class="campo">
-        <label>Atendió:</label>
-        <select formControlName="atendio" required>
-          <option value="" disabled selected>Seleccione quien atendió</option>
-          <option *ngFor="let emp of empleados" [value]="emp.nombres + ' ' + emp.apellidos">
+        <label for="atendio">Atendió:</label>
+        <input
+          type="text"
+          id="atendio"
+          formControlName="atendio"
+          list="lista-empleados"
+          (input)="filtrarEmpleados()"
+          placeholder="Escriba quien atendió"
+          required
+        />
+        <datalist id="lista-empleados">
+          <option *ngFor="let emp of empleadosFiltrados" [value]="emp.nombres + ' ' + emp.apellidos">
             {{ emp.nombres }} {{ emp.apellidos }}
           </option>
-        </select>
+        </datalist>
       </div>
+
 
       <!-- BOTÓN GUARDAR -->
       <div class="boton-footer">

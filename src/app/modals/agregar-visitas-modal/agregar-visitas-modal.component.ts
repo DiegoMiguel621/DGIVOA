@@ -15,6 +15,7 @@ export class AgregarVisitasModalComponent implements OnInit {
   municipios: any[] = [];
   municipiosFiltrados: any[] = [];
   empleados: any[] = [];
+  empleadosFiltrados: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -65,8 +66,18 @@ export class AgregarVisitasModalComponent implements OnInit {
   obtenerEmpleados() {
     this.http.get<any[]>('http://localhost:3000/api/empleados').subscribe(data => {
       this.empleados = data;
+      this.empleadosFiltrados = data; // inicia con todos
     });
   }
+
+
+  filtrarEmpleados() {
+    const texto = this.visitaForm.get('atendio')?.value?.toLowerCase() || '';
+    this.empleadosFiltrados = this.empleados.filter(emp =>
+      (emp.nombres + ' ' + emp.apellidos).toLowerCase().includes(texto)
+    );
+  }
+
 
   // Guardar visita
   guardarVisita(): void {
@@ -89,14 +100,13 @@ export class AgregarVisitasModalComponent implements OnInit {
 
     this.http.post('http://localhost:3000/api/visitas', datos).subscribe({
       next: () => {
-        alert("Visita registrada correctamente");
-        this.dialogRef.close(true); // ✅ puede indicar que se hizo cambio
+        this.dialogRef.close(true);
       },
       error: (error) => {
         console.error("Error al guardar visita", error);
-        alert("Hubo un error al registrar la visita");
       }
     });
+
   }
 
   cerrarModal(): void {
