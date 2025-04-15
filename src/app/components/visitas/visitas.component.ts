@@ -64,14 +64,16 @@ export class VisitasComponent implements OnInit {
   }
 
 
-  editarVisita(): void {
-    console.log("Intentando abrir el modal...");
-    if (isPlatformBrowser(this.platformId)) {
-      const dialogRef = this.matDialog.open(EditarVisitasModalComponent);
-      dialogRef.afterClosed().subscribe(() => {
-        console.log("El modal se cerró");
-      });
-    }
+  editarVisita(visita: any): void {
+    const dialogRef = this.matDialog.open(EditarVisitasModalComponent, {
+      data: visita // 👈 pasamos la visita completa
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (resultado === true) {
+        this.cargarVisitas(); // recargar tabla si hubo cambios
+      }
+    });
   }
 
 

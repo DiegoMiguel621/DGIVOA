@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-editar-visita-modal',
@@ -20,7 +23,8 @@ export class EditarVisitasModalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    public dialogRef: MatDialogRef<EditarVisitasModalComponent>
+    public dialogRef: MatDialogRef<EditarVisitasModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
@@ -34,9 +38,27 @@ export class EditarVisitasModalComponent implements OnInit {
       atendio: ['', Validators.required]
     });
 
+    // 👇 Aquí llenamos el formulario con los datos recibidos
+    this.visitaForm.patchValue({
+      tipo_dependencia: this.data.tipo_dependencia,
+      municipio_nombre: this.data.municipio_nombre,
+      nombre: this.data.nombre,
+      asunto: this.data.asunto,
+      observaciones: this.data.observaciones,
+      telefono: this.data.telefono,
+      atendio: this.data.atendio
+    });
+
+    // Mostrar campo municipio si aplica
+    if (this.data.tipo_dependencia === 'Municipio') {
+      this.mostrarCampoMunicipio = true;
+    }
+
+    // 👇 Cargar listas
     this.obtenerMunicipios();
     this.obtenerEmpleados();
   }
+
 
   onTipoDependenciaChange(event: any) {
     const valor = event.target.value;
@@ -71,10 +93,18 @@ export class EditarVisitasModalComponent implements OnInit {
     );
   }
 
-  actualizarVisita() {
-    // Aún sin lógica, la haremos cuando prepares la carga del ID y el submit
-    console.log(this.visitaForm.value);
+  actualizarVisita(): void {
+    if (this.visitaForm.invalid) return;
+
+    const datosActualizados = this.visitaForm.value;
+
+    this.http.put(`http://localhost:3000/api/visitas/${this.data.id}`, datosActualizados)
+      .subscribe({
+        next: () => this.dialogRef.close(true),
+        error: err => console.error('Error al actualizar visita', err)
+      });
   }
+
 
   cerrarModal(): void {
     this.dialogRef.close();
