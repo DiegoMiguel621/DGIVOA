@@ -12,7 +12,11 @@
 
 
   .contenedor-visitas {
-    padding: 20px;
+    width: 98%;
+  height: 100%;
+  overflow-x: auto;
+padding-left: 20px;
+padding-right: 20px;
   }
 
   .titulo {

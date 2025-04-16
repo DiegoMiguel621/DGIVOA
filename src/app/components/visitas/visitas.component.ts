@@ -5,7 +5,6 @@ import { AgregarVisitasModalComponent } from '../../modals/agregar-visitas-modal
 import { MatDialog } from '@angular/material/dialog';
 import { EditarVisitasModalComponent } from '../../modals/editar-visitas-modal/editar-visitas-modal.component';
 
-
 @Component({
   selector: 'app-visitas',
   templateUrl: './visitas.component.html',
@@ -13,7 +12,10 @@ import { EditarVisitasModalComponent } from '../../modals/editar-visitas-modal/e
 })
 export class VisitasComponent implements OnInit {
   isAsideCollapsed = false;
-  visitas: Visita[] = [];
+  visitasDelDia: Visita[] = [];
+  visitasArchivo: any[] = [];
+  mostrarArchivo: boolean = false; // false = modo "hoy", true = modo "archivo"
+  fechaActual: Date = new Date();
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -29,53 +31,86 @@ export class VisitasComponent implements OnInit {
       }
     }
 
-    this.cargarVisitas();
+    this.cargarVisitasDelDia();
   }
 
   onAsideToggled(collapsed: boolean): void {
     this.isAsideCollapsed = collapsed;
   }
 
-  cargarVisitas(): void {
-    this.visitasService.obtenerVisitas().subscribe({
-      next: (data) => this.visitas = data,
-      error: (err) => console.error('Error al obtener visitas:', err)
+  // 👉 Alterna entre visitas del día y archivo
+  alternarVista(): void {
+    this.mostrarArchivo = !this.mostrarArchivo;
+
+    if (this.mostrarArchivo) {
+      this.cargarArchivoVisitas();
+    } else {
+      this.cargarVisitasDelDia();
+    }
+  }
+
+  // 👉 Carga visitas del día
+  cargarVisitasDelDia(): void {
+    this.visitasService.obtenerVisitasDelDia().subscribe({
+      next: (data) => this.visitasDelDia = data,
+      error: (err) => console.error('Error al cargar visitas del día:', err)
     });
   }
 
+  // 👉 Carga visitas anteriores (archivo) y las agrupa por fecha
+  cargarArchivoVisitas(): void {
+    this.visitasService.obtenerVisitasArchivo().subscribe({
+      next: (data) => this.visitasArchivo = this.agruparPorFecha(data),
+      error: (err) => console.error('Error al cargar archivo de visitas:', err)
+    });
+  }
 
+  // 👉 Agrupa visitas por fecha
+  agruparPorFecha(visitas: any[]): any[] {
+    const agrupado: { [fecha: string]: any[] } = {};
+
+    visitas.forEach((v) => {
+      const fecha = v.fecha;
+      if (!agrupado[fecha]) {
+        agrupado[fecha] = [];
+      }
+      agrupado[fecha].push(v);
+    });
+
+    return Object.entries(agrupado).map(([fecha, visitas]) => ({ fecha, visitas }));
+  }
+
+  // 👉 Abrir modal para registrar visita
   agregarVisita(): void {
     const dialogRef = this.matDialog.open(AgregarVisitasModalComponent);
 
     dialogRef.afterClosed().subscribe((resultado) => {
       if (resultado === true) {
-        this.cargarVisitas(); // 🔄 actualiza la tabla solo si hubo cambios
+        this.cargarVisitasDelDia(); // ✅ actualizar tabla si se guardó algo
       }
     });
   }
 
+  // 👉 Registrar hora de salida
   registrarHoraSalida(id: number): void {
     const horaActual = new Date().toTimeString().split(' ')[0]; // HH:MM:SS
 
     this.visitasService.registrarHoraSalida(id, horaActual).subscribe({
-      next: () => this.cargarVisitas(), // 🔄 recargar lista
+      next: () => this.cargarVisitasDelDia(),
       error: (err) => console.error('Error al registrar hora de salida', err)
     });
   }
 
-
+  // 👉 Abrir modal para editar visita
   editarVisita(visita: any): void {
     const dialogRef = this.matDialog.open(EditarVisitasModalComponent, {
-      data: visita // 👈 pasamos la visita completa
+      data: visita
     });
 
     dialogRef.afterClosed().subscribe((resultado) => {
       if (resultado === true) {
-        this.cargarVisitas(); // recargar tabla si hubo cambios
+        this.cargarVisitasDelDia(); // ✅ actualizar tabla si se editó
       }
     });
   }
-
-
-
 }

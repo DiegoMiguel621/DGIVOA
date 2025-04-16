@@ -1,7 +1,6 @@
 <app-header></app-header>
 <app-aside (asideToggled)="onAsideToggled($event)"></app-aside>
 
-
 <section id="secPrincipal" [class.expanded]="isAsideCollapsed">
   <div class="contenedor-visitas">
     <h2 class="titulo">Visitas</h2>
@@ -15,62 +14,105 @@
         <button class="btn-registrar" (click)="agregarVisita()">
           <i class="fa-solid fa-plus"></i> Registrar visita
         </button>
-        <button class="btn-archivo">
-          <i class="fa-solid fa-rotate-left"></i> Archivo
+        <button class="btn-archivo" (click)="alternarVista()">
+          <i class="fa-solid fa-rotate-left"></i> {{ mostrarArchivo ? 'Visitas de hoy' : 'Archivo' }}
         </button>
       </div>
     </div>
 
-    <div class="fecha-titulo">{{ visitas[0]?.fecha | date:'dd/MM/yy' }}</div>
+    <!-- ✅ Modo VISITAS DEL DÍA -->
+    <ng-container *ngIf="!mostrarArchivo">
+      <div class="fecha-titulo">{{ fechaActual | date:'dd/MM/yy' }}</div>
 
-    <div class="tabla-container">
-      <table class="tabla-visitas">
-        <thead>
-          <tr>
-            <th>Dependencia</th>
-            <th>Nombre (Persona física/moral)</th>
-            <th>Asunto</th>
-            <th>Observaciones</th>
-            <th>Teléfono</th>
-            <th>Hora ingreso</th>
-            <th>Hora salida</th>
-            <th>Atendió</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let visita of visitas">
-            <td>
-              {{ visita.tipo_dependencia === 'Municipio' ? ('Municipio ' + visita.municipio_nombre) : visita.tipo_dependencia }}
-            </td>
-            <td>{{ visita.nombre }}</td>
-            <td>{{ visita.asunto }}</td>
-            <td>{{ visita.observaciones }}</td>
-            <td>{{ visita.telefono }}</td>
-            <td>{{ visita.hora_ingreso }}</td>
-            <td>
-              {{ visita.hora_salida || '' }}
-              <i
-                class="fa-solid fa-circle-check icono-palomita"
-                *ngIf="!visita.hora_salida"
-                (click)="registrarHoraSalida(visita.id)"
-                title="Registrar hora de salida"
-              ></i>
-            </td>
+      <div class="tabla-container">
+        <table class="tabla-visitas">
+          <thead>
+            <tr>
+              <th>Dependencia</th>
+              <th>Nombre (Persona física/moral)</th>
+              <th>Asunto</th>
+              <th>Observaciones</th>
+              <th>Teléfono</th>
+              <th>Hora ingreso</th>
+              <th>Hora salida</th>
+              <th>Atendió</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let visita of visitasDelDia">
+              <td>
+                {{ visita.tipo_dependencia === 'Municipio' ? ('Municipio ' + visita.municipio_nombre) : visita.tipo_dependencia }}
+              </td>
+              <td>{{ visita.nombre }}</td>
+              <td>{{ visita.asunto }}</td>
+              <td>{{ visita.observaciones }}</td>
+              <td>{{ visita.telefono }}</td>
+              <td>{{ visita.hora_ingreso }}</td>
+              <td>
+                {{ visita.hora_salida || '' }}
+                <i
+                  class="fa-solid fa-circle-check icono-palomita"
+                  *ngIf="!visita.hora_salida"
+                  (click)="registrarHoraSalida(visita.id)"
+                  title="Registrar hora de salida"
+                ></i>
+              </td>
+              <td>{{ visita.atendio }}</td>
+              <td>
+                <i class="fa-solid fa-pen-to-square icono-editar" (click)="editarVisita(visita)"></i>
+                <i class="fa-solid fa-trash icono-eliminar"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
 
-            <td>{{ visita.atendio }}</td>
-            <td>
-              <i class="fa-solid fa-pen-to-square icono-editar" (click)="editarVisita(visita)"></i>
-              <i class="fa-solid fa-trash icono-eliminar"></i>
-            </td>
-          </tr>
-        </tbody>
+    <!-- ✅ Modo ARCHIVO agrupado por fecha -->
+    <ng-container *ngIf="mostrarArchivo">
+      <div *ngFor="let grupo of visitasArchivo">
+        <div class="fecha-titulo">{{ grupo.fecha | date:'dd/MM/yy' }}</div>
 
-      </table>
-    </div>
+        <div class="tabla-container">
+          <table class="tabla-visitas">
+            <thead>
+              <tr>
+                <th>Dependencia</th>
+                <th>Nombre (Persona física/moral)</th>
+                <th>Asunto</th>
+                <th>Observaciones</th>
+                <th>Teléfono</th>
+                <th>Hora ingreso</th>
+                <th>Hora salida</th>
+                <th>Atendió</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let visita of grupo.visitas">
+                <td>
+                  {{ visita.tipo_dependencia === 'Municipio' ? ('Municipio ' + visita.municipio_nombre) : visita.tipo_dependencia }}
+                </td>
+                <td>{{ visita.nombre }}</td>
+                <td>{{ visita.asunto }}</td>
+                <td>{{ visita.observaciones }}</td>
+                <td>{{ visita.telefono }}</td>
+                <td>{{ visita.hora_ingreso }}</td>
+                <td>{{ visita.hora_salida }}</td>
+                <td>{{ visita.atendio }}</td>
+                <td>
+                  <i class="fa-solid fa-pen-to-square icono-editar" (click)="editarVisita(visita)"></i>
+                  <i class="fa-solid fa-trash icono-eliminar"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </section>
-
 
 <app-footer></app-footer>
 <router-outlet></router-outlet>
