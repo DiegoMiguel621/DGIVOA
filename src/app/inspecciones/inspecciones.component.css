@@ -1,0 +1,71 @@
+#secPrincipal {
+  float: right;
+  width: 88%;
+  height: 82vh;
+  background-color: #E9E9E9;
+  transition: width 0.3s;
+}
+
+#secPrincipal.expanded {
+  width: calc(100% - 50px);
+}
+
+
+.contenedor-visitas {
+  width: 98%;
+height: 100%;
+overflow-x: auto;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+
+.contenedor-inspecciones {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.titulo-principal,
+.titulo-secundario {
+  margin: 20px 0 10px;
+  font-size: 1.6rem;
+  color: #333;
+  text-align: center;
+}
+
+
+.buscador-container {
+  margin-bottom: 15px;
+}
+
+.input-buscador {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #999;
+  border-radius: 6px;
+}
+
+.tabla-container {
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+.tabla-inspeccion {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-inspeccion th,
+.tabla-inspeccion td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.tabla-inspeccion th {
+  background-color: #803344;
+  color: white;
+  font-weight: bold;
+}

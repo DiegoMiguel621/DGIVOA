@@ -30,6 +30,7 @@ import { AgregarInicioMunicipioModalComponent } from './modals/agregar-inicio-mu
 import { AgregarInicioDependenciaModalComponent } from './modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
 import { AgregarVisitasModalComponent } from './modals/agregar-visitas-modal/agregar-visitas-modal.component';
 import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/editar-visitas-modal.component';
+import { InspeccionesComponent } from './inspecciones/inspecciones.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/edita
     AgregarInicioMunicipioModalComponent,
     AgregarInicioDependenciaModalComponent,
     AgregarVisitasModalComponent,
-    EditarVisitasModalComponent
+    EditarVisitasModalComponent,
+    InspeccionesComponent
   ],
   imports: [
     BrowserModule,

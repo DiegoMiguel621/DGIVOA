@@ -1,0 +1,66 @@
+<app-header></app-header>
+<app-aside (asideToggled)="onAsideToggled($event)"></app-aside>
+
+<section id="secPrincipal" [class.expanded]="isAsideCollapsed">
+
+  <div class="contenedor-inspecciones">
+
+    <!-- Título principal -->
+    <h2 class="titulo-principal">Programación de inspección de obras</h2>
+
+    <!-- Buscador -->
+    <div class="buscador-container">
+      <input
+        type="text"
+        placeholder="🔍 Buscar por folio o clave"
+        [(ngModel)]="busqueda"
+        class="input-buscador"
+      />
+    </div>
+
+    <!-- Tabla superior: resultados -->
+    <div class="tabla-container">
+      <table class="tabla-inspeccion">
+        <thead>
+          <tr>
+            <th>Folio</th>
+            <th>Clave</th>
+            <th>Nombre de la obra</th>
+            <th>Municipio</th>
+            <th>Localidad</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí irán dinámicamente los resultados cuando haya búsqueda -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Título del listado -->
+    <h2 class="titulo-secundario">Listado</h2>
+
+    <!-- Tabla inferior: listado asignado -->
+    <div class="tabla-container">
+      <table class="tabla-inspeccion">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Folio</th>
+            <th>Clave</th>
+            <th>Nombre de la obra</th>
+            <th>Municipio</th>
+            <th>Localidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí se irán agregando las obras asignadas -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</section>
+
+<app-footer></app-footer>

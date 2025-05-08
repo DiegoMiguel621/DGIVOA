@@ -15,6 +15,7 @@ import { EditarEmpleadosModalComponent } from './modals/editar-empleados-modal/e
 import { EliminarEmpleadoModalComponent } from './modals/eliminar-empleado-modal/eliminar-empleado-modal.component';
 import { AgregarVisitasModalComponent } from './modals/agregar-visitas-modal/agregar-visitas-modal.component';
 import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/editar-visitas-modal.component';
+import { InspeccionesComponent } from './inspecciones/inspecciones.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path:'visitas',component:VisitasComponent},
   {path:'inicios-obra',component:IniciosObraComponent},
   {path:'empleados',component:EmpleadosComponent},
+  {path:'inspecciones',component:InspeccionesComponent},
 
 
   //modales
