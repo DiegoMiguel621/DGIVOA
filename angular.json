@@ -76,7 +76,8 @@
               "buildTarget": "DGIVOA:build:production"
             },
             "development": {
-              "buildTarget": "DGIVOA:build:development"
+  "buildTarget": "DGIVOA:build:development",
+  "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
