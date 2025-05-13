@@ -11,11 +11,13 @@
     <!-- Buscador -->
     <div class="buscador-container">
       <input
-        type="text"
-        placeholder="🔍 Buscar por clave de obra"
-        [(ngModel)]="busqueda"
-        class="input-buscador"
-      />
+      type="text"
+      placeholder="🔍 Buscar por folio o clave"
+      [(ngModel)]="busqueda"
+      (input)="filtrarObras()"
+      class="input-buscador"
+    />
+
     </div>
 
     <!-- Tabla superior: resultados -->
@@ -32,8 +34,18 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Aquí irán dinámicamente los resultados cuando haya búsqueda -->
+          <tr *ngFor="let obra of obrasFiltradas">
+            <td>{{ obra.noFolio || '-' }}</td>
+            <td>{{ obra.claveObra }}</td>
+            <td>{{ obra.nombreObra }}</td>
+            <td>{{ obra.municipio }}</td>
+            <td>{{ obra.localidad }}</td>
+            <td>
+              <button class="btn-asignar">Asignar inspección</button>
+            </td>
+          </tr>
         </tbody>
+
       </table>
     </div>
 
