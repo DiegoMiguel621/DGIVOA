@@ -12,6 +12,7 @@ export class InspeccionesComponent implements OnInit {
   busqueda: string = '';
   obrasFiltradas: any[] = [];
   todasLasObras: any[] = [];
+  obraAsignada: any[] = [];
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -54,5 +55,28 @@ export class InspeccionesComponent implements OnInit {
 
     console.log('Coincidencias:', this.obrasFiltradas); // 👈
   }
+
+asignarInspeccion(obra: any): void {
+  if (!this.obraAsignada.includes(obra)) {
+    this.obraAsignada.push(obra);
+
+    // Eliminar de la lista filtrada
+    this.obrasFiltradas = this.obrasFiltradas.filter(o => o !== obra);
+
+    // Eliminar también de la lista general
+    this.todasLasObras = this.todasLasObras.filter(o => o !== obra);
+  }
+}
+
+desasignarInspeccion(obra: any): void {
+  // Eliminar del listado
+  this.obraAsignada = this.obraAsignada.filter(o => o !== obra);
+
+  // Regresar a la lista completa y volver a aplicar filtro
+  this.todasLasObras.push(obra);
+  this.filtrarObras();
+}
+
+
 
 }

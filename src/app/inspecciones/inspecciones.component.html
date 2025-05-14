@@ -34,17 +34,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let obra of obrasFiltradas">
-            <td>{{ obra.noFolio || '-' }}</td>
-            <td>{{ obra.claveObra }}</td>
-            <td>{{ obra.nombreObra }}</td>
-            <td>{{ obra.municipio }}</td>
-            <td>{{ obra.localidad }}</td>
-            <td>
-              <button class="btn-asignar">Asignar inspección</button>
-            </td>
-          </tr>
-        </tbody>
+  <tr *ngFor="let obra of obrasFiltradas">
+    <td>{{ obra.noFolio || '-' }}</td>
+    <td>{{ obra.claveObra }}</td>
+    <td>{{ obra.nombreObra }}</td>
+    <td>{{ obra.municipio }}</td>
+    <td>{{ obra.localidad }}</td>
+    <td class="col-opciones">
+      <button class="btn-asignar" (click)="asignarInspeccion(obra)">Asignar inspección</button>
+      <button class="btn-archivo">
+        <i class="fas fa-history"></i> Archivo
+      </button>
+    </td>
+  </tr>
+</tbody>
+
+
 
       </table>
     </div>
@@ -56,18 +61,33 @@
     <div class="tabla-container">
       <table class="tabla-inspeccion">
         <thead>
-          <tr>
-            <th>No.</th>
-            <th>Folio</th>
-            <th>Clave</th>
-            <th>Nombre de la obra</th>
-            <th>Municipio</th>
-            <th>Localidad</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Aquí se irán agregando las obras asignadas -->
-        </tbody>
+  <tr>
+    <th>No.</th>
+    <th>Folio</th>
+    <th>Clave</th>
+    <th>Nombre de la obra</th>
+    <th>Municipio</th>
+    <th>Localidad</th>
+    <th>Opciones</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let obra of obraAsignada; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ obra.noFolio || '-' }}</td>
+    <td>{{ obra.claveObra }}</td>
+    <td>{{ obra.nombreObra }}</td>
+    <td>{{ obra.municipio }}</td>
+    <td>{{ obra.localidad }}</td>
+    <td class="col-opciones">
+      <button class="btn-eliminar" (click)="desasignarInspeccion(obra)">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </td>
+  </tr>
+</tbody>
+
+
       </table>
     </div>
 
