@@ -54,44 +54,51 @@
       </table>
     </div>
 
-    <!-- Título del listado -->
-    <h2 class="titulo-secundario">Listado</h2>
 
-    <!-- Tabla inferior: listado asignado -->
-    <div class="tabla-container">
-      <table class="tabla-inspeccion">
-        <thead>
-  <tr>
-    <th>No.</th>
-    <th>Folio</th>
-    <th>Clave</th>
-    <th>Nombre de la obra</th>
-    <th>Municipio</th>
-    <th>Localidad</th>
-    <th>Opciones</th>
-  </tr>
-</thead>
-<tbody>
-  <tr *ngFor="let obra of obraAsignada; let i = index">
-    <td>{{ i + 1 }}</td>
-    <td>{{ obra.noFolio || '-' }}</td>
-    <td>{{ obra.claveObra }}</td>
-    <td>{{ obra.nombreObra }}</td>
-    <td>{{ obra.municipio }}</td>
-    <td>{{ obra.localidad }}</td>
-    <td class="col-opciones">
-      <button class="btn-eliminar" (click)="prepararDesasignacion(obra)">
-        <i class="fas fa-trash-alt"></i>
-      </button>
-    </td>
-  </tr>
-</tbody>
+<!-- Título del listado -->
+<h2 class="titulo-secundario">Listado</h2>
+
+<!-- Tabla con scroll -->
+<div class="tabla-scroll">
+  <table class="tabla-inspeccion">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Folio</th>
+        <th>Clave</th>
+        <th>Nombre de la obra</th>
+        <th>Municipio</th>
+        <th>Localidad</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obra of obraAsignada; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ obra.noFolio || '-' }}</td>
+        <td>{{ obra.claveObra }}</td>
+        <td>{{ obra.nombreObra }}</td>
+        <td>{{ obra.municipio }}</td>
+        <td>{{ obra.localidad }}</td>
+        <td class="col-opciones">
+          <button class="btn-eliminar" (click)="prepararDesasignacion(obra)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Botón afuera del scroll -->
+<div class="contenedor-boton-continuar-fijo">
+  <button class="btn-continuar">Continuar</button>
+</div>
+
+</div>
 
 
-      </table>
-    </div>
 
-  </div>
 
   <!-- Modal de confirmación -->
 <div class="modal-overlay" *ngIf="modalVisible">

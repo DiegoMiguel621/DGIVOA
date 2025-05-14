@@ -1,10 +1,20 @@
 #secPrincipal {
   float: right;
   width: 88%;
-  height: 82vh;
+  height: auto;
+  max-height: 82vh; /* Limita a la altura visible */
+  overflow-y: auto; /* Scroll si se excede */
   background-color: #E9E9E9;
   transition: width 0.3s;
+  position: relative;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 
 #secPrincipal.expanded {
   width: calc(100% - 50px);
@@ -192,5 +202,64 @@ padding-right: 20px;
   top: 0;
   background-color: #7a2d3d;
   color: white;
+  z-index: 1;
+}
+
+
+.contenedor-boton-continuar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px 0 0;
+}
+
+.btn-continuar {
+  background-color: #b58b53;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-continuar:hover {
+  background-color: #9e7743;
+}
+
+.bloque-listado-ajustado {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabla-scroll {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.bloque-listado {
+  height: 350px; /* Cambiado de max-height a height */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bloque-listado-fijo {
+  display: flex;
+  flex-direction: column;
+  height: 350px; /* Tamaño total fijo del bloque */
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.contenedor-boton-continuar-fijo {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15px 20px 0;
+  background-color: #E9E9E9;
+  position: relative;
   z-index: 1;
 }
