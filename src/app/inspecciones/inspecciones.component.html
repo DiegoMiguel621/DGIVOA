@@ -80,7 +80,7 @@
     <td>{{ obra.municipio }}</td>
     <td>{{ obra.localidad }}</td>
     <td class="col-opciones">
-      <button class="btn-eliminar" (click)="desasignarInspeccion(obra)">
+      <button class="btn-eliminar" (click)="prepararDesasignacion(obra)">
         <i class="fas fa-trash-alt"></i>
       </button>
     </td>
@@ -92,6 +92,18 @@
     </div>
 
   </div>
+
+  <!-- Modal de confirmación -->
+<div class="modal-overlay" *ngIf="modalVisible">
+  <div class="modal-content">
+    <p>¿Eliminar “{{ obraSeleccionada?.nombreObra }}” de las obras a inspeccionar?</p>
+    <div class="modal-buttons">
+      <button class="btn-confirmar" (click)="confirmarDesasignacion()">Aceptar</button>
+      <button class="btn-cancelar" (click)="cancelarDesasignacion()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
 
 </section>
 

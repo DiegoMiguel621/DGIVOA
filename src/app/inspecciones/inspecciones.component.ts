@@ -13,6 +13,9 @@ export class InspeccionesComponent implements OnInit {
   obrasFiltradas: any[] = [];
   todasLasObras: any[] = [];
   obraAsignada: any[] = [];
+  obraSeleccionada: any = null;
+  modalVisible: boolean = false;
+
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -68,14 +71,27 @@ asignarInspeccion(obra: any): void {
   }
 }
 
-desasignarInspeccion(obra: any): void {
-  // Eliminar del listado
-  this.obraAsignada = this.obraAsignada.filter(o => o !== obra);
-
-  // Regresar a la lista completa y volver a aplicar filtro
-  this.todasLasObras.push(obra);
-  this.filtrarObras();
+// Mostrar modal al hacer clic en eliminar
+prepararDesasignacion(obra: any): void {
+  this.obraSeleccionada = obra;
+  this.modalVisible = true;
 }
+
+// Confirmar eliminación
+confirmarDesasignacion(): void {
+  this.obraAsignada = this.obraAsignada.filter(o => o !== this.obraSeleccionada);
+  this.todasLasObras.push(this.obraSeleccionada);
+  this.filtrarObras();
+  this.modalVisible = false;
+  this.obraSeleccionada = null;
+}
+
+// Cancelar eliminación
+cancelarDesasignacion(): void {
+  this.modalVisible = false;
+  this.obraSeleccionada = null;
+}
+
 
 
 

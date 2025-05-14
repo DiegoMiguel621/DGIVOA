@@ -121,3 +121,76 @@ padding-right: 20px;
 .btn-eliminar:hover {
   color: #d9534f;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-confirmar {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background-color: darkred;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tabla-container {
+  max-height: 280px; /* o lo que desees */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-bottom: 25px;
+}
+
+.tabla-inspeccion {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-inspeccion th,
+.tabla-inspeccion td {
+  padding: 8px 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.tabla-inspeccion thead th {
+  position: sticky;
+  top: 0;
+  background-color: #7a2d3d;
+  color: white;
+  z-index: 1;
+}
