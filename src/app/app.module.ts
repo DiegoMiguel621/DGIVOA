@@ -30,7 +30,8 @@ import { AgregarInicioMunicipioModalComponent } from './modals/agregar-inicio-mu
 import { AgregarInicioDependenciaModalComponent } from './modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
 import { AgregarVisitasModalComponent } from './modals/agregar-visitas-modal/agregar-visitas-modal.component';
 import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/editar-visitas-modal.component';
-import { InspeccionesComponent } from './inspecciones/inspecciones.component';
+import { InspeccionesComponent } from './components/inspecciones/inspecciones.component';
+import { ProgramarFechasComponent } from './components/programar-fechas/programar-fechas.component';
 
 @NgModule({
   declarations: [
@@ -54,12 +55,13 @@ import { InspeccionesComponent } from './inspecciones/inspecciones.component';
     AgregarInicioDependenciaModalComponent,
     AgregarVisitasModalComponent,
     EditarVisitasModalComponent,
-    InspeccionesComponent
+    InspeccionesComponent,
+    ProgramarFechasComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule, 
+    HttpClientModule,
     AppRoutingModule,
     MatDialogModule,
     FormsModule

@@ -1,0 +1,53 @@
+<app-header></app-header>
+<app-aside (asideToggled)="onAsideToggled($event)"></app-aside>
+
+
+<section id="secPrincipal" [class.expanded]="isAsideCollapsed">
+    <h2 class="titulo-principal">Programación de inspección de Obras</h2>
+<p class="subtitulo">Asignar fechas para la inspección</p>
+
+<div class="contenedor-tabla">
+  <table class="tabla-inspeccion">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Folio</th>
+        <th>Clave</th>
+        <th>Nombre de la obra</th>
+        <th>Municipio</th>
+        <th>Localidad</th>
+        <th>Fecha de inspección</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obra of obrasSeleccionadas; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ obra.noFolio }}</td>
+        <td>{{ obra.claveObra }}</td>
+        <td>{{ obra.nombreObra }}</td>
+        <td>{{ obra.municipio }}</td>
+        <td>{{ obra.localidad }}</td>
+        <td>
+          <button class="btn-editar">
+            <i class="fas fa-pen"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="asignacion-contenedor">
+  <p class="instruccion">Asigne un inspector a estas obras</p>
+  <select class="dropdown-inspector">
+    <option disabled selected>Seleccione un inspector...</option>
+  </select>
+
+  <button class="btn-continuar">Continuar</button>
+</div>
+
+</section>
+
+<app-footer></app-footer>
+<router-outlet></router-outlet>
+

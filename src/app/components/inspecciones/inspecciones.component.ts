@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { InspeccionesService } from '../services/inspecciones.service';
+import { InspeccionesService } from '../../services/inspecciones.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-inspecciones',
@@ -19,7 +21,7 @@ export class InspeccionesComponent implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private inspeccionesService: InspeccionesService
+    private inspeccionesService: InspeccionesService, private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -92,7 +94,13 @@ cancelarDesasignacion(): void {
   this.obraSeleccionada = null;
 }
 
+irAProgramarFechas(): void {
+  this.router.navigate(['/programar-fechas']);
+}
 
-
+continuar() {
+  localStorage.setItem('obrasSeleccionadas', JSON.stringify(this.obraAsignada));
+  this.router.navigate(['/programar-fechas']);
+}
 
 }
