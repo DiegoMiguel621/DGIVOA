@@ -7,6 +7,7 @@
   background-color: #E9E9E9;
   transition: width 0.3s;
   position: relative;
+  height: 100%;
 }
 
 html, body {
@@ -83,8 +84,10 @@ padding-right: 20px;
 
 .col-opciones {
   display: flex;
-  gap: 10px;
+  justify-content: center;
   align-items: center;
+  height: 100%; /* Asegura altura completa de la celda */
+  gap: 10px;
 }
 
 .btn-asignar {
@@ -121,11 +124,16 @@ padding-right: 20px;
 
 
 .btn-eliminar {
-  background-color: transparent;
-  border: none;
-  color: #333;
-  cursor: pointer;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ocupa toda la celda */
+  height: 100%;
+  padding: 10px; /* igual a padding general de td */
+  box-sizing: border-box;
+  background: none;
+  border: none;
 }
 
 .btn-eliminar:hover {
