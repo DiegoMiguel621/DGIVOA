@@ -39,11 +39,15 @@
 
 <div class="asignacion-contenedor">
   <p class="instruccion">Asigne un inspector a estas obras</p>
-  <select class="dropdown-inspector">
-    <option disabled selected>Seleccione un inspector...</option>
-  </select>
+  <select class="dropdown-inspector" [(ngModel)]="inspectorSeleccionado">
+  <option value="" disabled selected>Seleccione un inspector...</option>
+  <option *ngFor="let inspector of inspectores" [value]="inspector.nombres + ' ' + inspector.apellidos">
+    {{ inspector.nombres }} {{ inspector.apellidos }}
+  </option>
+</select>
 
-  <button class="btn-continuar">Continuar</button>
+  <button class="btn-continuar" [disabled]="!inspectorSeleccionado">Continuar</button>
+
 </div>
 
 </section>

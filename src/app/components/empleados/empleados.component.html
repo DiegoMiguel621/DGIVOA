@@ -12,7 +12,7 @@
               <input type="text" id="search-input" placeholder="Buscar nombre" [(ngModel)]="filtroNombre" (input)="actualizarFiltroNombre($event)">
 
             </div>
-          
+
             <!-- Filtros de dirección -->
             <div id="filter-container">
               <span class="filter-option" [class.active]="filtroDireccion === 'TODOS'" (click)="filtrarPorDireccion('TODOS')">TODOS</span>
@@ -20,9 +20,9 @@
               <span class="filter-option" [class.active]="filtroDireccion === 'DEROA'" (click)="filtrarPorDireccion('DEROA')">DEROA</span>
               <span class="filter-option" [class.active]="filtroDireccion === 'GENERAL'" (click)="filtrarPorDireccion('GENERAL')">GENERAL</span>
             </div>
-            
+
           </div>
-          
+
           <div id="header-titulo">
               <h1>Empleados de DGIVOA</h1>
           </div>
@@ -40,21 +40,24 @@
       <div id="sec-tabla">
         <table class="tabla-empleados">
           <thead>
-            <tr>
-              <th>Nombre(s)</th>
-              <th>Apellidos</th>
-              <th>Correo Electrónico</th>
-              <th>Dirección</th>
-              <th>Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let empleado of empleadosPaginados; let i = index" [class.par]="i % 2 === 1" [class.impar]="i % 2 === 0">
-              <td>{{ empleado.nombres }}</td>
-              <td>{{ empleado.apellidos }}</td>
-              <td>{{ empleado.correo }}</td>
-              <td>{{ empleado.direccion }}</td>
-              <td class="opciones">
+  <tr>
+    <th>Nombre(s)</th>
+    <th>Apellidos</th>
+    <th>Correo Electrónico</th>
+    <th>Dirección</th>
+    <th>Puesto</th>
+    <th>Opciones</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let empleado of empleadosPaginados; let i = index" [class.par]="i % 2 === 1" [class.impar]="i % 2 === 0">
+    <td>{{ empleado.nombres }}</td>
+    <td>{{ empleado.apellidos }}</td>
+    <td>{{ empleado.correo }}</td>
+    <td>{{ empleado.direccion }}</td>
+    <td>{{ empleado.puesto || '-' }}</td>
+    <td class="opciones">
+
                 <i class="fa-solid fa-pen" style="color: #000000;" (click)="editarEmpleado(empleado.id_empleado)"></i>
                 <i *ngIf="mostrandoInactivos; else eliminarIcon" class="fa-solid fa-trash-can-arrow-up" style="color: #000000;" (click)="restaurarEmpleado(empleado.id_empleado)"></i>
                 <i class="fa-solid fa-key" style="color: #000000;"></i>

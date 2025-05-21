@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { EmpleadosService } from '../../services/empleados.service';
 
 @Component({
   selector: 'app-programar-fechas',
@@ -10,8 +11,10 @@ import { Router } from '@angular/router';
 export class ProgramarFechasComponent implements OnInit {
   obrasSeleccionadas: any[] = [];
   isAsideCollapsed = false;
+  inspectores: any[] = [];
+  inspectorSeleccionado: string = '';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private empleadosService: EmpleadosService) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -27,6 +30,14 @@ export class ProgramarFechasComponent implements OnInit {
     this.obrasSeleccionadas = obrasDesdeNavegacion
       ? obrasDesdeNavegacion
       : obrasDesdeStorage ? JSON.parse(obrasDesdeStorage) : [];
+
+      this.obtenerInspectores();
+  }
+
+  obtenerInspectores(): void {
+    this.empleadosService.getEmpleados().subscribe((empleados) => {
+      this.inspectores = empleados.filter(emp => emp.puesto === 'INSPECTOR');
+    });
   }
 
   onAsideToggled(collapsed: boolean): void {

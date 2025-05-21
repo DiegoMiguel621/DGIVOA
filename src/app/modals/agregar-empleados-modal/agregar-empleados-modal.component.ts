@@ -23,14 +23,15 @@ export class AgregarEmpleadosModalComponent implements OnInit {
       apellidos: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
       contraseña: ['', [Validators.required, Validators.minLength(6)]],
-      direccion: ['DICO', Validators.required]
+      direccion: ['DICO', Validators.required],
+      puesto: ['', [Validators.required]]
     });
   }
 
   guardarEmpleado(): void {
     if (this.empleadoForm.valid) {
       this.empleadosService.agregarEmpleado(this.empleadoForm.value).subscribe(
-        () => {          
+        () => {
           this.dialogRef.close(true); // Cierra el modal y recarga la tabla
         },
         (error) => {

@@ -25,7 +25,8 @@ export class EditarEmpleadosModalComponent {
       apellidos: [data.apellidos, Validators.required],
       correo: [data.correo, [Validators.required, Validators.email]],
       contraseña: [data.contraseña, Validators.required],
-      direccion: [data.direccion, Validators.required]
+      direccion: [data.direccion, Validators.required],
+      puesto: [data.puesto, Validators.required]
     });
   }
 
@@ -34,9 +35,9 @@ export class EditarEmpleadosModalComponent {
       alert('Todos los campos son obligatorios');
       return;
     }
-  
+
     const empleadoActualizado = this.empleadoForm.value;
-  
+
     this.empleadosService.actualizarEmpleado(this.idEmpleado, empleadoActualizado).subscribe(
       response => {
         if (response.success) {
@@ -50,8 +51,8 @@ export class EditarEmpleadosModalComponent {
       }
     );
   }
-  
- 
+
+
 
   cerrarModal(): void {
     this.dialogRef.close(false);
