@@ -32,6 +32,7 @@ import { AgregarVisitasModalComponent } from './modals/agregar-visitas-modal/agr
 import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/editar-visitas-modal.component';
 import { InspeccionesComponent } from './components/inspecciones/inspecciones.component';
 import { ProgramarFechasComponent } from './components/programar-fechas/programar-fechas.component';
+import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ProgramarFechasComponent } from './components/programar-fechas/programa
     AgregarVisitasModalComponent,
     EditarVisitasModalComponent,
     InspeccionesComponent,
-    ProgramarFechasComponent
+    ProgramarFechasComponent,
+    ModalFechaInspeccionComponent
   ],
   imports: [
     BrowserModule,

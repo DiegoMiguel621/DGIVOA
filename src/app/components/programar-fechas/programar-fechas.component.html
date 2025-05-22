@@ -27,11 +27,15 @@
         <td>{{ obra.nombreObra }}</td>
         <td>{{ obra.municipio }}</td>
         <td>{{ obra.localidad }}</td>
-        <td>
-          <button class="btn-editar">
-            <i class="fas fa-pen"></i>
-          </button>
-        </td>
+      <td>
+  {{ obra.fechaInspeccion || '' }}
+  <button class="btn-editar" (click)="abrirModalFecha(obra)">
+    <i class="fas fa-pen"></i>
+  </button>
+</td>
+
+
+
       </tr>
     </tbody>
   </table>

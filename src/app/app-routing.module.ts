@@ -17,6 +17,7 @@ import { AgregarVisitasModalComponent } from './modals/agregar-visitas-modal/agr
 import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/editar-visitas-modal.component';
 import { InspeccionesComponent } from './components/inspecciones/inspecciones.component';
 import { ProgramarFechasComponent } from './components/programar-fechas/programar-fechas.component';
+import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path:'modal3',component:EliminarEmpleadoModalComponent},
   {path:'modal4',component:AgregarVisitasModalComponent},
   {path:'modal5',component:EditarVisitasModalComponent},
+  {path:'modal6',component:ModalFechaInspeccionComponent},
 
 
 ];

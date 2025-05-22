@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { EmpleadosService } from '../../services/empleados.service';
+import { ModalFechaInspeccionComponent } from '../../modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-programar-fechas',
@@ -14,7 +16,7 @@ export class ProgramarFechasComponent implements OnInit {
   inspectores: any[] = [];
   inspectorSeleccionado: string = '';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private empleadosService: EmpleadosService) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private empleadosService: EmpleadosService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -42,5 +44,18 @@ export class ProgramarFechasComponent implements OnInit {
 
   onAsideToggled(collapsed: boolean): void {
     this.isAsideCollapsed = collapsed;
+  }
+
+
+  abrirModalFecha(obra: any): void {
+    const dialogRef = this.dialog.open(ModalFechaInspeccionComponent, {
+      data: obra
+    });
+
+    dialogRef.afterClosed().subscribe(fecha => {
+      if (fecha) {
+        obra.fechaInspeccion = fecha; // guardar en objeto local
+      }
+    });
   }
 }
