@@ -26,12 +26,13 @@ export class ProgramarFechasComponent implements OnInit {
       }
     }
 
-    const obrasDesdeNavegacion = history.state['obrasSeleccionadas'];
-    const obrasDesdeStorage = localStorage.getItem('obrasSeleccionadas');
+  const obrasDesdeNavegacion = this.router.getCurrentNavigation()?.extras.state?.['obrasSeleccionadas'];
+  const obrasDesdeStorage = localStorage.getItem('obrasSeleccionadas');
 
     this.obrasSeleccionadas = obrasDesdeNavegacion
-      ? obrasDesdeNavegacion
-      : obrasDesdeStorage ? JSON.parse(obrasDesdeStorage) : [];
+    ? obrasDesdeNavegacion
+    : obrasDesdeStorage ? JSON.parse(obrasDesdeStorage) : [];
+
 
       this.obtenerInspectores();
   }
