@@ -18,6 +18,7 @@ import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/edita
 import { InspeccionesComponent } from './components/inspecciones/inspecciones.component';
 import { ProgramarFechasComponent } from './components/programar-fechas/programar-fechas.component';
 import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
+import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.component';
 
 
 
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path:'inicios-obra',component:IniciosObraComponent},
   {path:'empleados',component:EmpleadosComponent},
   {path:'inspecciones',component:InspeccionesComponent},
-  { path: 'programar-fechas', component: ProgramarFechasComponent},
+  {path: 'programar-fechas', component: ProgramarFechasComponent},
+  {path: 'chat', component: ChatSidebarComponent},
 
 
   //modales

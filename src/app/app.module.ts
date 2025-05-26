@@ -33,6 +33,7 @@ import { EditarVisitasModalComponent } from './modals/editar-visitas-modal/edita
 import { InspeccionesComponent } from './components/inspecciones/inspecciones.component';
 import { ProgramarFechasComponent } from './components/programar-fechas/programar-fechas.component';
 import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
+import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/m
     EditarVisitasModalComponent,
     InspeccionesComponent,
     ProgramarFechasComponent,
-    ModalFechaInspeccionComponent
+    ModalFechaInspeccionComponent,
+    ChatSidebarComponent
   ],
   imports: [
     BrowserModule,

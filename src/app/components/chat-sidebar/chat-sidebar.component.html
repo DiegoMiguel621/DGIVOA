@@ -1,0 +1,24 @@
+<div class="chat-panel">
+  <div class="chat-header">
+    <span>Chats</span>
+    <i class="fa-solid fa-xmark" (click)="cerrarChat()"></i>
+  </div>
+
+  <div class="chat-search">
+<input type="text" placeholder="🔍 Buscar o iniciar conversación" [(ngModel)]="terminoBusqueda">
+
+  </div>
+
+  <div class="chat-list">
+   <div class="chat-item" *ngFor="let empleado of empleadosFiltrados">
+  <img class="chat-avatar" [src]="getFoto(empleado.foto)" alt="Avatar" />
+  <div class="chat-content">
+    <div class="chat-name">{{ empleado.nombres }} {{ empleado.apellidos }}</div>
+    <div class="chat-message">Haz clic para comenzar...</div>
+  </div>
+  <div class="chat-time"></div>
+</div>
+
+
+  </div>
+</div>

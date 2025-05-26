@@ -6,22 +6,25 @@
         <p class="header-line">Vigilancia de Obras y Acciones</p>
       </div>
     </div>
-  
+
     <!-- Sección derecha: iconos, nombre, foto de perfil -->
-    <div class="header-right">      
-      <i class="fa-solid fa-comments fa-xl" style="color: #ffffff;"></i>        
+    <div class="header-right">
+      <i class="fa-solid fa-comments fa-xl" style="color: #ffffff;" (click)="toggleChat()"></i>
       <i class="fa-solid fa-bell fa-xl" style="color: #ffffff;"></i>
-        
+
       <div id="nombre">
         <h2 *ngIf="usuario">{{ usuario.nombres }} {{ usuario.apellidos }} - {{ usuario.direccion }}</h2>
       </div>
-      
 
-      
-      <a href="../perfil/"class="perfil">        
+
+
+      <a href="../perfil/"class="perfil">
         <img [src]="fotoPerfil" class="rounded-circle" id="perfil" alt="Foto de perfil" (error)="fotoPerfil='assets/images/user-default.png'">
       </a>
     </div>
   </header>
-  
+<app-chat-sidebar *ngIf="mostrarChat" (cerrar)="toggleChat()"></app-chat-sidebar>
+
+
+
   <router-outlet></router-outlet>

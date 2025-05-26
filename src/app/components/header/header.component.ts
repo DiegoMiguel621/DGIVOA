@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent implements OnInit {
   usuario: any;
   fotoPerfil: string = 'assets/images/user-default.png';
+  mostrarChat: boolean = false;
 
   constructor(private authService: AuthService) {}
 
@@ -16,11 +17,15 @@ export class HeaderComponent implements OnInit {
     this.authService.usuario$.subscribe(usuario => {
       if (usuario) {
         this.usuario = usuario;
-        this.fotoPerfil = usuario.foto?.startsWith('http') 
-          ? usuario.foto 
+        this.fotoPerfil = usuario.foto?.startsWith('http')
+          ? usuario.foto
           : `http://localhost:3000/uploads/${usuario.foto}`;
       }
     });
   }
+
+  toggleChat() {
+  this.mostrarChat = !this.mostrarChat;
+}
 
 }
