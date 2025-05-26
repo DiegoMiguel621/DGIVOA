@@ -48,6 +48,12 @@ get empleadosFiltrados(): any[] {
   });
 }
 
+@Output() abrirConversacion = new EventEmitter<any>();
+
+seleccionarEmpleado(empleado: any) {
+  this.abrirConversacion.emit(empleado);
+}
+
 
 
   cerrarChat(): void {

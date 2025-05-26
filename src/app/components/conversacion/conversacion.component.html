@@ -1,0 +1,21 @@
+<div class="chat-window">
+  <div class="chat-header-top">
+    <button (click)="cerrarVentana()">← Volver</button>
+    <div class="receptor-info">
+      <img [src]="getFoto(receptor?.foto)" alt="Receptor" />
+      <span>{{ receptor?.nombres }} {{ receptor?.apellidos }}</span>
+    </div>
+  </div>
+
+  <div class="chat-body" #scrollArea>
+    <div *ngFor="let msg of mensajes" [ngClass]="{'propio': msg.emisor_id === usuarioActual.id_empleado, 'ajeno': msg.emisor_id !== usuarioActual.id_empleado}">
+      <p>{{ msg.mensaje }}</p>
+      <small>{{ msg.fecha_envio | date:'shortTime' }}</small>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" [(ngModel)]="nuevoMensaje" (keyup.enter)="enviarMensaje()" placeholder="Escribe un mensaje..." />
+    <button (click)="enviarMensaje()">Enviar</button>
+  </div>
+</div>

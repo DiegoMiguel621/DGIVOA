@@ -19,6 +19,7 @@ import { InspeccionesComponent } from './components/inspecciones/inspecciones.co
 import { ProgramarFechasComponent } from './components/programar-fechas/programar-fechas.component';
 import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
 import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.component';
+import { ConversacionComponent } from './components/conversacion/conversacion.component';
 
 
 
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path:'inspecciones',component:InspeccionesComponent},
   {path: 'programar-fechas', component: ProgramarFechasComponent},
   {path: 'chat', component: ChatSidebarComponent},
+  {path: 'conversacion', component: ConversacionComponent},
 
 
   //modales

@@ -34,6 +34,7 @@ import { InspeccionesComponent } from './components/inspecciones/inspecciones.co
 import { ProgramarFechasComponent } from './components/programar-fechas/programar-fechas.component';
 import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
 import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.component';
+import { ConversacionComponent } from './components/conversacion/conversacion.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.com
     InspeccionesComponent,
     ProgramarFechasComponent,
     ModalFechaInspeccionComponent,
-    ChatSidebarComponent
+    ChatSidebarComponent,
+    ConversacionComponent
   ],
   imports: [
     BrowserModule,

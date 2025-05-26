@@ -10,6 +10,7 @@
     <!-- Sección derecha: iconos, nombre, foto de perfil -->
     <div class="header-right">
       <i class="fa-solid fa-comments fa-xl" style="color: #ffffff;" (click)="toggleChat()"></i>
+  <span *ngIf="totalNoLeidos > 0" class="badge">{{ totalNoLeidos }}</span>
       <i class="fa-solid fa-bell fa-xl" style="color: #ffffff;"></i>
 
       <div id="nombre">
@@ -23,7 +24,20 @@
       </a>
     </div>
   </header>
-<app-chat-sidebar *ngIf="mostrarChat" (cerrar)="toggleChat()"></app-chat-sidebar>
+<app-chat-sidebar
+  (cerrar)="toggleChat()"
+  (abrirConversacion)="abrirConversacion($event)"
+  *ngIf="mostrarChat && !empleadoSeleccionado">
+</app-chat-sidebar>
+
+<app-conversacion
+  *ngIf="empleadoSeleccionado"
+  [usuarioActual]="usuarioActual"
+  [receptor]="empleadoSeleccionado"
+  (volver)="cerrarConversacion()">
+</app-conversacion>
+
+
 
 
 
