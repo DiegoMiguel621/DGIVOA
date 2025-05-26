@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IniciosObraService } from '../../services/inicios-obra.service';
+import { MunicipiosService } from '../../services/municipios.service';
+
 
 @Component({
   selector: 'app-agregar-inicio-municipio-modal',
@@ -12,10 +14,13 @@ export class AgregarInicioMunicipioModalComponent {
   formularioActivo: string = 'municipio';
   avisoForm: FormGroup;
   contratistaForm: FormGroup;
+  municipios: any[] = [];
 
-  constructor(      
+
+  constructor(
     private fb: FormBuilder,
     private iniciosObraService: IniciosObraService,
+    private municipiosService: MunicipiosService,
     private dialogRef: MatDialogRef<AgregarInicioMunicipioModalComponent>
   ) {
     this.avisoForm = this.fb.group({
@@ -49,13 +54,13 @@ export class AgregarInicioMunicipioModalComponent {
       observaciones: [''],
       cumpleAviso: ['SI', Validators.required]
     });
-  
+
   }
   cambiarFormulario(tipo: string): void {
     console.log(`Cambiando a formulario: ${tipo}`); // Debug
     this.formularioActivo = tipo;
   }
-  
+
 
   guardarAviso(): void {
     if (this.avisoForm.valid) {
@@ -93,8 +98,20 @@ export class AgregarInicioMunicipioModalComponent {
   }
 }
 
-  
-  
+ngOnInit(): void {
+  this.municipiosService.getMunicipios().subscribe(
+    (data) => {
+      this.municipios = data;
+    },
+    (error) => {
+      console.error('Error cargando municipios', error);
+    }
+  );
+}
+
+
+
+
   cerrarModal(): void {
     this.dialogRef.close();
   }
