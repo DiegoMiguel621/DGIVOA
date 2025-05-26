@@ -100,14 +100,70 @@ export class AgregarInicioMunicipioModalComponent {
 
 ngOnInit(): void {
   this.municipiosService.getMunicipios().subscribe(
+  (data) => {
+    console.log('📥 Municipios recibidos del backend:', data); // 👈 Asegura que incluya clave
+    this.municipios = data;
+
+
+    if (data.length) {
+      console.log('🧪 Primer municipio:', data[0]);
+    }
+
+    // Activar listeners una vez que municipios esté cargado
+this.avisoForm.get('fechaInicio')?.valueChanges.subscribe(() => this.generarClaveObra());
+this.avisoForm.get('fondo')?.valueChanges.subscribe(() => this.generarClaveObra());
+this.avisoForm.get('municipio')?.valueChanges.subscribe(() => this.generarClaveObra());
+
+  },
+  (error) => {
+    console.error('Error cargando municipios', error);
+  }
+);
+}
+
+
+
+generarClaveObra() {
+  const fechaInicio = this.avisoForm.get('fechaInicio')?.value;
+  const fondo = this.avisoForm.get('fondo')?.value;
+  const claveMunicipio = this.avisoForm.get('municipio')?.value; // ahora contiene la clave directamente
+
+
+  console.log('🟨 VALORES DEL FORMULARIO:');
+  console.log('📆 Fecha inicio:', fechaInicio);
+  console.log('🏛️ Fondo:', fondo);
+  console.log('🏷️ Municipio seleccionado (clave):', claveMunicipio);
+
+  if (!fechaInicio || !fondo || !claveMunicipio) {
+    console.warn('❗ Faltan datos para generar la clave');
+    return;
+  }
+
+  const anio = new Date(fechaInicio).getFullYear().toString();
+
+  const municipio = this.municipios.find(m => m.clave === claveMunicipio);
+  if (!municipio) {
+    console.error('🚨 No se encontró municipio con clave:', claveMunicipio);
+    return;
+  }
+
+  const claveFormateada = claveMunicipio.padStart(3, '0');
+
+  this.iniciosObraService.getConsecutivo(anio, claveFormateada, fondo).subscribe(
     (data) => {
-      this.municipios = data;
+      const consecutivo = data.consecutivo.toString().padStart(3, '0');
+      const claveGenerada = `${anio}/${fondo}${claveFormateada}${consecutivo}`;
+      this.avisoForm.get('claveObra')?.setValue(claveGenerada);
     },
     (error) => {
-      console.error('Error cargando municipios', error);
+      console.error('Error generando clave:', error);
     }
   );
 }
+
+
+
+
 
 
 

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IniciosObraService {
-  private apiUrlMunicipios = 'http://localhost:3000/api/avisos-municipios'; 
+  private apiUrlMunicipios = 'http://localhost:3000/api/avisos-municipios';
   private apiUrlDependencias = 'http://localhost:3000/api/avisos-dependencias';
   private apiUrlMunicipiosContratista = 'http://localhost:3000/api/avisos-municipios-contratista';
   private apiUrlDependenciasContratista = 'http://localhost:3000/api/avisos-dependencias-contratista';
@@ -23,7 +23,7 @@ export class IniciosObraService {
   guardarAvisoContratistaMunicipio(data: any): Observable<any> {
     return this.http.post(`${this.apiUrlMunicipiosContratista}`, data);
   }
- 
+
 
   //Funciones para avisos de inicio de DEPENDENCIAS
   obtenerAvisosDependencias(): Observable<any[]> {
@@ -35,5 +35,17 @@ export class IniciosObraService {
   guardarAvisoContratistaDependencia(data: any): Observable<any> {
     return this.http.post(`${this.apiUrlDependenciasContratista}`, data);
   }
-  
+
+
+getConsecutivo(anio: string, claveMunicipio: string, fondo: string) {
+  return this.http.get<any>(`http://localhost:3000/api/obras-municipios/consecutivo`, {
+    params: {
+      anio,
+      claveMunicipio,
+      fondo
+    }
+  });
+}
+
+
 }

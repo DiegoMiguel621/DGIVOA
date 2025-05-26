@@ -62,12 +62,13 @@
 
             <div class="form-section">
   <label for="municipio">9. Municipio</label>
-  <select id="municipio" formControlName="municipio">
-    <option value="">Selecciona un municipio</option>
-    <option *ngFor="let mun of municipios" [value]="mun.nombre">
-      {{ mun.nombre }}
-    </option>
-  </select>
+<select id="municipio" formControlName="municipio">
+  <option value="">Selecciona un municipio</option>
+  <option *ngFor="let mun of municipios" [value]="mun.clave">
+    {{ mun.nombre }}
+  </option>
+</select>
+
 </div>
 
 
@@ -78,7 +79,7 @@
 
             <div class="form-section">
                 <label for="claveObra">11. Clave de Obra</label>
-                <input type="text" id="claveObra" formControlName="claveObra">
+                <input type="text" id="claveObra" formControlName="claveObra" readonly style="background-color: #eee;">
             </div>
 
             <div class="form-section">
