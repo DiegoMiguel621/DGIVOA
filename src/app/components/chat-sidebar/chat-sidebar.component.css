@@ -84,3 +84,12 @@
   color: #ccc;
   margin-left: 0.5rem;
 }
+
+.hora-chat {
+  font-weight: bold;
+  color: #fff700; /* Amarillo brillante */
+  font-size: 0.85rem;
+  background-color: #4b1730;
+  padding: 3px 6px;
+  border-radius: 5px;
+}

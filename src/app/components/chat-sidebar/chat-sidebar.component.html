@@ -10,14 +10,16 @@
   </div>
 
   <div class="chat-list">
-<div class="chat-item" *ngFor="let empleado of empleadosFiltrados" (click)="seleccionarEmpleado(empleado)">
-  <img class="chat-avatar" [src]="getFoto(empleado.foto)" alt="Avatar" />
+<div class="chat-item" *ngFor="let chat of chats" (click)="seleccionarEmpleado(chat)">
+  <img class="chat-avatar" [src]="getFoto(chat.foto)" alt="Avatar" />
   <div class="chat-content">
-    <div class="chat-name">{{ empleado.nombres }} {{ empleado.apellidos }}</div>
-    <div class="chat-message">Haz clic para comenzar...</div>
+    <div class="chat-name">{{ chat.nombres }} {{ chat.apellidos }}</div>
+    <div class="chat-message">{{ chat.mensaje }}</div>
   </div>
-  <div class="chat-time"></div>
+  <div class="chat-time" *ngIf="chat.fecha_envio">{{ chat.fecha_envio | date:'shortTime' }}</div>
+  <span class="badge" *ngIf="chat.no_leidos > 0">{{ chat.no_leidos }}</span>
 </div>
+
 
 
 

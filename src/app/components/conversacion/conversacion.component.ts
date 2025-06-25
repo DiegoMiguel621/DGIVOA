@@ -16,11 +16,16 @@ export class ConversacionComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
+  @Output() mensajeEnviado = new EventEmitter<void>();
+
+
   ngOnInit(): void {
     // aquí pronto cargaremos los mensajes entre usuarioActual y receptor
     console.log('Usuario actual:', this.usuarioActual);
     console.log('Receptor seleccionado:', this.receptor);
     this.cargarMensajes();
+
+
   }
 
 
@@ -31,20 +36,23 @@ export class ConversacionComponent implements OnInit {
     });
   }
 
-  enviarMensaje() {
-    if (!this.nuevoMensaje.trim()) return;
+enviarMensaje() {
+  if (!this.nuevoMensaje.trim()) return;
 
-    const nuevo = {
-      emisor_id: this.usuarioActual.id_empleado,
-      receptor_id: this.receptor.id_empleado,
-      mensaje: this.nuevoMensaje
-    };
+  const nuevo = {
+    emisor_id: this.usuarioActual.id_empleado,
+    receptor_id: this.receptor.id_empleado,
+    mensaje: this.nuevoMensaje
+  };
 
-    this.http.post('http://localhost:3000/api/mensajes', nuevo).subscribe(() => {
-      this.nuevoMensaje = '';
-      this.cargarMensajes(); // Recarga los mensajes
+  this.http.post('http://localhost:3000/api/mensajes', nuevo)
+    .subscribe(() => {
+      this.mensajeEnviado.emit(); // ✅ Avísale al padre que hay mensaje nuevo
+      this.cargarMensajes();      // 🔄 Recarga la conversación
+      this.nuevoMensaje = '';     // ✅ Limpia el input correctamente
     });
-  }
+}
+
 
   getFoto(nombreFoto: string): string {
     return nombreFoto && nombreFoto !== 'user-default.png'
@@ -56,4 +64,6 @@ export class ConversacionComponent implements OnInit {
   cerrarVentana() {
     this.volver.emit();
   }
+
+
 }

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { EmpleadosService } from '../../services/empleados.service';
 import { AuthService } from '../../services/auth.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-chat-sidebar',
@@ -11,21 +13,54 @@ export class ChatSidebarComponent implements OnInit {
   empleados: any[] = [];
   usuarioActual: any;
   terminoBusqueda: string = '';
+  chats: any[] = [];
 
   @Output() cerrar = new EventEmitter<void>();
 
-  constructor(
-    private empleadosService: EmpleadosService,
-    private authService: AuthService
-  ) {}
+constructor(
+  private empleadosService: EmpleadosService,
+  private authService: AuthService,
+  private http: HttpClient  // ✅ ¡Falta esto!
+) {}
 
-  ngOnInit(): void {
-    // Obtener el usuario actual desde AuthService
-    this.authService.usuario$.subscribe(usuario => {
+ngOnInit(): void {
+  this.authService.usuario$.subscribe(usuario => {
+    if (usuario) {
       this.usuarioActual = usuario;
-      this.cargarEmpleados();
-    });
-  }
+
+      // 1. Carga los empleados activos
+      this.empleadosService.getEmpleadosActivos().subscribe(empleados => {
+        // 2. Filtra el usuario actual para no incluirlo
+        this.empleados = empleados.filter(emp => emp.id_empleado !== usuario.id_empleado);
+
+        // 3. Trae los chats resumidos
+        this.http.get<any[]>(`http://localhost:3000/api/conversaciones-resumen/${usuario.id_empleado}`)
+          .subscribe(chatsResumen => {
+            // 4. Mapea empleados + chats
+this.chats = this.empleados.map(emp => {
+  const chat = chatsResumen.find(c => c.id_empleado === emp.id_empleado);
+  return {
+    ...emp,
+    mensaje: chat?.mensaje || 'Haz clic para comenzar...',
+    fecha_envio: chat?.fecha_envio || null,
+    no_leidos: chat?.no_leidos || 0
+  };
+});
+
+
+            // 5. Ordenar por fecha de mensaje (los sin mensajes al final)
+            this.chats.sort((a, b) => {
+              const fechaA = a.fecha_envio ? new Date(a.fecha_envio).getTime() : 0;
+              const fechaB = b.fecha_envio ? new Date(b.fecha_envio).getTime() : 0;
+              return fechaB - fechaA;
+            });
+          });
+      });
+    }
+  });
+}
+
+
 
   cargarEmpleados(): void {
     this.empleadosService.getEmpleadosActivos().subscribe(data => {
@@ -53,6 +88,14 @@ get empleadosFiltrados(): any[] {
 seleccionarEmpleado(empleado: any) {
   this.abrirConversacion.emit(empleado);
 }
+
+
+actualizarChatsExternamente(resumen: any[]) {
+  this.chats = resumen.sort(
+    (a, b) => new Date(b.fecha_envio).getTime() - new Date(a.fecha_envio).getTime()
+  );
+}
+
 
 
 

@@ -60,13 +60,34 @@
 }
 
 .badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background-color: red;
+  background-color: #ff3b3b;
   color: white;
-  border-radius: 50%;
-  font-size: 0.7rem;
-  padding: 2px 6px;
+  padding: 3px 7px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  min-width: 24px;
+  text-align: center;
 }
 
+.icono-chat {
+  position: relative;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.notificacion-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  line-height: 14px;
+  text-align: center;
+}

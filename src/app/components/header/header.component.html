@@ -9,9 +9,15 @@
 
     <!-- Sección derecha: iconos, nombre, foto de perfil -->
     <div class="header-right">
+      <div class="icono-chat" (click)="toggleChat()"></div>
       <i class="fa-solid fa-comments fa-xl" style="color: #ffffff;" (click)="toggleChat()"></i>
-  <span *ngIf="totalNoLeidos > 0" class="badge">{{ totalNoLeidos }}</span>
+      <span *ngIf="totalNoLeidos && totalNoLeidos > 0" class="notificacion-badge">
+  {{ totalNoLeidos }}
+</span>
+
       <i class="fa-solid fa-bell fa-xl" style="color: #ffffff;"></i>
+
+
 
       <div id="nombre">
         <h2 *ngIf="usuario">{{ usuario.nombres }} {{ usuario.apellidos }} - {{ usuario.direccion }}</h2>
@@ -34,7 +40,8 @@
   *ngIf="empleadoSeleccionado"
   [usuarioActual]="usuarioActual"
   [receptor]="empleadoSeleccionado"
-  (volver)="cerrarConversacion()">
+  (volver)="cerrarConversacion(); contarNoLeidos()"
+  (mensajeEnviado)="contarNoLeidos()">
 </app-conversacion>
 
 
