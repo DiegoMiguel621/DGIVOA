@@ -5,7 +5,65 @@
     background-color: #E9E9E9;
     transition: width 0.3s;
   }
-  
+
   #secPrincipal.expanded {
     width: calc(100% - 50px);
   }
+
+  .inicio-container {
+  padding: 20px;
+}
+
+.inicio-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.opciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.opcion {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+}
+
+.opcion:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.opcion h3 {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
+
+.opcion p {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.opcion i {
+  font-size: 24px;
+  color: #444;
+  float: right;
+}
+
+.tarjeta-color {
+  background-color: #c59a5f;
+  color: white;
+}
+
+.tarjeta-color i {
+  color: white;
+}

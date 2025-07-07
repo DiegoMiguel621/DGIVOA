@@ -1,10 +1,48 @@
 <app-header></app-header>
 <app-aside (asideToggled)="onAsideToggled($event)"></app-aside>
 
-
 <section id="secPrincipal" [class.expanded]="isAsideCollapsed">
-    <h2>este es el contenido</h2>
+  <div class="inicio-container">
+    <h2>Seleccione una opción</h2>
 
+    <div class="opciones-grid">
+      <div class="opcion tarjeta-color" routerLink="/inicios-obra">
+        <h3>Inicio de obra</h3>
+        <p>Avisos de inicios de obra</p>
+        <i class="fa-solid fa-file-lines"></i>
+      </div>
+
+      <div class="opcion" routerLink="/solventaciones">
+        <h3>Solventaciones</h3>
+        <p>Datos de solventaciones</p>
+        <i class="fa-solid fa-file-circle-question"></i>
+      </div>
+
+      <div class="opcion tarjeta-color" routerLink="/visitas">
+        <h3>Visitas</h3>
+        <p>Registro de visitas</p>
+        <i class="fa-solid fa-people-group"></i>
+      </div>
+
+      <div class="opcion" routerLink="/comisiones">
+        <h3>Comisiones</h3>
+        <p>Comisiones DEROA</p>
+        <i class="fa-solid fa-book"></i>
+      </div>
+
+      <div class="opcion tarjeta-color" routerLink="/correspondencia">
+        <h3>Correspondencia</h3>
+        <p>Correspondencia DEROA</p>
+        <i class="fa-solid fa-box"></i>
+      </div>
+
+      <div class="opcion" routerLink="/inspecciones">
+        <h3>Inspecciones</h3>
+        <p>Programar inspecciones de obra</p>
+        <i class="fa-solid fa-clipboard-check"></i>
+      </div>
+    </div>
+  </div>
 </section>
 
 <app-footer></app-footer>
