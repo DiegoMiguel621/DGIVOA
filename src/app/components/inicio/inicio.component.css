@@ -2,7 +2,7 @@
     float: right;
     width: 88%;
     height: 82vh;
-    background-color: #E9E9E9;
+    background-color: white;
     transition: width 0.3s;
   }
 
@@ -11,11 +11,11 @@
   }
 
   .inicio-container {
-  padding: 20px;
+  padding: 40px;
 }
 
 .inicio-container h2 {
-  font-size: 24px;
+  font-size: 27px;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -27,7 +27,7 @@
 }
 
 .opcion {
-  background-color: #f0f0f0;
+  background-color:#DFDFDF;
   border-radius: 8px;
   padding: 16px;
   cursor: pointer;
@@ -42,7 +42,7 @@
 }
 
 .opcion h3 {
-  font-size: 18px;
+  font-size: 25px;
   margin: 0 0 10px 0;
   font-weight: bold;
 }
@@ -50,20 +50,21 @@
 .opcion p {
   margin: 0 0 10px 0;
   font-size: 14px;
-  color: #333;
+  color: white;
 }
 
 .opcion i {
-  font-size: 24px;
-  color: #444;
-  float: right;
+  font-size:80px;
+  color: #5C5C5C;
+  margin-left: 180px;
 }
 
 .tarjeta-color {
-  background-color: #c59a5f;
+  background-color: #BC955B;
   color: white;
 }
 
 .tarjeta-color i {
-  color: white;
+  color: #1E1E1E;
 }
+
