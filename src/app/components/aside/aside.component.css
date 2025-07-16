@@ -53,7 +53,7 @@
     color: white;     
   }
   
-  a.casa,a.iniciosObra,a.visitas,a.empleados, a.perfil, a.logout {
+  a.casa, a.iniciosObra, a.visitas, a.inspecciones, a.empleados, a.perfil, a.logout {
     text-decoration: none;     
   }
   #menuIcon{
