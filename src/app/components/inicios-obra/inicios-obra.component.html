@@ -15,238 +15,174 @@
         </div>
     </div>
     
-    <div id="aside-inicios">
-        <h2>Filtrar</h2>
-        <div class="separator"></div>
-    
-        <!-- Campos de búsqueda -->
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Buscar clave">
-        </div>
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Buscar folio">
-        </div>
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Buscar Contratista">
-        </div>
-    
-        <!-- Menús desplegables -->
-        <select id="municipio">
-            <option disabled selected>Por municipio</option>
-            <option>Acatlán</option>
-            <option>Acaxochitlán</option>
-            <option>Actopan</option>
-            <option>Agua Blanca de Iturbide</option>
-            <option>Ajacuba</option>
-            <option>Alfajayucan</option>
-            <option>Almoloya</option>
-            <option>Apan</option>
-            <option>El Arenal</option>
-            <option>Atitalaquia</option>
-            <option>Atlapexco</option>
-            <option>Atotonilco el Grande</option>
-            <option>Atotonilco de Tula</option>
-            <option>Calnali</option>
-            <option>Cardonal</option>
-            <option>Cuautepec de Hinojosa</option>
-            <option>Chapantongo</option>
-            <option>Chapulhuacán</option>
-            <option>Chilcuautla</option>
-            <option>Eloxochitlán</option>
-            <option>Emiliano Zapata</option>
-            <option>Epazoyucan</option>
-            <option>Francisco I. Madero</option>
-            <option>Huasca de Ocampo</option>
-            <option>Huautla</option>
-            <option>Huazalingo</option>
-            <option>Huehuetla</option>
-            <option>Huejutla de Reyes</option>
-            <option>Huichapan</option>
-            <option>Ixmiquilpan</option>
-            <option>Jacala de Ledezma</option>
-            <option>Jaltocán</option>
-            <option>Juárez Hidalgo</option>
-            <option>Lolotla</option>
-            <option>Metepec</option>
-            <option>San Agustín Metzquititlán</option>
-            <option>Metztitlán</option>
-            <option>Mineral del Chico</option>
-            <option>Mineral del Monte</option>
-            <option>La Misión</option>
-            <option>Mixquiahuala de Juárez</option>
-            <option>Molango de Escamilla</option>
-            <option>Nicolás Flores</option>
-            <option>Nopala de Villagrán</option>
-            <option>Omitlán de Juárez</option>
-            <option>San Felipe Orizatlán</option>
-            <option>Pacula</option>
-            <option>Pachuca de Soto</option>
-            <option>Pisaflores</option>
-            <option>Progreso de Obregón</option>
-            <option>Mineral de la Reforma</option>
-            <option>San Agustín Tlaxiaca</option>
-            <option>San Bartolo Tutotepec</option>
-            <option>San Salvador</option>
-            <option>Santiago de Anaya</option>
-            <option>Santiago Tulantepec de Lugo Guerrero</option>
-            <option>Singuilucan</option>
-            <option>Tasquillo</option>
-            <option>Tecozautla</option>
-            <option>Tenango de Doria</option>
-            <option>Tepeapulco</option>
-            <option>Tepehuacán de Guerrero</option>
-            <option>Tepeji del Río de Ocampo</option>
-            <option>Tepetitlán</option>
-            <option>Tetepango</option>
-            <option>Villa de Tezontepec</option>
-            <option>Tezontepec de Aldama</option>
-            <option>Tianguistengo</option>
-            <option>Tizayuca</option>
-            <option>Tlahuelilpan</option>
-            <option>Tlahuiltepa</option>
-            <option>Tlanalapa</option>
-            <option>Tlanchinol</option>
-            <option>Tlaxcoapan</option>
-            <option>Tolcayuca</option>
-            <option>Tula de Allende</option>
-            <option>Tulancingo de Bravo</option>
-            <option>Xochiatipan</option>
-            <option>Xochicoatlán</option>
-            <option>Yahualica</option>
-            <option>Zacualtipán de Ángeles</option>
-            <option>Zapotlán de Juárez</option>
-            <option>Zempoala</option>
-            <option>Zimapán</option>
-        </select>
-    
-        <select id="localidad">
-            <option disabled selected>Por localidad</option>
-        </select>
-    
-        <select id="año">
-            <option disabled selected>Por año</option>
-            <option>2015</option>
-            <option>2016</option>
-            <option>2017</option>
-            <option>2018</option>
-            <option>2019</option>
-            <option>2020</option>
-            <option>2021</option>
-            <option>2022</option>
-            <option>2023</option>
-            <option>2024</option>
-            <option>2025</option>
-        </select>
-    
-        <select id="aviso">
-            <option disabled selected>Cumple aviso</option>
-            <option>Sí</option>
-            <option>No</option>
-        </select>
-    
-        <select id="recurso">
-            <option disabled selected>Tipo de recurso</option>
-            <option>MUNICIPAL</option>
-            <option>ESTATAL</option>
-            <option>FEDERAL</option>
-        </select>
-    
-        <select id="fondo">
-            <option disabled selected>Tipo de fondo</option>
-            <option>FAFEF</option>
-            <option>FAMEB</option>
-            <option>PRISR</option>
-            <option>ISAVU</option>
-        </select>
-    
-        <select id="monto">
-            <option disabled selected>Monto</option>
-            <option>$0 - $100,000</option>
-            <option>$100,001 - $500,000</option>
-            <option>$500,001 - $1,000,000</option>
-        </select>
-    </div>
-    <div id="cont-tabla">
-        <div id="table-container">
-            <table class="tabla-inicios" [ngClass]="{ 'municipios': tipoSeleccionado === 'municipios', 'dependencias': tipoSeleccionado === 'dependencias' }">
-                <thead>
-                    <tr>
-                        <th class="col-num">No. Folio</th>
-                        <th class="col-dirigido">NOMBRE DE QUIEN DIRIGE EL OFICIO A LA CONTRALORÍA</th>
-                        <th class="col-cargo">CARGO</th>
-                        <th class="col-ingreso">FECHA DE INGRESO SC</th>
-                        <th class="col-recibo">FECHA QUE RECIBE DICO</th>
-                        <th class="col-observaciones">OBSERVACIONES</th>
-                        <th class="col-cumple">CUMPLE AVISO DE INICIO</th>
-                        <th class="col-dependencia dependencia">DEPENDENCIA QUE EJECUTA LA OBRA</th>
-                        <th class="col-nombre-obra">NOMBRE DE LA OBRA</th>
-                        <th class="col-municipio">MUNICIPIO</th>
-                        <th class="col-localidad">LOCALIDAD</th>
-                        <th class="col-clave-obra">CLAVE DE OBRA</th>
-                        <th class="col-tipo-recurso">TIPO DE RECURSO</th>
-                        <th class="col-fondo">FONDO</th>
-                        <th class="col-monto">MONTO CONTRATADO</th>
-                        <th class="col-monto" *ngIf="tipoSeleccionado === 'municipios'">MONTO AUTORIZADO</th>
-                        <th class="col-contrato">NÚMERO DE CONTRATO</th>
-                        <th class="col-fecha-inicio">FECHA DE INICIO DE OBRA</th>
-                        <th class="col-fecha-termino">FECHA DE TÉRMINO DE OBRA</th>
-                        <th class="col-contratista">CONTRATISTA</th>
-                        <th class="col-folio">FOLIO</th>
-                        <th class="col-dirigido-contra">NOMBRE DE QUIEN DIRIGE EL OFICIO</th>
-                        <th class="col-cargo-contra">CARGO</th>
-                        <th class="col-ingreso-contra">FECHA DE INGRESO SC</th>
-                        <th class="col-recibo-contra">FECHA QUE RECIBE DICO</th>
-                        <th class="col-observaciones-contra">OBSERVACIONES</th>
-                        <th class="col-cumple-contra">CUMPLEN CONTRATISTAS</th>
-                        <th class="col-opciones fixed-column">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>            
-                    <tr *ngFor="let aviso of avisos">
-                        <!-- aqui van todos los registros que se hayan hecho, llamandolos desde la bd, ya que por ahora es un registro simulado-->                        
-                        <td>{{ aviso.noFolio }}</td>
-                        <td>{{ aviso.nomDirigido }}</td>
-                        <td>{{ aviso.cargo }}</td>
-                        <td>{{ aviso.fechaIngreso | date:'dd-MM-yyyy'}}</td>
-                        <td>{{ aviso.fechaRecibo | date:'dd-MM-yyyy'}}</td>
-                        <td>{{ aviso.observaciones }}</td>
-                        <td>{{ aviso.cumpleAviso }}</td>
-                        <td class="dependencia" *ngIf="tipoSeleccionado === 'dependencias'">{{ aviso.dependencia }}</td>
-                        <td>{{ aviso.nombreObra }}</td>
-                        <td>{{ aviso.municipio }}</td>
-                        <td>{{ aviso.localidad }}</td>
-                        <td>{{ aviso.claveObra }}</td>
-                        <td>{{ aviso.tipoRecurso }}</td>
-                        <td>{{ aviso.fondo }}</td>
-                        <td>{{ aviso.montoContratado }}</td>
-                        <td *ngIf="tipoSeleccionado === 'municipios'">{{ aviso.montoAutorizado }}</td>
-                        <td>{{ aviso.numContrato }}</td>
-                        <td>{{ aviso.fechaInicio | date:'dd-MM-yyyy'}}</td>
-                        <td>{{ aviso.fechaTermino | date:'dd-MM-yyyy'}}</td>
-                        <td>{{ aviso.contratista }}</td>
-                        <td>{{ aviso.folioContratista }}</td>
-                        <td>{{ aviso.nomDirigidoContratista }}</td>
-                        <td>{{ aviso.cargoContratista }}</td>
-                        <td>{{ aviso.fechaIngresoContratista | date:'dd-MM-yyyy'}}</td>
-                        <td>{{ aviso.fechaReciboContratista | date:'dd-MM-yyyy'}}</td>
-                        <td>{{ aviso.observacionesContratista }}</td>
-                        <td>{{ aviso.cumpleContratista }}</td>
-                        <td class="fixed-column"> <!-- columna fija para opciones-->
-                            <i class="fa-solid fa-file-pdf" style="color: #000000;"></i>
-                            <i class="fa-solid fa-pen" style="color: #000000;"></i>
-                        </td>
-                    </tr>                    
-                </tbody>
-            </table>
-        </div>
-        
+<!--------------------------------------------->
+<!--------------- Aside filtros --------------->
+<!--------------------------------------------->
+<div id="aside-inicios">
+  <div id="filtrar-tit">
+    <h2>Filtrar</h2>
+    <!-- Botón reset -->
+    <i class="fa-solid fa-rotate-left fa-xl" style="color:#000; cursor:pointer;" title="Limpiar filtros" (click)="limpiarFiltros()"></i>
+  </div>
+
+  <div class="separator"></div>
+
+  <!-- Campos de búsqueda -->
+  <div class="search-box">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="Buscar clave" [(ngModel)]="filtroClave" [ngModelOptions]="{standalone:true}">
+  </div>
+
+  <div class="search-box">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="Buscar folio" [(ngModel)]="filtroFolio" [ngModelOptions]="{standalone:true}">
+  </div>
+
+  <div class="search-box">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="Buscar Contratista" [(ngModel)]="filtroContratista" [ngModelOptions]="{standalone:true}">
+  </div>
+
+  <!-- Menús desplegables -->
+  <select id="municipio" [(ngModel)]="selectedMunicipioClave" (change)="onMunicipioChange()" [ngModelOptions]="{ standalone: true }">
+    <option value="">Por municipio</option>
+    <option *ngFor="let m of municipios" [value]="m.clave">
+      {{ m.nombre }}
+    </option>
+  </select>
+
+  <select id="localidad" [(ngModel)]="selectedLocalidadClave" [ngModelOptions]="{ standalone: true }">
+    <option value="">Por localidad</option>
+    <option *ngFor="let l of localidades" [value]="l.clave">
+      {{ l.nombre }}
+    </option>
+  </select>
+
+  <select id="año" [(ngModel)]="filtroAnio" [ngModelOptions]="{standalone:true}">
+    <option value="">Por año</option>
+    <option>2015</option>
+    <option>2016</option>
+    <option>2017</option>
+    <option>2018</option>
+    <option>2019</option>
+    <option>2020</option>
+    <option>2021</option>
+    <option>2022</option>
+    <option>2023</option>
+    <option>2024</option>
+    <option>2025</option>
+  </select>
+
+  <select id="aviso" [(ngModel)]="filtroCumple" [ngModelOptions]="{standalone:true}">
+    <option value="">Cumple aviso</option>
+    <option>Sí</option>
+    <option>No</option>
+  </select>
+
+  <select id="recurso" [(ngModel)]="filtroRecurso" [ngModelOptions]="{standalone:true}">
+    <option value="">Tipo de recurso</option>
+    <option>MUNICIPAL</option>
+    <option>ESTATAL</option>
+    <option>FEDERAL</option>
+  </select>
+
+  <select id="fondo" [(ngModel)]="filtroFondo" [ngModelOptions]="{standalone:true}">
+    <option value="">Tipo de fondo</option>
+    <option>FAFEF</option>
+    <option>FAMEB</option>
+    <option>PRISR</option>
+    <option>ISAVU</option>
+  </select>
+
+  <select id="monto" [(ngModel)]="filtroMonto" [ngModelOptions]="{standalone:true}">
+    <option value="">Monto</option>
+    <option>$0 - $100,000</option>
+    <option>$100,001 - $500,000</option>
+    <option>$500,001 - $1,000,000</option>
+  </select>
+</div>
+
+<!--------------------------------------------->
+<!--------------- Aside filtros --------------->
+<!--------------------------------------------->
+<div id="cont-tabla">
+    <div id="table-container">
+        <table class="tabla-inicios" [ngClass]="{ 'municipios': tipoSeleccionado === 'municipios', 'dependencias': tipoSeleccionado === 'dependencias' }">
+            <thead>
+                <tr>
+                    <th class="col-num">No. Folio</th>
+                    <th class="col-dirigido">NOMBRE DE QUIEN DIRIGE EL OFICIO A LA CONTRALORÍA</th>
+                    <th class="col-cargo">CARGO</th>
+                    <th class="col-ingreso">FECHA DE INGRESO SC</th>
+                    <th class="col-recibo">FECHA QUE RECIBE DICO</th>
+                    <th class="col-observaciones">OBSERVACIONES</th>
+                    <th class="col-cumple">CUMPLE AVISO DE INICIO</th>
+                    <th class="col-dependencia dependencia">DEPENDENCIA QUE EJECUTA LA OBRA</th>
+                    <th class="col-nombre-obra">NOMBRE DE LA OBRA</th>
+                    <th class="col-municipio">MUNICIPIO</th>
+                    <th class="col-localidad">LOCALIDAD</th>
+                    <th class="col-clave-obra">CLAVE DE OBRA</th>
+                    <th class="col-tipo-recurso">TIPO DE RECURSO</th>
+                    <th class="col-fondo">FONDO</th>
+                    <th class="col-monto">MONTO CONTRATADO</th>
+                    <th class="col-monto" *ngIf="tipoSeleccionado === 'municipios'">MONTO AUTORIZADO</th>
+                    <th class="col-contrato">NÚMERO DE CONTRATO</th>
+                    <th class="col-fecha-inicio">FECHA DE INICIO DE OBRA</th>
+                    <th class="col-fecha-termino">FECHA DE TÉRMINO DE OBRA</th>
+                    <th class="col-contratista">CONTRATISTA</th>
+                    <th class="col-folio">FOLIO</th>
+                    <th class="col-dirigido-contra">NOMBRE DE QUIEN DIRIGE EL OFICIO</th>
+                    <th class="col-cargo-contra">CARGO</th>
+                    <th class="col-ingreso-contra">FECHA DE INGRESO SC</th>
+                    <th class="col-recibo-contra">FECHA QUE RECIBE DICO</th>
+                    <th class="col-observaciones-contra">OBSERVACIONES</th>
+                    <th class="col-cumple-contra">CUMPLEN CONTRATISTAS</th>
+                    <th class="col-opciones fixed-column">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>            
+                <tr *ngFor="let aviso of avisos">
+                    <!-- aqui van todos los registros que se hayan hecho, llamandolos desde la bd, ya que por ahora es un registro simulado-->                        
+                    <td>{{ aviso.noFolio }}</td>
+                    <td>{{ aviso.nomDirigido }}</td>
+                    <td>{{ aviso.cargo }}</td>
+                    <td>{{ aviso.fechaIngreso | date:'dd-MM-yyyy'}}</td>
+                    <td>{{ aviso.fechaRecibo | date:'dd-MM-yyyy'}}</td>
+                    <td>{{ aviso.observaciones }}</td>
+                    <td>{{ aviso.cumpleAviso }}</td>
+                    <td class="dependencia" *ngIf="tipoSeleccionado === 'dependencias'">{{ aviso.dependencia }}</td>
+                    <td>{{ aviso.nombreObra }}</td>
+                    <td>{{ aviso.municipio }}</td>
+                    <td>{{ aviso.localidad }}</td>
+                    <td>{{ aviso.claveObra }}</td>
+                    <td>{{ aviso.tipoRecurso }}</td>
+                    <td>{{ aviso.fondo }}</td>
+                    <td>{{ aviso.montoContratado }}</td>
+                    <td *ngIf="tipoSeleccionado === 'municipios'">{{ aviso.montoAutorizado }}</td>
+                    <td>{{ aviso.numContrato }}</td>
+                    <td>{{ aviso.fechaInicio | date:'dd-MM-yyyy'}}</td>
+                    <td>{{ aviso.fechaTermino | date:'dd-MM-yyyy'}}</td>
+                    <td>{{ aviso.contratista }}</td>
+                    <td>{{ aviso.folioContratista }}</td>
+                    <td>{{ aviso.nomDirigidoContratista }}</td>
+                    <td>{{ aviso.cargoContratista }}</td>
+                    <td>{{ aviso.fechaIngresoContratista | date:'dd-MM-yyyy'}}</td>
+                    <td>{{ aviso.fechaReciboContratista | date:'dd-MM-yyyy'}}</td>
+                    <td>{{ aviso.observacionesContratista }}</td>
+                    <td>{{ aviso.cumpleContratista }}</td>
+                    <td class="fixed-column"> <!-- columna fija para opciones-->
+                        <i class="fa-solid fa-file-pdf" style="color: #000000;"></i>
+                        <i class="fa-solid fa-pen" style="color: #000000;"></i>
+                    </td>
+                </tr>                    
+            </tbody>
+        </table>
     </div>
     
+</div>
     
     
+
 
 </section>
 

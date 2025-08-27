@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { IniciosObraService } from '../../services/inicios-obra.service';
 import { AgregarInicioMunicipioModalComponent } from '../../modals/agregar-inicio-municipio-modal/agregar-inicio-municipio-modal.component';
 import { AgregarInicioDependenciaModalComponent } from '../../modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
+import { Municipio, Localidad } from '../../services/inicios-obra.service';
 
 @Component({
   selector: 'app-inicios-obra',
@@ -13,9 +14,24 @@ import { AgregarInicioDependenciaModalComponent } from '../../modals/agregar-ini
 export class IniciosObraComponent implements OnInit {
   avisos: any[] = [];
   tipoSeleccionado: string = 'municipios';
-  
   isAsideCollapsed = false;
 
+  municipios: Municipio[] = [];
+  localidadesAll: Localidad[] = [];   // TODAS las localidades
+  localidades: Localidad[] = [];      // Las que se muestran según selección
+
+  selectedMunicipioClave: string = '';
+  selectedLocalidadClave: string = '';
+
+  // Filtros (solo visual por ahora)
+  filtroClave: string = '';
+  filtroFolio: string = '';
+  filtroContratista: string = '';
+  filtroAnio: string = '';
+  filtroCumple: string = '';
+  filtroRecurso: string = '';
+  filtroFondo: string = '';
+  filtroMonto: string = '';
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object, 
@@ -25,6 +41,9 @@ export class IniciosObraComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerAvisos();
+    this.cargarMunicipios();
+    this.cargarLocalidadesInicial();
+
     if (isPlatformBrowser(this.platformId)) {
       const collapsedFromStorage = localStorage.getItem('asideCollapsed');
       if (collapsedFromStorage !== null) {
@@ -72,6 +91,59 @@ export class IniciosObraComponent implements OnInit {
         this.obtenerAvisos();
       }
     });
+  }
+
+  cargarMunicipios(): void {    
+    this.iniciosObraService.obtenerCatalogoMunicipios().subscribe({
+      next: (data: Municipio[]) => (this.municipios = data),
+      error: (e) => console.error('Error al cargar municipios:', e)
+    });
+  }
+
+  cargarLocalidadesInicial(): void {
+    // Trae TODAS para mostrarlas por defecto
+    this.iniciosObraService.obtenerLocalidades().subscribe({
+      next: (data) => {
+        this.localidadesAll = data;
+        this.localidades = [...data]; // por defecto: todas visibles
+      },
+      error: (e) => console.error('Error al cargar localidades:', e)
+    });
+  }
+
+  onMunicipioChange(): void {
+    // Si no hay municipio seleccionado, mostrar TODAS
+    if (!this.selectedMunicipioClave) {
+      this.localidades = [...this.localidadesAll];
+    } else {
+      // Filtra en cliente a partir de TODAS (sin pedir de nuevo al servidor)
+      this.localidades = this.localidadesAll.filter(
+        l => l.claveMunicipio === this.selectedMunicipioClave
+      );
+    }
+    // Resetear selección de localidad
+    this.selectedLocalidadClave = '';
+  }
+
+  limpiarFiltros(): void {
+    // Inputs de texto
+    this.filtroClave = '';
+    this.filtroFolio = '';
+    this.filtroContratista = '';
+
+    // Selects
+    this.selectedMunicipioClave = '';
+    this.selectedLocalidadClave = '';
+    this.filtroAnio = '';
+    this.filtroCumple = '';
+    this.filtroRecurso = '';
+    this.filtroFondo = '';
+    this.filtroMonto = '';
+
+    // Restablecer lista de localidades visibles
+    this.localidades = [...this.localidadesAll];
+
+    // (Cuando conectemos filtrado real de la tabla, aquí llamaremos a aplicarFiltros())
   }
 
 }

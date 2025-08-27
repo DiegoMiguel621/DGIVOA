@@ -1,6 +1,6 @@
 <div class="chat-window">
   <div class="chat-header-top">
-    <button (click)="cerrarVentana()">← Volver</button>
+    <button (click)="cerrarVentana()" style="cursor: pointer;">← Volver</button>
     <div class="receptor-info">
       <img [src]="getFoto(receptor?.foto)" alt="Receptor" />
       <span>{{ receptor?.nombres }} {{ receptor?.apellidos }}</span>
