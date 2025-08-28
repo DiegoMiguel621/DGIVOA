@@ -13,6 +13,7 @@ import { Municipio, Localidad } from '../../services/inicios-obra.service';
 })
 export class IniciosObraComponent implements OnInit {
   avisos: any[] = [];
+  avisosFiltrados: any[] = [];
   tipoSeleccionado: string = 'municipios';
   isAsideCollapsed = false;
 
@@ -58,17 +59,42 @@ export class IniciosObraComponent implements OnInit {
 
   obtenerAvisos(): void {
     if (this.tipoSeleccionado === 'municipios') {
-      this.iniciosObraService.obtenerAvisosMunicipios().subscribe(
-        data => this.avisos = data,
-        error => console.error('Error al obtener avisos de municipios:', error)
-      );
+      this.iniciosObraService.obtenerAvisosMunicipios().subscribe({
+        next: (data) => {
+          this.avisos = data;
+          this.aplicarFiltros(); // <-- NUEVO: inicializa filtrado
+        },
+        error: (error) => console.error('Error al obtener avisos de municipios:', error)
+      });
     } else {
-      this.iniciosObraService.obtenerAvisosDependencias().subscribe(
-        data => this.avisos = data,
-        error => console.error('Error al obtener avisos de dependencias:', error)
-      );
+      this.iniciosObraService.obtenerAvisosDependencias().subscribe({
+        next: (data) => {
+          this.avisos = data;
+          this.aplicarFiltros(); // <-- NUEVO
+        },
+        error: (error) => console.error('Error al obtener avisos de dependencias:', error)
+      });
     }
-}
+  }
+
+  aplicarFiltros(): void {
+    const clave = (this.filtroClave || '').trim().toLowerCase();
+    const folio = (this.filtroFolio || '').trim().toLowerCase();
+
+    this.avisosFiltrados = this.avisos.filter(aviso => {
+      // 1) claveObra 
+      if (clave) {
+        const valor = String(aviso?.claveObra || '').toLowerCase();
+        if (!valor.includes(clave)) return false;
+      }
+      // 2) noFolio (el de la BD)
+      if (folio) {
+        const vFolio = String(aviso?.noFolio ?? '').toLowerCase();
+        if (!vFolio.includes(folio)) return false;
+      }
+      return true; // (aquí iremos encadenando más filtros después)
+    });
+  }
 
 
   cambiarTipo(tipo: string): void {
@@ -143,7 +169,9 @@ export class IniciosObraComponent implements OnInit {
     // Restablecer lista de localidades visibles
     this.localidades = [...this.localidadesAll];
 
-    // (Cuando conectemos filtrado real de la tabla, aquí llamaremos a aplicarFiltros())
+    this.aplicarFiltros();
   }
+
+
 
 }

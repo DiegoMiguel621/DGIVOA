@@ -30,12 +30,12 @@
   <!-- Campos de búsqueda -->
   <div class="search-box">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="Buscar clave" [(ngModel)]="filtroClave" [ngModelOptions]="{standalone:true}">
+    <input type="text" placeholder="Buscar clave" [(ngModel)]="filtroClave" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
   </div>
 
   <div class="search-box">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="Buscar folio" [(ngModel)]="filtroFolio" [ngModelOptions]="{standalone:true}">
+    <input type="text" placeholder="Buscar folio" [(ngModel)]="filtroFolio" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
   </div>
 
   <div class="search-box">
@@ -102,9 +102,9 @@
   </select>
 </div>
 
-<!--------------------------------------------->
-<!--------------- Aside filtros --------------->
-<!--------------------------------------------->
+<!------------------------------------------------->
+<!------------- Tabla inicios de obra ------------->
+<!------------------------------------------------->
 <div id="cont-tabla">
     <div id="table-container">
         <table class="tabla-inicios" [ngClass]="{ 'municipios': tipoSeleccionado === 'municipios', 'dependencias': tipoSeleccionado === 'dependencias' }">
@@ -141,7 +141,7 @@
                 </tr>
             </thead>
             <tbody>            
-                <tr *ngFor="let aviso of avisos">
+                <tr *ngFor="let aviso of avisosFiltrados">
                     <!-- aqui van todos los registros que se hayan hecho, llamandolos desde la bd, ya que por ahora es un registro simulado-->                        
                     <td>{{ aviso.noFolio }}</td>
                     <td>{{ aviso.nomDirigido }}</td>
