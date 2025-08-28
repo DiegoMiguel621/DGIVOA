@@ -40,7 +40,7 @@
 
   <div class="search-box">
     <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="Buscar Contratista" [(ngModel)]="filtroContratista" [ngModelOptions]="{standalone:true}">
+    <input type="text" placeholder="Buscar Contratista" [(ngModel)]="filtroContratista" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
   </div>
 
   <!-- Menús desplegables -->
@@ -51,55 +51,44 @@
     </option>
   </select>
 
-  <select id="localidad" [(ngModel)]="selectedLocalidadClave" [ngModelOptions]="{ standalone: true }">
-    <option value="">Por localidad</option>
-    <option *ngFor="let l of localidades" [value]="l.clave">
-      {{ l.nombre }}
-    </option>
+ <select id="localidad" [(ngModel)]="selectedLocalidadClave" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{ standalone: true }">
+  <option value="">Por localidad</option>
+  <option *ngFor="let l of localidades" [value]="l.clave">
+    {{ l.nombre }}
+  </option>
   </select>
 
-  <select id="año" [(ngModel)]="filtroAnio" [ngModelOptions]="{standalone:true}">
+  <select id="año" [(ngModel)]="filtroAnio" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
     <option value="">Por año</option>
-    <option>2015</option>
-    <option>2016</option>
-    <option>2017</option>
-    <option>2018</option>
-    <option>2019</option>
-    <option>2020</option>
-    <option>2021</option>
-    <option>2022</option>
-    <option>2023</option>
-    <option>2024</option>
-    <option>2025</option>
+    <option *ngFor="let y of anios" [value]="y">{{ y }}</option>
   </select>
 
-  <select id="aviso" [(ngModel)]="filtroCumple" [ngModelOptions]="{standalone:true}">
+  <select id="aviso" [(ngModel)]="filtroCumple" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
     <option value="">Cumple aviso</option>
     <option>Sí</option>
     <option>No</option>
   </select>
 
-  <select id="recurso" [(ngModel)]="filtroRecurso" [ngModelOptions]="{standalone:true}">
+  <select id="recurso" [(ngModel)]="filtroRecurso" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
     <option value="">Tipo de recurso</option>
     <option>MUNICIPAL</option>
     <option>ESTATAL</option>
     <option>FEDERAL</option>
   </select>
 
-  <select id="fondo" [(ngModel)]="filtroFondo" [ngModelOptions]="{standalone:true}">
+  <select id="fondo" [(ngModel)]="filtroFondo" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
     <option value="">Tipo de fondo</option>
-    <option>FAFEF</option>
-    <option>FAMEB</option>
-    <option>PRISR</option>
-    <option>ISAVU</option>
+    <option *ngFor="let f of fondos" [value]="f">{{ f }}</option>
   </select>
 
-  <select id="monto" [(ngModel)]="filtroMonto" [ngModelOptions]="{standalone:true}">
+  <select id="monto" [(ngModel)]="filtroMonto" (ngModelChange)="aplicarFiltros()" [ngModelOptions]="{standalone:true}">
     <option value="">Monto</option>
     <option>$0 - $100,000</option>
     <option>$100,001 - $500,000</option>
     <option>$500,001 - $1,000,000</option>
+    <option>$1,000,001 +</option>
   </select>
+
 </div>
 
 <!------------------------------------------------->

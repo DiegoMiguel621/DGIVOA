@@ -12,6 +12,8 @@ import { Municipio, Localidad } from '../../services/inicios-obra.service';
   styleUrl: './inicios-obra.component.css'
 })
 export class IniciosObraComponent implements OnInit {
+  anios: number[] = [];
+  fondos: string[] = [];
   avisos: any[] = [];
   avisosFiltrados: any[] = [];
   tipoSeleccionado: string = 'municipios';
@@ -40,10 +42,87 @@ export class IniciosObraComponent implements OnInit {
     private matDialog: MatDialog
   ) {}
 
+  private extraerAnio(fecha: any): number | null {
+    if (!fecha) return null;
+    // Si ya es Date
+    if (fecha instanceof Date && !isNaN(fecha.getTime())) {
+      return fecha.getFullYear();
+    }
+    // Si viene como string/number
+    const d = new Date(fecha);
+    if (!isNaN(d.getTime())) return d.getFullYear();
+
+    // Fallback simple por texto: intenta separar por "-" o "/"
+    try {
+      const s = String(fecha);
+      const parts = s.includes('-') ? s.split('-') : s.split('/');
+      // Casos comunes: "YYYY-MM-DD" o "DD/MM/YYYY"
+      if (parts.length === 3) {
+        if (parts[0].length === 4) return parseInt(parts[0], 10); // YYYY-...
+        return parseInt(parts[2], 10); // .../YYYY
+      }
+    } catch {}
+    return null;
+  }
+
+  private generarAnios(desde: number = 2015): void {
+    const actual = new Date().getFullYear();
+    this.anios = Array.from({ length: (actual - desde + 1) }, (_, i) => desde + i);
+  }
+
+  private actualizarFondosDisponibles(): void {
+    const set = new Set<string>();
+    for (const a of this.avisos) {
+      const f = String(a?.fondo ?? '').trim();
+      if (f) set.add(f.toUpperCase()); // normaliza
+    }
+    this.fondos = Array.from(set).sort();
+
+    // Si el fondo seleccionado ya no existe en el nuevo catálogo, límpialo
+    if (this.filtroFondo && !this.fondos.includes(this.filtroFondo.toUpperCase())) {
+      this.filtroFondo = '';
+    }
+  }
+
+  private toNumber(v: any): number {
+    if (v === null || v === undefined) return NaN;
+    if (typeof v === 'number') return v;
+    // Quita símbolos y separadores de miles; respeta el punto decimal
+    const s = String(v).replace(/[^0-9.,-]/g, '').replace(/,/g, '');
+    const n = parseFloat(s);
+    return isNaN(n) ? NaN : n;
+  }
+
+  private parseRangoMonto(value: string): { min: number; max: number } | null {
+    if (!value) return null;
+
+    // Mapeo explícito de tus opciones actuales
+    if (value === '$0 - $100,000') return { min: 0, max: 100000 };
+    if (value === '$100,001 - $500,000') return { min: 100001, max: 500000 };
+    if (value === '$500,001 - $1,000,000') return { min: 500001, max: 1000000 };
+    if (value === '$1,000,001 +' || value === '1,000,001 +' || value === '1 000 001 +' || /\+\s*$/.test(value)) {
+      return { min: 1000001, max: Infinity };
+    }
+
+    // Fallback genérico por si cambian los rangos en el futuro
+    const hasX = /x/i.test(value) || /\+\s*$/.test(value);
+    const nums = value.match(/[\d.,]+/g);
+    if (nums && nums.length >= 1) {
+      const min = this.toNumber(nums[0]);
+      if (hasX) return Number.isFinite(min) ? { min, max: Infinity } : null;
+      if (nums.length >= 2) {
+        const max = this.toNumber(nums[1]);
+        if (Number.isFinite(min) && Number.isFinite(max)) return { min, max };
+      }
+    }
+    return null;
+  }
+
   ngOnInit(): void {
     this.obtenerAvisos();
     this.cargarMunicipios();
     this.cargarLocalidadesInicial();
+    this.generarAnios(2015);
 
     if (isPlatformBrowser(this.platformId)) {
       const collapsedFromStorage = localStorage.getItem('asideCollapsed');
@@ -62,7 +141,8 @@ export class IniciosObraComponent implements OnInit {
       this.iniciosObraService.obtenerAvisosMunicipios().subscribe({
         next: (data) => {
           this.avisos = data;
-          this.aplicarFiltros(); // <-- NUEVO: inicializa filtrado
+          this.actualizarFondosDisponibles();
+          this.aplicarFiltros();
         },
         error: (error) => console.error('Error al obtener avisos de municipios:', error)
       });
@@ -70,7 +150,8 @@ export class IniciosObraComponent implements OnInit {
       this.iniciosObraService.obtenerAvisosDependencias().subscribe({
         next: (data) => {
           this.avisos = data;
-          this.aplicarFiltros(); // <-- NUEVO
+          this.actualizarFondosDisponibles();
+          this.aplicarFiltros();
         },
         error: (error) => console.error('Error al obtener avisos de dependencias:', error)
       });
@@ -80,6 +161,20 @@ export class IniciosObraComponent implements OnInit {
   aplicarFiltros(): void {
     const clave = (this.filtroClave || '').trim().toLowerCase();
     const folio = (this.filtroFolio || '').trim().toLowerCase();
+    const contratista = (this.filtroContratista || '').trim().toLowerCase();
+    const municipioNombre = (this.municipios.find(m => m.clave === this.selectedMunicipioClave)?.nombre || '').trim().toLowerCase();
+    const localidadNombre = (this.localidadesAll.find(l => l.clave === this.selectedLocalidadClave)?.nombre || '').trim().toLowerCase();
+    const anio = this.filtroAnio ? parseInt(this.filtroAnio, 10) : null;
+    const recursoFiltro = (this.filtroRecurso || '').trim().toUpperCase();
+    const fondoFiltro = (this.filtroFondo || '').trim().toUpperCase();
+    const rangoMonto    = this.parseRangoMonto(this.filtroMonto);
+
+    let cumpleFiltro: 'SI' | 'NO' | null = null;
+    if (this.filtroCumple) {
+      const f = this.filtroCumple.toString().trim().toLowerCase();
+      if (f === 'sí' || f === 'si') cumpleFiltro = 'SI';
+      else if (f === 'no') cumpleFiltro = 'NO';
+    }
 
     this.avisosFiltrados = this.avisos.filter(aviso => {
       // 1) claveObra 
@@ -92,6 +187,49 @@ export class IniciosObraComponent implements OnInit {
         const vFolio = String(aviso?.noFolio ?? '').toLowerCase();
         if (!vFolio.includes(folio)) return false;
       }
+      // 3) contratista
+      if (contratista) {
+        const vContratista = String(aviso?.contratista ?? '').toLowerCase();
+        if (!vContratista.includes(contratista)) return false;
+      }
+      // 4) municipio (comparación por nombre)
+      if (this.selectedMunicipioClave) {
+        const vMunicipio = String(aviso?.municipio ?? '').trim().toLowerCase();
+        // Igualdad estricta por nombre normalizado
+        if (vMunicipio !== municipioNombre) return false;
+      }
+      // 5) localidad (comparación por nombre)
+      if (this.selectedLocalidadClave) {
+        const vLocalidad = String(aviso?.localidad ?? '').trim().toLowerCase();
+        if (vLocalidad !== localidadNombre) return false;
+      }
+      // 6) año (de fechaRecibo)
+      if (anio !== null) {
+        const y = this.extraerAnio(aviso?.fechaRecibo);
+        if (y !== anio) return false;
+      }
+      // 7) cumpleAviso (SI/NO)
+      if (cumpleFiltro) {
+        const vCumple = String(aviso?.cumpleAviso ?? '').trim().toUpperCase();
+        if (vCumple !== cumpleFiltro) return false;
+      }
+      // 8) tipoRecurso (MUNICIPAL / ESTATAL / FEDERAL)
+      if (recursoFiltro) {
+        const vRecurso = String(aviso?.tipoRecurso ?? '').trim().toUpperCase();
+        if (vRecurso !== recursoFiltro) return false;
+      }
+      // 9) fondo
+      if (fondoFiltro) {
+        const vFondo = String(aviso?.fondo ?? '').trim().toUpperCase();
+        if (vFondo !== fondoFiltro) return false;
+      }
+      // 10) montoContratado (rango)
+      if (rangoMonto) {
+        const monto = this.toNumber(aviso?.montoContratado);
+        if (!Number.isFinite(monto)) return false;
+        if (monto < rangoMonto.min || monto > rangoMonto.max) return false;
+      }
+
       return true; // (aquí iremos encadenando más filtros después)
     });
   }
@@ -149,6 +287,7 @@ export class IniciosObraComponent implements OnInit {
     }
     // Resetear selección de localidad
     this.selectedLocalidadClave = '';
+    this.aplicarFiltros();//actualizamos los filtros
   }
 
   limpiarFiltros(): void {

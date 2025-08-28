@@ -62,12 +62,12 @@
 
             <div class="form-section">
   <label for="municipio">9. Municipio</label>
-<select id="municipio" formControlName="municipio">
-  <option value="">Selecciona un municipio</option>
-  <option *ngFor="let mun of municipios" [value]="mun.clave">
-    {{ mun.nombre }}
-  </option>
-</select>
+    <select id="municipio" formControlName="municipio">
+    <option value="">Selecciona un municipio</option>
+    <option *ngFor="let mun of municipios" [value]="mun.clave">
+        {{ mun.nombre }}
+    </option>
+    </select>
 
 </div>
 
