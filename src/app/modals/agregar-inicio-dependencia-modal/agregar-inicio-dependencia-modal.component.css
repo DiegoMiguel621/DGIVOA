@@ -119,12 +119,6 @@ input, select, textarea {
 #fechaTermino { width: 30%; }
 #contratista { width: 80%; }
 
-
-
-
-
-
-
 /* Ajuste para inputs más grandes si es necesario */
 input.full-width {
   width: 100%;
@@ -165,4 +159,41 @@ button:hover {
 
 #guardar {
   margin-right: 20%;
+}
+
+/* Input + botón en fila */
+.input-with-action{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Respetar tu #claveObra { width: 40%; } ya definido */
+.input-with-action input{
+  flex: 0 0 auto;
+}
+
+/* Botón “Recalcular” con color institucional */
+.link-btn{
+  background: transparent !important;
+  border: 1px solid #691B32 !important;
+  color: #691B32 !important;
+  border-radius: 9999px;
+  padding: 6px 12px;
+  font-size: 12px !important;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.link-btn i{ font-size: 12px; }
+.link-btn:hover{
+  background: #691B32 !important;
+  color: #fff !important;
+}
+.form-section small{
+  margin-top: 6px;
 }

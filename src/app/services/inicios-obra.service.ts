@@ -51,6 +51,13 @@ export class IniciosObraService {
   guardarAvisoContratistaDependencia(data: any): Observable<any> {
     return this.http.post(`${this.apiUrlDependenciasContratista}`, data);
   }
+  getConsecutivoDependencia(anio: string, claveMunicipio: string, fondo: string) {
+    return this.http.get<any>('http://localhost:3000/api/obras-dependencias/consecutivo', {
+      params: { anio, claveMunicipio, fondo }
+    });
+  }
+
+
   
 // Municipios (clave, nombre)
   obtenerCatalogoMunicipios(): Observable<any[]> {
