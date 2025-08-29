@@ -61,26 +61,45 @@
             </div>
 
             <div class="form-section">
-  <label for="municipio">9. Municipio</label>
-    <select id="municipio" formControlName="municipio">
-    <option value="">Selecciona un municipio</option>
-    <option *ngFor="let mun of municipios" [value]="mun.clave">
-        {{ mun.nombre }}
-    </option>
-    </select>
-
-</div>
-
+                <label for="municipio">9. Municipio</label>
+                    <select id="municipio" formControlName="municipio">
+                    <option value="">Selecciona un municipio</option>
+                    <option *ngFor="let mun of municipios" [value]="mun.clave">
+                        {{ mun.nombre }}
+                    </option>
+                    </select>
+            </div>
 
             <div class="form-section">
                 <label for="localidad">10. Localidad</label>
-                <input type="text" id="localidad" formControlName="localidad">
+                <select id="localidad"
+                        formControlName="localidad"
+                        [disabled]="!localidades.length">
+                    <option value="">Selecciona una localidad</option>
+                    <option *ngFor="let loc of localidades" [value]="loc.nombre">
+                    {{ loc.nombre }}
+                    </option>
+                </select>
             </div>
 
             <div class="form-section">
-                <label for="claveObra">11. Clave de Obra</label>
-                <input type="text" id="claveObra" formControlName="claveObra" readonly style="background-color: #eee;">
+            <label for="claveObra">11. Clave de Obra</label>
+
+            <div class="input-with-action">
+                <input type="text" id="claveObra" formControlName="claveObra" autocomplete="off" placeholder="Generación Automatica">
+
+                <!-- Botón Recalcular: aparece solo en modo manual -->
+                <button type="button" *ngIf="claveObraManual" (click)="recalcularClaveObra()" class="link-btn" title="Recalcular clave">
+                <i class="fa-solid fa-rotate-right"></i> Recalcular
+                </button>
             </div>
+
+            <small *ngIf="claveObraManual" style="display:block; color:#666;">
+                Modo manual: no se autogenerará hasta que presiones “Recalcular”.
+            </small>
+            </div>
+
+
 
             <div class="form-section">
                 <label for="tipoRecurso">12. Tipo de Recurso</label>
