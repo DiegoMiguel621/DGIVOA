@@ -6,6 +6,9 @@ import { AgregarInicioMunicipioModalComponent } from '../../modals/agregar-inici
 import { AgregarInicioDependenciaModalComponent } from '../../modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
 import { Municipio, Localidad } from '../../services/inicios-obra.service';
 
+import { jsPDF } from 'jspdf';
+import autoTable, { RowInput } from 'jspdf-autotable';
+
 @Component({
   selector: 'app-inicios-obra',
   templateUrl: './inicios-obra.component.html',
@@ -117,6 +120,77 @@ export class IniciosObraComponent implements OnInit {
     }
     return null;
   }
+
+  private hexToRgb(hex: string): [number, number, number] {
+    const c = hex.replace('#', '');
+    const bigint = parseInt(c, 16);
+    return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
+  }
+
+  private fmtDate(v: any): string {
+    if (!v) return '—';
+    const d = new Date(v);
+    return isNaN(d.getTime()) ? String(v) : new Intl.DateTimeFormat('es-MX', {
+      day: '2-digit', month: '2-digit', year: 'numeric'
+    }).format(d);
+  }
+
+  private fmtMoney(v: any): string {
+    const n = this.toNumber(v);
+    if (!Number.isFinite(n)) return '—';
+    return n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN', minimumFractionDigits: 2 });
+  }
+
+  private safe(v: any): string {
+    if (v === null || v === undefined || v === '') return '—';
+    return String(v);
+  }
+
+  private construirFilasParaPdf(aviso: any): RowInput[] {
+    const filas: RowInput[] = [];
+    const push = (campo: string, valor: any, tipo?: 'fecha' | 'money') => {
+      let out = this.safe(valor);
+      if (tipo === 'fecha') out = this.fmtDate(valor);
+      if (tipo === 'money') out = this.fmtMoney(valor);
+      filas.push([campo, out]);
+    };
+
+    // Campos comunes
+    push('No. Folio', aviso.noFolio);
+    push('Nombre quien dirige a la Contraloría', aviso.nomDirigido);
+    push('Cargo', aviso.cargo);
+    push('Fecha de ingreso SC', aviso.fechaIngreso, 'fecha');
+    push('Fecha que recibe DICO', aviso.fechaRecibo, 'fecha');
+    push('Observaciones', aviso.observaciones);
+    push('Cumple aviso de inicio', aviso.cumpleAviso);
+    if (this.tipoSeleccionado === 'dependencias') push('Dependencia que ejecuta', aviso.dependencia);
+
+    push('Nombre de la obra', aviso.nombreObra);
+    push('Municipio', aviso.municipio);
+    push('Localidad', aviso.localidad);
+    push('Clave de obra', aviso.claveObra);
+    push('Tipo de recurso', aviso.tipoRecurso);
+    push('Fondo', aviso.fondo);
+    push('Monto contratado', aviso.montoContratado, 'money');
+    if (this.tipoSeleccionado === 'municipios') push('Monto autorizado', aviso.montoAutorizado, 'money');
+    push('Número de contrato', aviso.numContrato);
+    push('Fecha de inicio de obra', aviso.fechaInicio, 'fecha');
+    push('Fecha de término de obra', aviso.fechaTermino, 'fecha');
+    push('Contratista', aviso.contratista);
+
+    // Datos de contratista
+    push('Folio (contratista)', aviso.folioContratista);
+    push('Nombre quien dirige (contratista)', aviso.nomDirigidoContratista);
+    push('Cargo (contratista)', aviso.cargoContratista);
+    push('Fecha ingreso SC (contratista)', aviso.fechaIngresoContratista, 'fecha');
+    push('Fecha que recibe DICO (contratista)', aviso.fechaReciboContratista, 'fecha');
+    push('Observaciones (contratista)', aviso.observacionesContratista);
+    push('Cumplen contratistas', aviso.cumpleContratista);
+
+    return filas;
+  }
+
+
 
   ngOnInit(): void {
     this.obtenerAvisos();
@@ -310,6 +384,49 @@ export class IniciosObraComponent implements OnInit {
 
     this.aplicarFiltros();
   }
+
+  descargarPdf(aviso: any): void {
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const margen = 14;
+    const claveTitulo = aviso?.claveObra || aviso?.noFolio || '';
+    const titulo = `Aviso de Inicio de Obra${claveTitulo ? ' - ' + claveTitulo : ''}`;
+    const rgbCab = this.hexToRgb('#9A566A');
+
+    // Título
+    doc.setFontSize(14);
+    const pageWidth = doc.internal.pageSize.getWidth();
+    doc.text(titulo, pageWidth / 2, 16, { align: 'center' });
+
+    // Tabla
+    const body = this.construirFilasParaPdf(aviso);
+
+    autoTable(doc, {
+      startY: 26,
+      head: [['Campo', 'Contenido']],
+      body,
+      theme: 'grid',
+      styles: {
+        fontSize: 10,
+        cellPadding: 3,
+        valign: 'middle'
+      },
+      headStyles: {
+        fillColor: rgbCab,        // #9A566A
+        textColor: [255, 255, 255],
+        halign: 'center'
+      },
+      alternateRowStyles: { fillColor: [242, 242, 242] }, // #f2f2f2
+      columnStyles: {
+        0: { cellWidth: 65 },     // "Campo"
+        1: { cellWidth: 'auto' }  // "Contenido"
+      },
+      margin: { left: margen, right: margen }
+    });
+
+    const nombre = `Aviso_${this.safe(aviso.claveObra) || this.safe(aviso.noFolio) || 'obra'}.pdf`;
+    doc.save(nombre);
+  }
+
 
 
 
