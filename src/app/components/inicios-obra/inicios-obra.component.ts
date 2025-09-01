@@ -5,6 +5,8 @@ import { IniciosObraService } from '../../services/inicios-obra.service';
 import { AgregarInicioMunicipioModalComponent } from '../../modals/agregar-inicio-municipio-modal/agregar-inicio-municipio-modal.component';
 import { AgregarInicioDependenciaModalComponent } from '../../modals/agregar-inicio-dependencia-modal/agregar-inicio-dependencia-modal.component';
 import { Municipio, Localidad } from '../../services/inicios-obra.service';
+import { EditarInicioMunicipioModalComponent } from '../../modals/editar-inicio-municipio-modal/editar-inicio-municipio-modal.component';
+import { EditarInicioDependenciaModalComponent } from '../../modals/editar-inicio-dependencia-modal/editar-inicio-dependencia-modal.component';
 
 import { jsPDF } from 'jspdf';
 import autoTable, { RowInput } from 'jspdf-autotable';
@@ -425,6 +427,19 @@ export class IniciosObraComponent implements OnInit {
 
     const nombre = `Aviso_${this.safe(aviso.claveObra) || this.safe(aviso.noFolio) || 'obra'}.pdf`;
     doc.save(nombre);
+  }
+
+  editarAviso(aviso: any) {
+    const component = this.tipoSeleccionado === 'municipios'
+      ? EditarInicioMunicipioModalComponent
+      : EditarInicioDependenciaModalComponent;
+
+    this.matDialog.open(component, {
+      width: '980px',
+      data: { aviso }           // también puedes pasar solo { claveObra: aviso.claveObra }
+    }).afterClosed().subscribe(ok => {
+      if (ok) this.obtenerAvisos();
+    });
   }
 
 

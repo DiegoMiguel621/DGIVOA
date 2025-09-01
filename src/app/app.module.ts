@@ -35,6 +35,8 @@ import { ProgramarFechasComponent } from './components/programar-fechas/programa
 import { ModalFechaInspeccionComponent } from './modals/modal-fecha-inspeccion/modal-fecha-inspeccion.component';
 import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.component';
 import { ConversacionComponent } from './components/conversacion/conversacion.component';
+import { EditarInicioMunicipioModalComponent } from './modals/editar-inicio-municipio-modal/editar-inicio-municipio-modal.component';
+import { EditarInicioDependenciaModalComponent } from './modals/editar-inicio-dependencia-modal/editar-inicio-dependencia-modal.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { ConversacionComponent } from './components/conversacion/conversacion.co
     ProgramarFechasComponent,
     ModalFechaInspeccionComponent,
     ChatSidebarComponent,
-    ConversacionComponent
+    ConversacionComponent,
+    EditarInicioMunicipioModalComponent,
+    EditarInicioDependenciaModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,178 @@
+<div class="modal-container">
+  <div class="modal-content">
+
+    <div id="header-modal">
+      <h1>Editar Inicio de Obra - Municipios</h1>
+    </div>
+
+    <div id="selector-tipo">
+      <span class="nav-option" [class.active]="formularioActivo === 'municipio'" (click)="cambiarFormulario('municipio')">Municipio</span> |
+      <span class="nav-option" [class.active]="formularioActivo === 'contratista'" (click)="cambiarFormulario('contratista')">Contratista</span>
+    </div>
+
+    <p id="info-text">Modifica los campos necesarios y guarda los cambios.</p>
+
+    <!-- Formulario: MUNICIPIO -->
+    <form id="form-modal" [formGroup]="avisoForm" *ngIf="formularioActivo === 'municipio'">
+      <div class="form-section">
+        <label for="noFolio">1. No. de Folio</label>
+        <input type="text" id="noFolio" formControlName="noFolio">
+      </div>
+
+      <div class="form-section">
+        <label for="nomDirigido">2. Nombre de Quien Dirige el Oficio a la Contraloría</label>
+        <input type="text" id="nomDirigido" formControlName="nomDirigido">
+      </div>
+
+      <div class="form-section">
+        <label for="cargo">3. Cargo</label>
+        <input type="text" id="cargo" formControlName="cargo">
+      </div>
+
+      <div class="form-section">
+        <label for="fechaIngreso">4. Fecha de Ingreso SC</label>
+        <input type="date" id="fechaIngreso" formControlName="fechaIngreso">
+      </div>
+
+      <div class="form-section">
+        <label for="fechaRecibo">5. Fecha que Recibe DICO</label>
+        <input type="date" id="fechaRecibo" formControlName="fechaRecibo">
+      </div>
+
+      <div class="form-section">
+        <label for="observaciones">6. Observaciones</label>
+        <textarea id="observaciones" formControlName="observaciones"></textarea>
+      </div>
+
+      <div class="form-section">
+        <label for="cumpleAviso">7. Cumple Aviso de Inicio</label>
+        <select id="cumpleAviso" formControlName="cumpleAviso">
+          <option value="SI">SI</option>
+          <option value="NO">NO</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <label for="nombreObra">8. Nombre de la Obra</label>
+        <textarea id="nombreObra" formControlName="nombreObra"></textarea>
+      </div>
+
+      <div class="form-section">
+        <label for="municipio">9. Municipio</label>
+        <select id="municipio" formControlName="municipio">
+          <option value="">Selecciona un municipio</option>
+          <option *ngFor="let mun of municipios" [value]="mun.clave">{{ mun.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <label for="localidad">10. Localidad</label>
+        <select id="localidad" formControlName="localidad" [disabled]="!localidades.length">
+          <option value="">Selecciona una localidad</option>
+          <option *ngFor="let loc of localidades" [value]="loc.nombre">{{ loc.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <label for="claveObra">11. Clave de Obra</label>
+        <!-- En edición: libre, sin autogeneración -->
+        <input type="text" id="claveObra" formControlName="claveObra" autocomplete="off" placeholder="AAAA/FON###NNN">
+      </div>
+
+      <div class="form-section">
+        <label for="tipoRecurso">12. Tipo de Recurso</label>
+        <select id="tipoRecurso" formControlName="tipoRecurso">
+          <option value="ESTATAL">ESTATAL</option>
+          <option value="FEDERAL">FEDERAL</option>
+          <option value="MUNICIPAL">MUNICIPAL</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <label for="fondo">13. Fondo</label>
+        <input type="text" id="fondo" formControlName="fondo">
+      </div>
+
+      <div class="form-section">
+        <label for="numContrato">14. Número de Contrato</label>
+        <input type="text" id="numContrato" formControlName="numContrato">
+      </div>
+
+      <div class="form-section">
+        <label for="montoContratado">15. Monto Contratado</label>
+        <input type="text" id="montoContratado" formControlName="montoContratado">
+      </div>
+
+      <div class="form-section">
+        <label for="montoAutorizado">16. Monto Autorizado</label>
+        <input type="text" id="montoAutorizado" formControlName="montoAutorizado">
+      </div>
+
+      <div class="form-section">
+        <label for="fechaInicio">17. Plazo de ejecución inicial</label>
+        <input type="date" id="fechaInicio" formControlName="fechaInicio">
+      </div>
+
+      <div class="form-section">
+        <label for="fechaTermino">18. Plazo de ejecución de terminación</label>
+        <input type="date" id="fechaTermino" formControlName="fechaTermino">
+      </div>
+
+      <div class="form-section">
+        <label for="contratista">19. Contratista</label>
+        <input type="text" id="contratista" formControlName="contratista">
+      </div>
+    </form>
+
+    <!-- Formulario: CONTRATISTA -->
+    <form id="form-modal" *ngIf="formularioActivo === 'contratista'" [formGroup]="contratistaForm">
+      <div class="form-section">
+        <label for="claveObraC">1. Clave de obra</label>
+        <input type="text" id="claveObraC" formControlName="claveObra" required>
+      </div>
+
+      <div class="form-section">
+        <label for="noFolioC">2. No. de Folio</label>
+        <input type="text" id="noFolioC" formControlName="noFolio" required>
+      </div>
+
+      <div class="form-section">
+        <label for="nomDirigidoC">3. Nombre de Quien Dirige el Oficio</label>
+        <input type="text" id="nomDirigidoC" formControlName="nomDirigido" required>
+      </div>
+
+      <div class="form-section">
+        <label for="cargoC">4. Cargo</label>
+        <input type="text" id="cargoC" formControlName="cargo" required>
+      </div>
+
+      <div class="form-section">
+        <label for="fechaIngresoC">5. Fecha de Ingreso SC</label>
+        <input type="date" id="fechaIngresoC" formControlName="fechaIngreso" required>
+      </div>
+
+      <div class="form-section">
+        <label for="fechaReciboC">6. Fecha que Recibe DICO</label>
+        <input type="date" id="fechaReciboC" formControlName="fechaRecibo" required>
+      </div>
+
+      <div class="form-section">
+        <label for="observacionesC">7. Observaciones</label>
+        <textarea id="observacionesC" formControlName="observaciones"></textarea>
+      </div>
+
+      <div class="form-section">
+        <label for="cumpleAvisoC">8. Cumple Aviso de Inicio</label>
+        <select id="cumpleAvisoC" formControlName="cumpleAviso">
+          <option value="SI">SI</option>
+          <option value="NO">NO</option>
+        </select>
+      </div>
+    </form>
+
+    <div id="footer-modal">
+      <button type="button" (click)="cancelar()" id="cancelar">Cancelar</button>
+      <button type="submit" (click)="guardar()" id="guardar">Guardar</button>
+    </div>
+  </div>
+</div>

@@ -161,7 +161,7 @@
                     <td>{{ aviso.cumpleContratista }}</td>
                     <td class="fixed-column"> <!-- columna fija para opciones-->
                         <i class="fa-solid fa-file-pdf" style="color:#000; cursor:pointer;" title="Descargar PDF" (click)="descargarPdf(aviso)"></i>
-                        <i class="fa-solid fa-pen" style="color: #000000;"></i>
+                        <i class="fa-solid fa-pen" style="color:#000" (click)="editarAviso(aviso)"></i>
                     </td>
                 </tr>                    
             </tbody>
