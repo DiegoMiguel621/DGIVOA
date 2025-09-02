@@ -90,6 +90,16 @@ export class IniciosObraService {
       aviso
     );
   }
+  obtenerAvisoDependenciaContratistaPorClave(claveObra: string) {
+    return this.http.get<any>(`${this.apiUrlDependenciasContratista}/${encodeURIComponent(claveObra)}`);
+  }
+
+  actualizarAvisoContratistaDependencia(claveObraOriginal: string, data: any) {
+    return this.http.put<any>(
+      `${this.apiUrlDependenciasContratista}/${encodeURIComponent(claveObraOriginal)}`,
+      data
+    );
+  }
 
   // ========= CATÁLOGOS =========
   obtenerCatalogoMunicipios(): Observable<Municipio[]> {

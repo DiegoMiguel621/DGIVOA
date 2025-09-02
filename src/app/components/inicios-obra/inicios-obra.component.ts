@@ -430,19 +430,21 @@ export class IniciosObraComponent implements OnInit {
   }
 
   editarAviso(aviso: any) {
-    const component = this.tipoSeleccionado === 'municipios'
-      ? EditarInicioMunicipioModalComponent
-      : EditarInicioDependenciaModalComponent;
-
-    this.matDialog.open(component, {
-      width: '980px',
-      data: { aviso }           // también puedes pasar solo { claveObra: aviso.claveObra }
-    }).afterClosed().subscribe(ok => {
-      if (ok) this.obtenerAvisos();
-    });
+    if (this.tipoSeleccionado === 'municipios') {
+      this.matDialog.open(EditarInicioMunicipioModalComponent, {
+        width: '980px',
+        data: { aviso }
+      }).afterClosed().subscribe(ok => {
+        if (ok) this.obtenerAvisos();
+      });
+    } else {
+      this.matDialog.open(EditarInicioDependenciaModalComponent, {
+        width: '980px',
+        data: { aviso }
+      }).afterClosed().subscribe(ok => {
+        if (ok) this.obtenerAvisos();
+      });
+    }
   }
-
-
-
 
 }
